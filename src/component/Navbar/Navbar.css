@@ -18,7 +18,7 @@
     height: 80px;
     background-color:var(--bgcolor);
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     color: var(--fontcolor);
     padding-left: 30px;
