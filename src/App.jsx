@@ -1,13 +1,17 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./component/Navbar/Navbar";
-import Html from "./pages/Html/Html";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Login from "./component/Login/Login";
 import SignUp from "./component/SignUp/SignUp";
 import Language from "./component/Language/Language";
+import Courses from "./pages/Courses/Courses";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./pages/Home/Home.css";
+import LanguagesNav from "./component/LanguagesNav/LanguagesNav";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,6 +21,15 @@ function App() {
         <>
           <Navbar />
           <Home />
+        </>
+      ),
+    },
+    {
+      path: "/courses",
+      element: (
+        <>
+          <Navbar />
+          <Courses />
         </>
       ),
     },
@@ -40,8 +53,14 @@ function App() {
     },
     {
       path: "/language/:langname",
-      element:<><Navbar/><Language/></>
-    }
+      element: (
+        <>
+          <Navbar />
+          <LanguagesNav />
+          <Language />
+        </>
+      ),
+    },
   ]);
   return (
     <>

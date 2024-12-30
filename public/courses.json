@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "courseName": "Asoka",
+    "price": "$1.36",
+    "image": null,
+    "rating": 4,
+    "catagory": "Lotstring"
+  },
+  {
+    "id": 2,
+    "courseName": "Regrant",
+    "price": "$0.29",
+    "image": null,
+    "rating": 1,
+    "catagory": "Stronghold"
+  },
+  {
+    "id": 3,
+    "courseName": "Sub-Ex",
+    "price": "$5.23",
+    "image": null,
+    "rating": 3,
+    "catagory": "Bamity"
+  },
+  {
+    "id": 4,
+    "courseName": "Fixflex",
+    "price": "$3.01",
+    "image": null,
+    "rating": 3,
+    "catagory": "Keylex"
+  },
+  {
+    "id": 5,
+    "courseName": "Trippledex",
+    "price": "$8.54",
+    "image": null,
+    "rating": 5,
+    "catagory": "Alphazap"
+  },
+  {
+    "id": 6,
+    "courseName": "Hatity",
+    "price": "$7.34",
+    "image": null,
+    "rating": 4,
+    "catagory": "Duobam"
+  },
+  {
+    "id": 7,
+    "courseName": "It",
+    "price": "$1.06",
+    "image": null,
+    "rating": 3,
+    "catagory": "Popular"
+  },
+  {
+    "id": 8,
+    "courseName": "Zaam-Dox",
+    "price": "$9.83",
+    "image": null,
+    "rating": 3,
+    "catagory": "Popular"
+  },
+  {
+    "id": 9,
+    "courseName": "Stim",
+    "price": "$0.74",
+    "image": null,
+    "rating": 0,
+    "catagory": "Sonsing"
+  },
+  {
+    "id": 10,
+    "courseName": "Zathin",
+    "price": "$6.29",
+    "image": null,
+    "rating": 5,
+    "catagory": "Vagram"
+  },
+  {
+    "id": 11,
+    "courseName": "Tampflex",
+    "price": "$4.61",
+    "image": null,
+    "rating": 4,
+    "catagory": "Domainer"
+  },
+  {
+    "id": 12,
+    "courseName": "Tresom",
+    "price": "$2.77",
+    "image": null,
+    "rating": 5,
+    "catagory": "Flexidy"
+  },
+  {
+    "id": 13,
+    "courseName": "Tin",
+    "price": "$0.49",
+    "image": null,
+    "rating": 5,
+    "catagory": "Konklux"
+  },
+  {
+    "id": 14,
+    "courseName": "Stim",
+    "price": "$1.31",
+    "image": null,
+    "rating": 1,
+    "catagory": "Aerified"
+  },
+  {
+    "id": 15,
+    "courseName": "Matsoft",
+    "price": "$1.25",
+    "image": null,
+    "rating": 0,
+    "catagory": "Solarbreeze"
+  },
+  {
+    "id": 16,
+    "courseName": "Sonair",
+    "price": "$3.15",
+    "image": null,
+    "rating": 0,
+    "catagory": "Popular"
+  },
+  {
+    "id": 17,
+    "courseName": "Stim",
+    "price": "$7.02",
+    "image": null,
+    "rating": 1,
+    "catagory": "Bamity"
+  },
+  {
+    "id": 18,
+    "courseName": "Vagram",
+    "price": "$4.28",
+    "image": null,
+    "rating": 4,
+    "catagory": "Tres-Zap"
+  },
+  {
+    "id": 19,
+    "courseName": "Span",
+    "price": "$2.15",
+    "image": null,
+    "rating": 0,
+    "catagory": "Cardify"
+  },
+  {
+    "id": 20,
+    "courseName": "Popular",
+    "price": "$9.46",
+    "image": null,
+    "rating": 4,
+    "catagory": "Popular"
+  }
+]
