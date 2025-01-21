@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
@@ -18,7 +18,7 @@ h1{
     text-align: center;
 }
 .login-form{
-    /* background-color: aqua; */
+    /* background-color: aqua;
     height: 50px;
     width: 80%;
     margin-top: 40px;
@@ -36,4 +36,4 @@ input{
     background-color: var(--fontcolor) ;
     border: none;
     border-radius: 20px;
-}
+} */

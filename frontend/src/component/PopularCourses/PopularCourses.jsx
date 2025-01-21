@@ -3,7 +3,7 @@ import React from "react";
 // import "slick-carousel/slick/slick-theme.css";
 // import Slider from "react-slick";
 import courseData from "../../../public/courses.json";
-import Course from "../../component/Course/Course";
+import Course from "../Course/Course";
 
 const PopularCourses = () => {
   const popularCourse = courseData.filter(

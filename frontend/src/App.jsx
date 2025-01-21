@@ -1,4 +1,3 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./component/Navbar/Navbar";
 
@@ -12,6 +11,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./pages/Home/Home.css";
 import LanguagesNav from "./component/LanguagesNav/LanguagesNav";
+import Contact from "./pages/Contact/Contact";
+import About from "./pages/About/About";
 
 function App() {
   const router = createBrowserRouter([
@@ -19,7 +20,6 @@ function App() {
       path: "/",
       element: (
         <>
-          <Navbar />
           <Home />
         </>
       ),
@@ -30,6 +30,24 @@ function App() {
         <>
           <Navbar />
           <Courses />
+        </>
+      ),
+    },
+    {
+      path: "/contact",
+      element: (
+        <>
+          <Navbar />
+          <Contact />
+        </>
+      ),
+    },
+    {
+      path: "/about",
+      element: (
+        <>
+          <Navbar />
+          <About />
         </>
       ),
     },

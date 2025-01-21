@@ -1,4 +1,4 @@
-
+/* 
 *{
     margin: auto;
     padding: auto;
@@ -20,7 +20,7 @@
 form{
     height: 480px;
     width: 50%;
-    /* background-color: aqua; */
+    /* background-color: aqua; 
     font-size: 24px;
     padding-top: 60px;
     color: var(--fontcolor);
@@ -46,4 +46,4 @@ form{
     border: none;
     font-size: 20px;
     border-radius: 20px;
-}
+} */

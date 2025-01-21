@@ -1,7 +1,6 @@
 import React from "react";
 import courseData from "../../../public/courses.json";
 import Course from "../../component/Course/Course";
-import "./Courses.css";
 import CourseBanner from "../../component/CourseBanner/CourseBanner";
 const Courses = () => {
   return (

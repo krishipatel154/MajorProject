@@ -19,7 +19,7 @@ const LanguagesNav = () => {
   };
   return (
     <>
-      <div className="languages-nav">
+      <div className="languages-nav dark:bg-black dark:text-white">
         <button className="prev-btn" onClick={btnpressprev}>
           <p>&lt;</p>
         </button>
@@ -27,7 +27,7 @@ const LanguagesNav = () => {
           <p>&gt;</p>
         </button>
 
-        <div className="product-container" id="product-container">
+        <div className="product-container " id="product-container">
           <ul className="flex">
             <li>
               <Link to="/language/:html">HTML</Link>
