@@ -13,6 +13,7 @@ import "./pages/Home/Home.css";
 import LanguagesNav from "./component/LanguagesNav/LanguagesNav";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
+import OtpVarification from "./component/OtpVarification/OtpVarification";
 
 function App() {
   const router = createBrowserRouter([
@@ -61,6 +62,15 @@ function App() {
       ),
     },
     {
+      path: "/verify",
+      element: (
+        <>
+          <Navbar />
+          <OtpVarification />
+        </>
+      ),
+    },
+    {
       path: "/signup",
       element: (
         <>
@@ -82,7 +92,7 @@ function App() {
   ]);
   return (
     <>
-      <div className="app">
+      <div className="app dark:bg-black dark:text-white">
         <RouterProvider router={router} />
       </div>
     </>

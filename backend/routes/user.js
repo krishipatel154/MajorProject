@@ -1,5 +1,9 @@
 const express = require("express");
-const { handleUserLogin, handleUserSignup } = require("../controllers/user");
+const {
+  handleUserLogin,
+  handleUserSignup,
+  verifyOTP,
+} = require("../controllers/user");
 const {
   LoginValidation,
   signUpValidation,
@@ -8,5 +12,6 @@ const router = express.Router();
 
 router.post("/login", LoginValidation, handleUserLogin);
 router.post("/signup", signUpValidation, handleUserSignup);
+router.post("/verify-otp", verifyOTP);
 
 module.exports = router;

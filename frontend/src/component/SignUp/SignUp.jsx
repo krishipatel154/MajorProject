@@ -1,6 +1,56 @@
-import React from "react";
-
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import { handleError, handleSuccess } from "../../utils";
 const SignUp = () => {
+  const [signUpInfo, setSignUpInfo] = useState({
+    FirstName: "",
+    LastName: "",
+    Email: "",
+    Password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const getSignUpInfo = { ...signUpInfo };
+    getSignUpInfo[name] = value;
+    setSignUpInfo(getSignUpInfo);
+  };
+
+  const navigate = useNavigate();
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    const { FirstName, LastName, Email, Password } = signUpInfo;
+    if (!FirstName || !LastName || !Email || !Password) {
+      return handleError("All fields are required!!");
+    }
+    try {
+      const url = "http://localhost:8001/user/signup";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signUpInfo),
+      });
+      const result = await response.json();
+      const { success, error, message } = result;
+      if (success) {
+        handleSuccess(message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else if (error) {
+        const message = error?.details[0].message;
+        handleError(message);
+      } else if (!success) {
+        handleError(message);
+      }
+      console.log(result);
+    } catch (error) {
+      handleError(error);
+    }
+  };
   return (
     <>
       <div className="bg-gray-800">
@@ -57,14 +107,17 @@ const SignUp = () => {
               {" "}
               Or sign up with credentials{" "}
             </p>
-            <form className="mt-6">
+            <form className="mt-6" onSubmit={handleSignup}>
               <div className="relative">
                 <input
+                  onChange={handleChange}
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="fname"
                   type="text"
-                  name="fname"
+                  name="FirstName"
                   placeholder="First Name"
+                  autoFocus
+                  value={signUpInfo.FirstName}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   <svg
@@ -79,11 +132,13 @@ const SignUp = () => {
               </div>
               <div className="relative mt-3">
                 <input
+                  onChange={handleChange}
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="lname"
-                  name="lname"
+                  name="LastName"
                   type="text"
                   placeholder="Last Name"
+                  value={signUpInfo.LastName}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {" "}
@@ -99,11 +154,13 @@ const SignUp = () => {
               </div>
               <div className="relative mt-3">
                 <input
+                  onChange={handleChange}
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="email"
                   type="text"
                   placeholder="Email"
-                  name="email"
+                  name="Email"
+                  value={signUpInfo.Email}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {" "}
@@ -120,11 +177,13 @@ const SignUp = () => {
               </div>
               <div className="relative mt-3">
                 <input
+                  onChange={handleChange}
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="password"
                   type="text"
                   placeholder="Password"
-                  name="password"
+                  name="Password"
+                  value={signUpInfo.Password}
                 />
                 <div className="absolute left-0 inset-y-0 flex items-center">
                   {" "}
@@ -162,7 +221,13 @@ const SignUp = () => {
                   Create Account
                 </button>
               </div>
+              <div>
+                <span>
+                  Already have an account? <Link to="/login">Login</Link>{" "}
+                </span>
+              </div>
             </form>
+            <ToastContainer />
           </div>
         </div>
       </div>

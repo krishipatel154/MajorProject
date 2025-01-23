@@ -14,13 +14,13 @@ const Course = ({ course }) => {
               <p>Rating</p>
             </div>
             <div className="course-name-sect">
-              <h3 className="course-name">{course.courseName}</h3>
+              <h3 className="course-name">{course.Name}</h3>
             </div>
             <div className="faculty-name-sect">
-              <p className="faculty-name">{course.courseName}</p>
+              <p className="faculty-name">{course.Author}</p>
             </div>
             <div className="price-sect">
-              <p className="price">{course.price}</p>
+              <p className="price">{course.Price}</p>
             </div>
           </div>
         </div>
