@@ -67,6 +67,14 @@ const Navbar = () => {
           Sign Up
         </Link>
       </li>
+      <li className="hover:bg-text rounded-md">
+        <Link
+          to="/funcode"
+          className="text-text hover:bg-text hover:text-back dark:text-white"
+        >
+          Fun Code
+        </Link>
+      </li>
     </>
   );
 

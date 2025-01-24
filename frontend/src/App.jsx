@@ -14,6 +14,7 @@ import LanguagesNav from "./component/LanguagesNav/LanguagesNav";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import OtpVarification from "./component/OtpVarification/OtpVarification";
+import CodeEditor from "./component/CodeEditor/CodeEditor";
 
 function App() {
   const router = createBrowserRouter([
@@ -49,6 +50,15 @@ function App() {
         <>
           <Navbar />
           <About />
+        </>
+      ),
+    },
+    {
+      path: "/funcode",
+      element: (
+        <>
+          <Navbar />
+          <CodeEditor />
         </>
       ),
     },
