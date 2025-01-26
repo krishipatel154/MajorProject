@@ -15,6 +15,7 @@ import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import OtpVarification from "./component/OtpVarification/OtpVarification";
 import CodeEditor from "./component/CodeEditor/CodeEditor";
+import Books from "./pages/Books/Books";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,15 @@ function App() {
         <>
           <Navbar />
           <Courses />
+        </>
+      ),
+    },
+    {
+      path: "/books",
+      element: (
+        <>
+          <Navbar />
+          <Books />
         </>
       ),
     },

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import lightLogo from "../../images/logo.png";
 import darkLogo from "../../images/logoDark.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
   const [logo, setLogo] = useState(lightLogo);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token")); // Check for token
+
   const element = document.documentElement;
 
   useEffect(() => {
@@ -24,6 +26,12 @@ const Navbar = () => {
     }
   }, [theme]);
 
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Remove the token on logout
+    setIsLoggedIn(false);
+    navigate("/login"); // Redirect to login page
+  };
   const navItems = (
     <>
       <li className="hover:bg-text rounded-md">
@@ -32,6 +40,14 @@ const Navbar = () => {
           className="text-text hover:bg-text hover:text-back dark:text-white"
         >
           Course
+        </Link>
+      </li>
+      <li className="hover:bg-text rounded-md">
+        <Link
+          to="/books"
+          className="text-text hover:bg-text hover:text-back dark:text-white"
+        >
+          Books
         </Link>
       </li>
       <li className="hover:bg-text rounded-md">
@@ -50,23 +66,47 @@ const Navbar = () => {
           About
         </Link>
       </li>
-      <li className="hover:bg-text rounded-md">
-        <Link
-          to="/login"
-          onClick={() => document.getElementById("my_modal_4").showModal()}
-          className="text-text hover:bg-text hover:text-back dark:text-white"
-        >
-          Login
-        </Link>
-      </li>
-      <li className="hover:bg-text rounded-md">
-        <Link
-          to="/signup"
-          className="text-text hover:bg-text hover:text-back dark:text-white"
-        >
-          Sign Up
-        </Link>
-      </li>
+      {isLoggedIn ? (
+        <>
+          <li className="hover:bg-text rounded-md">
+            <Link
+              to="/profile"
+              className="text-text hover:bg-text hover:text-back dark:text-white"
+            >
+              Profile
+            </Link>
+          </li>
+          <li className="hover:bg-text rounded-md">
+            <button
+              onClick={handleLogout}
+              className="text-text hover:bg-text hover:text-back dark:text-white"
+            >
+              Logout
+            </button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li className="hover:bg-text rounded-md">
+            <Link
+              to="/login"
+              onClick={() => document.getElementById("my_modal_4").showModal()}
+              className="text-text hover:bg-text hover:text-back dark:text-white"
+            >
+              Login
+            </Link>
+          </li>
+          <li className="hover:bg-text rounded-md">
+            <Link
+              to="/signup"
+              className="text-text hover:bg-text hover:text-back dark:text-white"
+            >
+              Sign Up
+            </Link>
+          </li>
+        </>
+      )}
+
       <li className="hover:bg-text rounded-md">
         <Link
           to="/funcode"

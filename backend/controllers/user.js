@@ -84,6 +84,7 @@ const verifyOTP = async (req, res) => {
         message: "OTP verified successfully, Login Successful!",
         success: true,
         jwtToken,
+        FirstName,
       });
     } else {
       return res.status(400).json({ message: "Invalid OTP", success: false });

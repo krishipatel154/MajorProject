@@ -34,11 +34,12 @@ const Login = () => {
       });
       const result = await response.json();
       const { success, message, jwtToken, FirstName, Email, error } = result;
-
+      console.log("Result: ", result);
       if (success) {
         handleSuccess(message);
-        localStorage.setItem("token", jwtToken);
-        localStorage.setItem("uname", FirstName);
+        console.log(jwtToken);
+        console.log(FirstName);
+
         setTimeout(() => {
           navigate("/verify", { state: { Email } });
         }, 1000);
