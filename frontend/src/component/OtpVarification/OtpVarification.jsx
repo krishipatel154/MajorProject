@@ -30,12 +30,13 @@ const OtpVarification = () => {
       console.log(Email);
       const result = await response.json();
       console.log(result);
-      const { success, message, jwtToken } = result;
+      const { success, message, jwtToken, FirstName } = result;
       if (success) {
-        console.log(success);
-        console.log(jwtToken);
-        // localStorage.setItem("token", jwtToken);
-        // localStorage.setItem("uname", FirstName);
+        // console.log(success);
+        // console.log(jwtToken);
+        // console.log(FirstName);
+        localStorage.setItem("token", jwtToken);
+        localStorage.setItem("uname", FirstName);
         handleSuccess(message);
         navigate("/");
       } else if (error) {

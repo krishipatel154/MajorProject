@@ -4,6 +4,9 @@ const passportConfig = require("./config/passportConfig");
 const userRoute = require("./routes/user");
 const courseRoute = require("./routes/courses");
 const bookRoute = require("./routes/books");
+const favouriteRoute = require("./routes/favourite");
+const cartRoute = require("./routes/cart");
+const orderRoute = require("./routes/order");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -34,6 +37,9 @@ passportConfig(passport);
 app.use("/user", userRoute);
 app.use("/course", courseRoute);
 app.use("/books", bookRoute);
+app.use("/favourite", favouriteRoute);
+app.use("/cart", cartRoute);
+app.use("/order", orderRoute);
 
 app.listen(PORT, () => {
   console.log(`server started at port ${PORT}`);

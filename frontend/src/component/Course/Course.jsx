@@ -1,4 +1,5 @@
 import "./Course.css";
+import AddToCart from "../AddToCart/AddToCart";
 
 const Course = ({ course }) => {
   return (
@@ -23,6 +24,7 @@ const Course = ({ course }) => {
               <p className="price">${course.Price}</p>
             </div>
           </div>
+          <AddToCart />
         </div>
       </div>
     </>

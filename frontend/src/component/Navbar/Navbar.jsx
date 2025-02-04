@@ -28,9 +28,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Remove the token on logout
+    localStorage.removeItem("token");
+    localStorage.removeItem("uname");
     setIsLoggedIn(false);
-    navigate("/login"); // Redirect to login page
+    navigate("/login");
   };
   const navItems = (
     <>
@@ -66,6 +67,15 @@ const Navbar = () => {
           About
         </Link>
       </li>
+      <li className="hover:bg-text rounded-md">
+        <Link
+          to="/cart"
+          className="text-text hover:bg-text hover:text-back dark:text-white"
+        >
+          Cart
+        </Link>
+      </li>
+
       {isLoggedIn ? (
         <>
           <li className="hover:bg-text rounded-md">
@@ -90,7 +100,6 @@ const Navbar = () => {
           <li className="hover:bg-text rounded-md">
             <Link
               to="/login"
-              onClick={() => document.getElementById("my_modal_4").showModal()}
               className="text-text hover:bg-text hover:text-back dark:text-white"
             >
               Login
@@ -120,7 +129,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full mx-0 h-20 px-0 bg-[#03506F] dark:bg-black dark:text-white text-text">
+      <div className="w-full mx-0 h-20 px-0 bg-zinc-800 dark:bg-black dark:text-white text-text">
         <div className="navbar w-full h-full flex p-0 justify-around align-items-center">
           <div className="navbar-start basis-[30%]">
             <div className="dropdown md:hidden">
@@ -152,13 +161,11 @@ const Navbar = () => {
               </ul>
             </div>
             <Link to="/" className="md:ml-20 mt-0 pt-0">
-              <a className="btn btn-ghost text-xl w-24 h-20" href="#">
-                <img
-                  src={logo}
-                  alt="Logo"
-                  className="w-10 h-10 md:w-14 md:h-14"
-                />
-              </a>
+              <img
+                src={logo}
+                alt="Logo"
+                className="w-10 h-10 md:w-14 md:h-14"
+              />
             </Link>
           </div>
           <div className="navbar-end space-x-3 m-2 basis-[70%]">

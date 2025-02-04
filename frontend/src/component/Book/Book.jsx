@@ -1,34 +1,22 @@
+import AddToCart from "../AddToCart/AddToCart";
+import { Link } from "react-router-dom";
+
 const Book = ({ book }) => {
   return (
-    <>
-      <div className="mt-10 mb-5 w-[250px] h-[500px] border text-center flex-column justify-center align-items-center rounded">
-        <div className="w-full h-[60%] m-auto">
-          <img src={book.Image} className="h-full w-full" alt="Course image" />
+    <Link>
+      <div className="bg-zinc-800 rounded p-4 flex flex-col h-full w-full">
+        <div className="bg-zinc-900 rounded flex items-center justify-center h-[200px]">
+          <img src={book.url} alt="book" className="h-full object-contain" />
         </div>
-        <div className="w-[80%] h-[60%] m-auto">
-          <div className="flex-column">
-            {/* <div className="rating-sect">
-              <p>Veiw</p>
-              <p>Rating</p>
-            </div> */}
-            <div className="text-xl font-bold pt-1 pb-1">
-              <h3 className="course-name">{book.Name}</h3>
-            </div>
-            <div className="text-lg font-medium">
-              <p className="faculty-name">{book.Author}</p>
-            </div>
-            <div className="price-sect">
-              <p className="price">${book.Price}</p>
-            </div>
-          </div>
-          <div className="mt-3">
-            <button className="w-[60%] h-[35px] bg-red-400 p-2">
-              Add to Cart
-            </button>
-          </div>
-        </div>
+        <h2 className="mt-4 text-xl text-white text-zinc-200 font-semibold">
+          {book.Name}
+        </h2>
+        <p className="mt-2 text-zinc-400 font-semibold">{book.Author}</p>
+        <p className="mt-2 text-zinc-200 font-semibold text-xl">
+          $ {book.Price}
+        </p>
       </div>
-    </>
+    </Link>
   );
 };
 

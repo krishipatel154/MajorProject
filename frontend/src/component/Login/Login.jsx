@@ -15,7 +15,6 @@ const Login = () => {
     getLoginInfo[name] = value;
     setLoginInfo(getLoginInfo);
   };
-  console.log(loginInfo);
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,11 +33,11 @@ const Login = () => {
       });
       const result = await response.json();
       const { success, message, jwtToken, FirstName, Email, error } = result;
-      console.log("Result: ", result);
+      // console.log("Result: ", result);
       if (success) {
         handleSuccess(message);
-        console.log(jwtToken);
-        console.log(FirstName);
+        // console.log(jwtToken);
+        // console.log(FirstName);
 
         setTimeout(() => {
           navigate("/verify", { state: { Email } });
@@ -112,6 +111,14 @@ const Login = () => {
                   {" "}
                   Login
                 </button>
+              </div>
+              <div className="mt-5">
+                <span>
+                  {" "}
+                  <Link style={{ color: "blue" }} to="/forgetPass">
+                    Forget password?
+                  </Link>{" "}
+                </span>
               </div>
               <div className="mt-5">
                 <span>

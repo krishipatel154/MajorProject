@@ -16,6 +16,10 @@ import About from "./pages/About/About";
 import OtpVarification from "./component/OtpVarification/OtpVarification";
 import CodeEditor from "./component/CodeEditor/CodeEditor";
 import Books from "./pages/Books/Books";
+import Cart from "./pages/Cart/Cart";
+import PrivateRoute from "./component/PrivateRoute/PrivateRoute";
+import RequestForgetPass from "./component/RequestForgetPass/RequestForgetPass";
+import ForgetPassword from "./component/RequestForgetPass/ForgetPassword";
 
 function App() {
   const router = createBrowserRouter([
@@ -55,12 +59,39 @@ function App() {
       ),
     },
     {
+      path: "/forgetPass",
+      element: (
+        <>
+          <Navbar />
+          <RequestForgetPass />
+        </>
+      ),
+    },
+    {
+      path: "/reset-password/:token",
+      element: (
+        <>
+          <Navbar />
+          <ForgetPassword />
+        </>
+      ),
+    },
+    {
       path: "/about",
       element: (
         <>
           <Navbar />
           <About />
         </>
+      ),
+    },
+    {
+      path: "/cart",
+      element: (
+        <PrivateRoute>
+          <Navbar />
+          <Cart />
+        </PrivateRoute>
       ),
     },
     {
