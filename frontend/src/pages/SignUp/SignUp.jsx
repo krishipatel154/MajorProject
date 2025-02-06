@@ -25,7 +25,7 @@ const SignUp = () => {
       return handleError("All fields are required!!");
     }
     try {
-      const url = "http://localhost:8001/user/signup";
+      const url = "http://localhost:8089/user/signup";
       const response = await fetch(url, {
         method: "POST",
         headers: {

@@ -3,10 +3,13 @@ import OtpInput from "react-otp-input";
 import { useLocation, useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
+import authAction from "../../store/auth";
+import { useDispatch } from "react-redux";
 
 const OtpVarification = () => {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
   const { Email } = location.state || {};
   const handleOtpVerification = async (e) => {
@@ -16,7 +19,7 @@ const OtpVarification = () => {
     }
     try {
       console.log(Email);
-      const url = "http://localhost:8001/user/verify-otp";
+      const url = "http://localhost:8089/user/verify-otp";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -27,16 +30,15 @@ const OtpVarification = () => {
           Email,
         }),
       });
-      console.log(Email);
       const result = await response.json();
       console.log(result);
-      const { success, message, jwtToken, FirstName } = result;
+      const { success, message, jwtToken, FirstName, id, role } = result;
       if (success) {
-        // console.log(success);
-        // console.log(jwtToken);
-        // console.log(FirstName);
+        dispatch(authAction.login());
         localStorage.setItem("token", jwtToken);
         localStorage.setItem("uname", FirstName);
+        localStorage.setItem("id", id);
+        localStorage.setItem("role", role);
         handleSuccess(message);
         navigate("/");
       } else if (error) {

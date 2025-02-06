@@ -3,8 +3,16 @@ const User = require("../models/user");
 const handleGetBooks = async (req, res) => {
   try {
     const books = await Book.find({}).sort({ createdAt: -1 });
-    // console.log(books);
     res.status(200).json(books);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error!!" });
+  }
+};
+const handleGetBookById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const book = await Book.findById(id);
+    res.status(200).json(book);
   } catch (error) {
     return res.status(500).json({ message: "Internal server error!!" });
   }
@@ -13,7 +21,7 @@ const handleGetBooks = async (req, res) => {
 const handleGetRecentBooks = async (req, res) => {
   try {
     const books = await Book.find({}).sort({ crestedAt: -1 }).limit(4);
-    return res.status(200).json({ success: true, books: books });
+    return res.status(200).json(books);
   } catch (error) {
     return res.status(500).json({ message: "Internal server error!!" });
   }
@@ -86,6 +94,7 @@ const handleDeleteBook = async (req, res) => {
 
 module.exports = {
   handleGetBooks,
+  handleGetBookById,
   handleGetRecentBooks,
   handleAddBook,
   handleDeleteBook,

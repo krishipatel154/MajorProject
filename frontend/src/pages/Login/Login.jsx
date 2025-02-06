@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./Login.css";
 import { handleError, handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
@@ -23,7 +22,7 @@ const Login = () => {
       return handleError("All fields are required!!");
     }
     try {
-      const url = "http://localhost:8001/user/login";
+      const url = "http://localhost:8089/user/login";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -33,12 +32,8 @@ const Login = () => {
       });
       const result = await response.json();
       const { success, message, jwtToken, FirstName, Email, error } = result;
-      // console.log("Result: ", result);
       if (success) {
         handleSuccess(message);
-        // console.log(jwtToken);
-        // console.log(FirstName);
-
         setTimeout(() => {
           navigate("/verify", { state: { Email } });
         }, 1000);

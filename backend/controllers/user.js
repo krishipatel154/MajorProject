@@ -81,12 +81,14 @@ const verifyOTP = async (req, res) => {
         { expiresIn: "24h" }
       );
 
-      const { FirstName } = user;
+      const { FirstName, role, _id } = user;
       return res.status(200).json({
         message: "OTP verified successfully, Login Successful!",
         success: true,
         jwtToken,
         FirstName,
+        role,
+        id: _id,
       });
     } else {
       return res.status(400).json({ message: "Invalid OTP", success: false });
@@ -168,12 +170,10 @@ const requestPasswordReset = async (req, res) => {
       if (error) {
         return res.status(500).json({ message: "Failed to send reset email!" });
       }
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Password reset link sent to your email!",
-        });
+      res.status(200).json({
+        success: true,
+        message: "Password reset link sent to your email!",
+      });
     });
   } catch (error) {
     res.status(500).json({ success: false, message: "Internal Server Error!" });
