@@ -3,7 +3,7 @@ import OtpInput from "react-otp-input";
 import { useLocation, useNavigate } from "react-router-dom";
 import { handleError, handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
-import authAction from "../../store/auth";
+import { authAction } from "../../store/auth";
 import { useDispatch } from "react-redux";
 
 const OtpVarification = () => {
@@ -35,12 +35,13 @@ const OtpVarification = () => {
       const { success, message, jwtToken, FirstName, id, role } = result;
       if (success) {
         dispatch(authAction.login());
+        dispatch(authAction.changeRole(role));
         localStorage.setItem("token", jwtToken);
         localStorage.setItem("uname", FirstName);
         localStorage.setItem("id", id);
         localStorage.setItem("role", role);
         handleSuccess(message);
-        navigate("/");
+        navigate("/profile");
       } else if (error) {
         const message = error?.details[0].message;
         handleError(message);

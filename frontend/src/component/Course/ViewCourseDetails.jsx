@@ -4,10 +4,14 @@ import Loader from "../../component/Loader/Loader";
 import { useParams } from "react-router-dom";
 import { handleError } from "../../utils";
 import { ToastContainer } from "react-toastify";
-
+import { FaEdit, FaHeart, FaShoppingCart } from "react-icons/fa";
+import { MdOutlineDelete } from "react-icons/md";
+import { useSelector } from "react-redux";
 const ViewCourseDetails = () => {
   const { id } = useParams();
-  console.log(id);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
+  console.log(isLoggedIn, role);
   const [courseDetails, setCourseDetails] = useState([]);
   useEffect(() => {
     const getCourseDetails = async () => {
@@ -27,13 +31,41 @@ const ViewCourseDetails = () => {
   return (
     <>
       {courseDetails ? (
-        <div className="gap-8 px-12 py-8 bg-zinc-900 text-white flex md:flex-row flex-col">
-          <div className="bg-zinc-800 rounded p-4 lg:h-[88vh] h-[50vh] lg:w-3/6 w-full flex items-center justify-center">
-            <img
-              src={courseDetails.Image}
-              className="lg:h-[70vh] h-[40vh] rounded"
-              alt=""
-            />
+        <div className="gap-8 px-12 py-8 bg-zinc-900 text-white flex lg:flex-row flex-col">
+          <div className="lg:w-3/6 w-full">
+            <div className="py-12 rounded flex lg:flex-row flex-col justify-around bg-zinc-800">
+              <img
+                src={courseDetails.Image}
+                className="lg:h-[70vh] md:h-[60vh] h-[50vh] rounded"
+                alt=""
+              />
+              {isLoggedIn === true && role === "user" && (
+                <div className="flex lg:flex-col flex-row items-center justify-between lg:justify-start lg:mt-0 mt-8 ">
+                  <button className="bg-white text-red-500 rounded lg:rounded-full lg:text-3xl text-normal p-3">
+                    <FaHeart />{" "}
+                  </button>
+                  <button className="text-white bg-blue-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-0 flex items-center justify-center">
+                    <FaShoppingCart />
+                    <span className="ms-2 lg:hidden block text-normal">
+                      Add to cart
+                    </span>
+                  </button>
+                </div>
+              )}
+              {isLoggedIn === true && role === "admin" && (
+                <div className="flex lg:flex-col flex-row items-center justify-between lg:justify-start lg:mt-0 mt-8 ">
+                  <button className="text-white bg-blue-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 flex items-center">
+                    <FaEdit />{" "}
+                  </button>
+                  <button className="text-white bg-red-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-0 flex items-center justify-center">
+                    <MdOutlineDelete />
+                    <span className="ms-2 lg:hidden block text-normal">
+                      Add to cart
+                    </span>
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
           <div className="p-4 lg:w-3/6 w-full">
             <h1 className="text-4xl text-zinc-300 font-semibold">

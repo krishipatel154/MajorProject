@@ -14,7 +14,7 @@ const RequestForgetPass = () => {
   const handleForgetPass = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:8001/user/forgot-password";
+      const url = "http://localhost:8089/user/forgot-password";
       const response = await fetch(url, {
         method: "POST",
         headers: {
