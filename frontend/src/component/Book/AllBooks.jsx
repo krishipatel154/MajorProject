@@ -9,7 +9,6 @@ const AllBooks = () => {
     const getBook = async () => {
       try {
         const response = await axios.get("http://localhost:8089/books");
-        console.log(response);
         setBooks(response.data);
       } catch (error) {
         console.log(error);
@@ -22,7 +21,7 @@ const AllBooks = () => {
     <>
       <div className="bg-white text-text px-4 h-auto px-12 py-8">
         <div>
-          <h4 className="text-3xl text-zinc-800">All Books</h4>
+          <h4 className="text-3xl text-zinc-800 py-4">All Books</h4>
           {!books && (
             <div className="flex items-center justify-center my-8">
               <Loader />

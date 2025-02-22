@@ -19,15 +19,15 @@ const RecentBooks = () => {
   }, []);
   return (
     <>
-      <div className="bg-white text-text px-4 h-auto px-12 py-8">
+      <div className="bg-white text-text px-4 h-auto">
         <div>
-          <h4 className="text-3xl text-zinc-800">Recently Added Books</h4>
+          <h4 className="text-3xl text-zinc-800 py-4">Recently Added Books</h4>
           {!books && (
             <div className="flex items-center justify-center my-8">
               <Loader />
             </div>
           )}
-          <div className="my-1 grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
             {books &&
               books.map((book, i) => (
                 <div key={i}>

@@ -29,7 +29,7 @@ const handleGetOrderHistory = async (req, res) => {
     const { id } = req.headers;
     const userData = await User.findById(id).populate({
       path: "orders",
-      populate: { path: "books" },
+      populate: { path: "course" },
     });
     const orderData = userData.orders.reverse();
     return res.status(200).json({ data: orderData });

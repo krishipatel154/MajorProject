@@ -7,11 +7,11 @@ import axios from "axios";
 const Profile = () => {
   // const isLoggedIn = usSelector();
   const [profile, setProfile] = useState();
+  const headers = {
+    id: localStorage.getItem("id"),
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
   useEffect(() => {
-    const headers = {
-      id: localStorage.getItem("id"),
-      authorization: `Bearer ${localStorage.getItem("token")}`,
-    };
     const fetch = async () => {
       const response = await axios.get("http://localhost:8089/user/user-info", {
         headers,
@@ -22,14 +22,14 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="bg-zinc-900 md:px-12 px-2 flex md:flex-row flex-col w-full h-screen py-8 text-white">
+    <div className="bg-white dark:bg-zinc-900 md:px-12 px-2 flex md:flex-row flex-col w-full h-screen py-8 text-black dark:text-white">
       {!profile ? (
         <div className="w-full h-[100%] flex items-center justify-center">
           <Loader />
         </div>
       ) : (
         <>
-          <div className="md:w-1/6 w-full">
+          <div className="md:w-1/6 w-full mx-4">
             <Sidebar data={profile} />
           </div>
           <div className="w-5/6">

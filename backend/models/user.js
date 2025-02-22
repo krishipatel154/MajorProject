@@ -1,4 +1,3 @@
-const { required } = require("joi");
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
@@ -37,13 +36,14 @@ const userSchema = new mongoose.Schema(
       default: "user",
       enum: ["user", "admin"],
     },
-    favourites: [{ type: mongoose.Types.ObjectId, ref: ["books", "course"] }],
-    cart: [{ type: mongoose.Types.ObjectId, ref: ["books", "course"] }],
-    orders: [{ type: mongoose.Types.ObjectId, ref: "orders" }],
+    favourites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
+    favouriteBooks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
+    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
+    orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
   },
   { timestamps: true }
 );
 
-const userModel = mongoose.model("Users", userSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = userModel;
+module.exports = User;

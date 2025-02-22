@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import lightLogo from "../../images/logo.png";
@@ -8,7 +8,7 @@ import Avatar from "react-avatar";
 
 const Navbar = () => {
   const data = localStorage.getItem("uname");
-
+  const navigate = useNavigate();
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -50,32 +50,56 @@ const Navbar = () => {
       link: "/cart",
     },
     {
-      title: "Profile",
-      link: "/profile",
-    },
-    {
       title: "Fun Code",
       link: "/funcode",
     },
   ];
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   if (isLoggedIn === false) {
-    links.splice(4, 2);
+    links.splice(4, 1);
   }
   const [mobileNav, setMobileNav] = useState("hidden");
 
+  const handleLogout = () => {
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("uname");
+    isLoggedIn = false;
+  };
+
+  const [sticky, setSticky] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <nav className="dark:bg-black bg-[#03506F] dark:text-white text-text px-8 relative z-50 py-4 flex items-center justify-between">
+      <nav
+        className={`bg-[#03506F] text-text px-8 py-4 flex items-center justify-between transition-all duration-300 h-[80px] dark:bg-black ${
+          sticky
+            ? "sticky-navbar shadow-lg z-50 fixed  top-0 left-0 right-0 "
+            : ""
+        }`}
+      >
         <div className="flex items-center">
           <Link to="/" className="md:ml-20 mt-0 pt-0">
             <img src={logo} alt="Logo" className="w-10 h-10 md:w-14 md:h-14" />
           </Link>
         </div>
-        <div className="block md:flex flex flex-row items-center gap-4">
+        <div className="md:flex flex flex-row items-center justify-center gap-4">
           <div className="flex items-center">
             <label className="swap swap-rotate">
-              {/* If theme is dark, sun icon should be visible, else moon icon */}
               <input
                 type="checkbox"
                 className="theme-controller hidden"
@@ -83,10 +107,10 @@ const Navbar = () => {
                 onChange={() => setTheme(theme === "light" ? "dark" : "light")}
               />
 
-              {/* sun icon - visible when theme is dark */}
+              {/* sun icon */}
               <svg
                 className={`${
-                  theme === "dark" ? "swap-on" : "hidden"
+                  theme === "dark" ? "block" : "hidden"
                 } h-7 w-7 md:w-7 md:h-7 sm:w-3 sm:h-3 fill-current`}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -94,10 +118,10 @@ const Navbar = () => {
                 <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
               </svg>
 
-              {/* moon icon - visible when theme is light */}
+              {/* moon icon*/}
               <svg
                 className={`${
-                  theme === "light" ? "swap-on" : "hidden"
+                  theme === "light" ? "block" : "hidden"
                 } h-7 w-7 md:w-7 md:h-7 sm:w-3 sm:h-3 fill-current`}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -106,23 +130,15 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <div className="md:flex hidden gap-8">
+          <div className="md:flex flex items-center hidden gap-8">
             {links.map((item, i) => (
-              <>
-                {item.title === "Profile" ? (
-                  <Link to={item.link}>
-                    <Avatar name={data ? data : "AA"} size="40" round="50%" />
-                  </Link>
-                ) : (
-                  <Link
-                    to={item.link}
-                    key={i}
-                    className="hover:text-zinc-300 transition-all duration-300"
-                  >
-                    {item.title}
-                  </Link>
-                )}
-              </>
+              <Link
+                to={item.link}
+                key={i}
+                className="hover:text-zinc-300 transition-all duration-300"
+              >
+                {item.title}
+              </Link>
             ))}
           </div>
 
@@ -145,10 +161,14 @@ const Navbar = () => {
             ) : (
               <>
                 <Link
-                  to="/signup"
-                  className="px-4 py-1 dark:text-black dark:bg-white bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transaction-all duration-300"
+                  to="/login"
+                  className="px-4 py-1 dark:text-black dark:bg-text bg-text text-back flex items-center rounded hover:bg-gray-400 hover:text-zinc-800 transaction-all duration-300"
+                  onClick={handleLogout}
                 >
                   Logout
+                </Link>
+                <Link to="/profile">
+                  <Avatar name={data ? data : "AA"} size="40" round="50%" />
                 </Link>
               </>
             )}
@@ -210,7 +230,6 @@ const Navbar = () => {
         ) : (
           <>
             <Link
-              to="/signup"
               className="px-8 mb-8 dark:text-black dark:bg-white text-2xl text-white font-semibold py-2 bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transaction-all duration-300"
               onClick={() =>
                 mobileNav === "hidden"

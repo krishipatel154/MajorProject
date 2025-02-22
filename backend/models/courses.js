@@ -1,4 +1,3 @@
-const { required } = require("joi");
 const mongoose = require("mongoose");
 
 const courseSchema = new mongoose.Schema(
@@ -15,7 +14,7 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    Catagory: {
+    Category: {
       type: String,
       required: true,
     },
@@ -23,10 +22,18 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    desc: {
+      type: String,
+      required: true,
+    },
+    language: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const Course = mongoose.model("course", courseSchema);
+const Course = mongoose.model("Course", courseSchema);
 
 module.exports = Course;

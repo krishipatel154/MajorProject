@@ -5,7 +5,6 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Language from "./component/Language/Language";
 import Courses from "./pages/Courses/Courses";
-import "./pages/Home/Home.css";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import OtpVarification from "./component/OtpVarification/OtpVarification";
@@ -20,9 +19,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { authAction } from "./store/auth";
 import Profile from "./pages/Profile/Profile";
-import Favourites from "./pages/Profile/Favourites";
+// import Favourites from "./pages/Profile/Favourites";
 import OrderHistory from "./pages/Profile/OrderHistory";
 import Settings from "./pages/Profile/Settings";
+import ViewBookDetails from "./component/Book/ViewBookDetails";
+import Favourites from "./pages/Profile/Favoutites/Favourites";
+import FavouriteBooks from "./pages/Profile/Favoutites/FavouriteBooks";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,12 +52,18 @@ function App() {
             path="/view-course-details/:id"
             element={<ViewCourseDetails />}
           />
+          <Route
+            exact
+            path="/view-book-details/:id"
+            element={<ViewBookDetails />}
+          />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/profile" element={<Profile />}>
             <Route index element={<Favourites />} />
             <Route path="/profile/orderHistory" element={<OrderHistory />} />
             <Route path="/profile/settings" element={<Settings />} />
           </Route>
+          <Route exact path="/fav-books" element={<FavouriteBooks />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/forgetPass" element={<RequestForgetPass />} />
           <Route

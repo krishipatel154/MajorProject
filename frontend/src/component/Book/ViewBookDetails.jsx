@@ -7,41 +7,32 @@ import { ToastContainer } from "react-toastify";
 import { FaEdit, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
-const ViewCourseDetails = () => {
+const ViewBookDetails = () => {
   const { id } = useParams();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
-  const [courseDetails, setCourseDetails] = useState([]);
+  const [bookDetails, setbookDetails] = useState([]);
   useEffect(() => {
-    const getCourseDetails = async () => {
+    const getbookDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8089/course/get-course/${id}`
+          `http://localhost:8089/books/get-book/${id}`
         );
-        setCourseDetails(response.data);
+        setbookDetails(response.data);
       } catch (error) {
         handleError(error);
       }
     };
-    getCourseDetails();
+    getbookDetails();
   }, []);
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
-    courseid: id,
+    bookid: id,
   };
   const handleAddFavourite = async () => {
     const response = await axios.put(
-      "http://localhost:8089/favourite/add-course-to-favourites",
-      {},
-      { headers }
-    );
-    handleSuccess(response.data.message);
-  };
-
-  const handleCart = async () => {
-    const response = await axios.put(
-      "http://localhost:8089/cart/add-course-to-cart",
+      "http://localhost:8089/favourite/add-book-to-favourites",
       {},
       { headers }
     );
@@ -50,14 +41,14 @@ const ViewCourseDetails = () => {
 
   return (
     <>
-      {courseDetails ? (
-        <div className="gap-8 px-12 py-8 bg-white text-black dark:bg-zinc-900 dark:text-text flex lg:flex-row flex-col">
+      {bookDetails ? (
+        <div className="gap-8 px-12 py-8 dark:bg-zinc-900 dark:text-white bg-white text-black flex lg:flex-row flex-col">
           <div className="lg:w-3/6 w-full">
             <div className="py-12 rounded flex lg:flex-row flex-col justify-around bg-back dark:bg-zinc-800">
               <img
-                src={courseDetails.Image}
-                className="lg:h-[70vh] w-[80%] md:h-[60vh] h-[50vh] rounded"
-                alt="course"
+                src={bookDetails.Image}
+                className="lg:h-[70vh] w-[75%] md:h-[60vh] h-[50vh] rounded"
+                alt="book"
               />
               {isLoggedIn === true && role === "user" && (
                 <div className="flex lg:flex-col md:flex-row flex-col items-center justify-between lg:justify-start lg:mt-0 mt-8 ">
@@ -70,7 +61,7 @@ const ViewCourseDetails = () => {
                       Add to Favourite
                     </span>
                   </button>
-                  <button
+                  {/* <button
                     className="text-white bg-blue-500 md:mt-0 lg:mt-4 mt-4 rounded lg:rounded-full lg:text-3xl text-normal p-2 flex items-center justify-center"
                     onClick={handleCart}
                   >
@@ -78,7 +69,7 @@ const ViewCourseDetails = () => {
                     <span className="ms-2 lg:hidden block text-normal">
                       Add to cart
                     </span>
-                  </button>
+                  </button> */}
                 </div>
               )}
               {isLoggedIn === true && role === "admin" && (
@@ -100,17 +91,11 @@ const ViewCourseDetails = () => {
             </div>
           </div>
           <div className="p-4 lg:w-3/6 w-full">
-            <h1 className="text-4xl text-black dark:text-zinc-300 font-semibold">
-              {courseDetails.Name}
-            </h1>
-            <p className="text-black dark:text-zinc-300 mt-1">
-              {courseDetails.Faculty}
-            </p>
-            <p className="text-black dark:text-zinc-300 text-xl mt-4">
-              {courseDetails.desc}
-            </p>
-            <p className="mt-4 text-black dark:text-zinc-300 text-3xl font-semibold">
-              Price: ${courseDetails.Price}
+            <h1 className="text-4xl font-semibold">{bookDetails.Name}</h1>
+            <p className="mt-1">{bookDetails.Author}</p>
+            <p className="text-xl mt-4">{bookDetails.desc}</p>
+            <p className="mt-4 text-3xl font-semibold">
+              Price: ${bookDetails.Price}
             </p>
           </div>
           <ToastContainer />
@@ -124,4 +109,4 @@ const ViewCourseDetails = () => {
   );
 };
 
-export default ViewCourseDetails;
+export default ViewBookDetails;

@@ -17,8 +17,6 @@ const ForgetPassword = () => {
     }
 
     try {
-      console.log("New Password: ", newPassword);
-
       const url = `http://localhost:8089/user/reset-password/${token}`;
       const response = await fetch(url, {
         method: "POST",

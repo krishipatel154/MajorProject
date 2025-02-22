@@ -184,13 +184,10 @@ const resetPassword = async (req, res) => {
   try {
     const { token } = req.params;
     const { newPassword } = req.body;
-    console.log(newPassword);
-    console.log(token);
     const user = await userModel.findOne({
       resetPasswordToken: token,
       resetPasswordExpires: { $gt: Date.now() },
     });
-    console.log(user);
     if (!user) {
       return res
         .status(400)
