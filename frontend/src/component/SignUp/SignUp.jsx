@@ -55,7 +55,7 @@ const SignUp = () => {
     <>
       <div className="">
         <div className="p-8 lg:w-1/2 mx-auto">
-          <div className="bg-grey-200 rounded-t-lg p-8">
+          <div className="bg-gray-100 rounded-t-lg p-8">
             <p className="text-center text-sm text-gray-400 font-light">
               Sign up with
             </p>
