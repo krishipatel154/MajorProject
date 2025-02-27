@@ -3,6 +3,33 @@ import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../../utils";
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(""); // To display password strength
+  const [passwordError, setPasswordError] = useState(""); // To show validation error
+
+  const validatePassword = (password) => {
+    const hasSpecialChar = /[@]/.test(password);
+    const hasDigit = /\d/.test(password);
+
+    if (!hasSpecialChar || !hasDigit) {
+      setPasswordError('Password must contain "@" and a digit');
+    } else {
+      setPasswordError("");
+    }
+
+    // Set password strength based on length and other conditions
+    if (password.length < 6) {
+      setPasswordStrength("Weak");
+    } else if (password.length >= 6 && hasSpecialChar && hasDigit) {
+      setPasswordStrength("Strong");
+    } else {
+      setPasswordStrength("Medium");
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const [signUpInfo, setSignUpInfo] = useState({
     FirstName: "",
     LastName: "",
@@ -15,6 +42,9 @@ const SignUp = () => {
     const getSignUpInfo = { ...signUpInfo };
     getSignUpInfo[name] = value;
     setSignUpInfo(getSignUpInfo);
+    if (e.target.name === "Password") {
+      validatePassword(value);
+    }
   };
 
   const navigate = useNavigate();
@@ -25,7 +55,7 @@ const SignUp = () => {
       return handleError("All fields are required!!");
     }
     try {
-      const url = "http://localhost:8001/user/signup";
+      const url = "http://localhost:8089/user/signup";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -46,16 +76,15 @@ const SignUp = () => {
       } else if (!success) {
         handleError(message);
       }
-      console.log(result);
     } catch (error) {
       handleError(error);
     }
   };
   return (
     <>
-      <div className="">
+      <div className="bg-white">
         <div className="p-8 lg:w-1/2 mx-auto">
-          <div className="bg-gray-100 rounded-t-lg p-8">
+          <div className="bg-gray-100 dark:bg-zinc-800 rounded-t-lg p-8">
             <p className="text-center text-sm text-gray-400 font-light">
               Sign up with
             </p>
@@ -102,7 +131,7 @@ const SignUp = () => {
               </div>
             </div>
           </div>
-          <div className="bg-gray-100 rounded-b-lg py-12 px-4 lg:px-24">
+          <div className="bg-gray-100 dark:bg-zinc-800 rounded-b-lg py-12 px-4 lg:px-24">
             <p className="text-center text-sm text-gray-500 font-light">
               {" "}
               Or sign up with credentials{" "}
@@ -180,7 +209,7 @@ const SignUp = () => {
                   onChange={handleChange}
                   className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="password"
-                  type="text"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   name="Password"
                   value={signUpInfo.Password}
@@ -196,11 +225,57 @@ const SignUp = () => {
                     <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
                   </svg>
                 </div>
+                <div
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M1 12S4 4 12 4s11 8 11 8-3 8-11 8-11-8-11-8z"></path>
+                      <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M17.94 17.94A10 10 0 011.05 12M22.95 12a10 10 0 00-3.87-7.94M9.17 9.17a3 3 0 014.66 4.66M1 1l22 22"></path>
+                    </svg>
+                  )}
+                </div>
               </div>
-              {/* <p className="mt-4 italic text-gray-500 font-light text-xs">
-                Password strength:{" "}
-                <span className="font-bold text-green-400">strong</span>
-              </p> */}
+              {passwordError && (
+                <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+              )}
+
+              {signUpInfo.Password && (
+                <p
+                  className={`text-sm mt-1 ${
+                    passwordStrength === "Strong"
+                      ? "text-green-500"
+                      : passwordStrength === "Weak"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
+                  Password Strength: {passwordStrength}
+                </p>
+              )}
               <div className="mt-4 flex items-center text-gray-500">
                 <input
                   type="checkbox"

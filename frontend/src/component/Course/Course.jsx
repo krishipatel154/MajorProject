@@ -1,31 +1,57 @@
-import "./Course.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { handleSuccess } from "../../utils";
+import { ToastContainer } from "react-toastify";
 
-const Course = ({ course }) => {
+const Course = ({ course, favourites, onRemoveCourse }) => {
+  const headers = {
+    id: localStorage.getItem("id"),
+    authorization: `Bearer ${localStorage.getItem("token")}`,
+    courseid: course._id,
+  };
+
+  const handleRemoveCourse = async () => {
+    const response = await axios.put(
+      "http://localhost:8089/favourite/delete-course-from-favourites",
+      {},
+      { headers }
+    );
+    handleSuccess(response.data.message);
+    setTimeout(() => {
+      onRemoveCourse(course._id);
+    }, 3000);
+  };
+
   return (
-    <>
-      <div className="mt-10 mb-5 w-[250px] h-[300px] border text-center flex-column justify-center align-items-center">
-        <div className="w-[80%] h-[40%] m-auto mt-2">
-          <img src="../src/images/demo.webp" alt="Course image" />
-        </div>
-        <div className="w-[80%] h-[60%] m-auto">
-          <div className="flex-column">
-            {/* <div className="rating-sect">
-              <p>Veiw</p>
-              <p>Rating</p>
-            </div> */}
-            <div className="text-xl font-bold pt-1 pb-1">
-              <h3 className="course-name">{course.Name}</h3>
-            </div>
-            <div className="text-lg font-medium">
-              <p className="faculty-name">{course.Faculty}</p>
-            </div>
-            <div className="price-sect">
-              <p className="price">${course.Price}</p>
-            </div>
+    <div className="bg-[#03506F] dark:bg-zinc-800 rounded p-4 flex flex-col h-full w-full">
+      <Link to={`/view-course-details/${course._id}`}>
+        <div className="">
+          <div className="bg-white rounded flex items-center justify-center h-[200px]">
+            <img
+              src={course.Image}
+              alt="book"
+              className="h-full object-contain"
+            />
           </div>
+          <h2 className="mt-4 text-xl text-text font-semibold">
+            {course.Name}
+          </h2>
+          <p className="mt-2 text-text font-semibold">{course.Faculty}</p>
+          <p className="mt-2 text-text font-semibold text-xl">
+            $ {course.Price}
+          </p>
         </div>
-      </div>
-    </>
+      </Link>
+      {favourites && (
+        <button
+          className="bg-text text-sm font-semibold px-4 py-2 rounded border border-gray text-black"
+          onClick={handleRemoveCourse}
+        >
+          Remove From Favourites
+        </button>
+      )}
+      <ToastContainer />
+    </div>
   );
 };
 
