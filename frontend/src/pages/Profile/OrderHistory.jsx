@@ -14,6 +14,7 @@ const OrderHistory = () => {
         "http://localhost:8089/order/get-order-history",
         { headers }
       );
+      console.log(response.data);
       setOrderHistory(response.data.data);
     };
     fetch();

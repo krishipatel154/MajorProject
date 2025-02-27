@@ -25,6 +25,9 @@ import Settings from "./pages/Profile/Settings";
 import ViewBookDetails from "./component/Book/ViewBookDetails";
 import Favourites from "./pages/Profile/Favoutites/Favourites";
 import FavouriteBooks from "./pages/Profile/Favoutites/FavouriteBooks";
+import AllOrders from "./pages/Admin/AllOrders";
+import AddBook from "./pages/Admin/AddBook";
+import AddCourse from "./pages/Admin/AddCourse";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,9 +62,22 @@ function App() {
           />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/profile" element={<Profile />}>
-            <Route index element={<Favourites />} />
-            <Route path="/profile/orderHistory" element={<OrderHistory />} />
-            <Route path="/profile/settings" element={<Settings />} />
+            {role === "user" ? (
+              <>
+                <Route index element={<Favourites />} />
+                <Route
+                  path="/profile/orderHistory"
+                  element={<OrderHistory />}
+                />
+                <Route path="/profile/settings" element={<Settings />} />
+              </>
+            ) : (
+              <>
+                <Route index element={<AllOrders />} />
+                <Route path="/profile/add-book" element={<AddBook />} />
+                <Route path="/profile/add-course" element={<AddCourse />} />
+              </>
+            )}
           </Route>
           <Route exact path="/fav-books" element={<FavouriteBooks />} />
           <Route exact path="/contact" element={<Contact />} />

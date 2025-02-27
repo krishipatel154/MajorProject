@@ -54,9 +54,9 @@ const Login = () => {
 
   return (
     <>
-      <div className="">
+      <div className="bg-white text-gray-400">
         <div className="p-8 lg:w-1/2 mx-auto">
-          <div className="bg-gray-200 rounded-b-lg py-12 flex-column text-center justify-center align-items-center px-4 lg:px-24">
+          <div className="bg-gray-100 dark:bg-zinc-900 rounded py-12 flex-column text-center justify-center align-items-center px-4 lg:px-24">
             <h1 className="">Login</h1>
             <form className="mt-6" onSubmit={handleLogin}>
               <div className="relative mt-3">

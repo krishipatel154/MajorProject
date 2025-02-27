@@ -7,8 +7,10 @@ const handlePlaceOrder = async (req, res) => {
     const { id } = req.headers;
     const { order } = req.body;
     for (const orderData of order) {
-      const newOrder = new Order({ user: id, book: orderData._id });
+      const newOrder = new Order({ user: id, course: orderData._id });
+      console.log(newOrder);
       const orderDataFromDB = await newOrder.save();
+      console.log(orderDataFromDB);
       // saving order data in user model
       await User.findByIdAndUpdate(id, {
         $push: { orders: orderDataFromDB._id },
@@ -24,19 +26,34 @@ const handlePlaceOrder = async (req, res) => {
   }
 };
 
+// const handleGetOrderHistory = async (req, res) => {
+//   try {
+//     const orders = await Order.find({ user: req.user._id }).populate("course");
+//     res.status(200).json({ data: orders });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error fetching order history", error });
+//   }
+// };
+
 const handleGetOrderHistory = async (req, res) => {
   try {
     const { id } = req.headers;
     const userData = await User.findById(id).populate({
       path: "orders",
-      populate: { path: "course" },
+      populate: {
+        path: "course",
+        model: "Course", // This ensures that the course collection is populated.
+      },
     });
+
+    console.log("User data", userData.orders);
     const orderData = userData.orders.reverse();
     return res.status(200).json({ data: orderData });
   } catch (error) {
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
+
 const handleGetAllOrders = async (req, res) => {
   try {
     const userData = await Order.find()

@@ -82,9 +82,9 @@ const SignUp = () => {
   };
   return (
     <>
-      <div className="">
+      <div className="bg-white">
         <div className="p-8 lg:w-1/2 mx-auto">
-          <div className="bg-gray-100 rounded-t-lg p-8">
+          <div className="bg-gray-100 dark:bg-zinc-800 rounded-t-lg p-8">
             <p className="text-center text-sm text-gray-400 font-light">
               Sign up with
             </p>
@@ -131,7 +131,7 @@ const SignUp = () => {
               </div>
             </div>
           </div>
-          <div className="bg-gray-100 rounded-b-lg py-12 px-4 lg:px-24">
+          <div className="bg-gray-100 dark:bg-zinc-800 rounded-b-lg py-12 px-4 lg:px-24">
             <p className="text-center text-sm text-gray-500 font-light">
               {" "}
               Or sign up with credentials{" "}

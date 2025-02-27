@@ -38,14 +38,6 @@ const Navbar = () => {
       link: "/books",
     },
     {
-      title: "Contact",
-      link: "/contact",
-    },
-    {
-      title: "About",
-      link: "/about",
-    },
-    {
       title: "Cart",
       link: "/cart",
     },
@@ -55,8 +47,9 @@ const Navbar = () => {
     },
   ];
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
   if (isLoggedIn === false) {
-    links.splice(4, 1);
+    links.splice(2, 1);
   }
   const [mobileNav, setMobileNav] = useState("hidden");
 
@@ -167,6 +160,17 @@ const Navbar = () => {
                 >
                   Logout
                 </Link>
+              </>
+            )}
+            {isLoggedIn === true && role === "user" && (
+              <>
+                <Link to="/profile">
+                  <Avatar name={data ? data : "AA"} size="40" round="50%" />
+                </Link>
+              </>
+            )}
+            {isLoggedIn === true && role === "admin" && (
+              <>
                 <Link to="/profile">
                   <Avatar name={data ? data : "AA"} size="40" round="50%" />
                 </Link>

@@ -1,4 +1,5 @@
 const Course = require("../models/courses");
+const User = require("../models/user");
 
 const handleCourses = async (req, res) => {
   try {
@@ -28,9 +29,100 @@ const handleGetRecentCourse = async (req, res) => {
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
+const handleAddCourse = async (req, res) => {
+  try {
+    const { id } = req.headers;
+
+    if (!id) {
+      return res.status(400).json({ message: "User ID not provided!" });
+    }
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+
+    if (user.role !== "admin") {
+      return res.status(403).json({ message: "Unauthorized access!" });
+    }
+
+    const { name, faculty, catagory, price, image, desc, language } = req.body;
+
+    if (
+      !name ||
+      !faculty ||
+      !catagory ||
+      !price ||
+      !image ||
+      !desc ||
+      !language
+    ) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
+
+    const course = new Course({
+      Name: name, // Ensure that this matches your schema
+      Faculty: faculty, // Update this field to match schema (Faculty with uppercase F)
+      Category: catagory, // Update this field to match schema (Category with correct spelling)
+      Price: price,
+      Image: image,
+      desc: desc,
+      language: language,
+    });
+
+    await course.save();
+    return res.status(200).json({ message: "Course added successfully!" });
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    return res.status(500).json({ message: "Internal server error!" });
+  }
+};
+
+const handleUpdateCourse = async (req, res) => {
+  try {
+    const { id, bookid } = req.headers;
+    const user = await User.findById(id);
+    if (user.role !== "admin") {
+      return res
+        .status(500)
+        .json({ message: "You don't have admin priviliges!!" });
+    }
+    await Book.findByIdAndUpdate(bookid, {
+      Name: req.body.name,
+      Author: req.body.author,
+      Catagory: req.body.catagory,
+      Price: req.body.price,
+      Image: req.body.image,
+      desc: req.body.desc,
+      language: req.body.language,
+    });
+    return res.status(200).json({ message: "Book updated successfully!!" });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error!!" });
+  }
+};
+
+const handleDeleteCourse = async (req, res) => {
+  try {
+    const { courseid, id } = req.headers;
+    const user = await User.findById(id);
+    if (user.role !== "admin") {
+      return res
+        .status(500)
+        .json({ message: "You don't have admin priviliges!!" });
+    }
+
+    await Course.findByIdAndDelete(courseid);
+    return res.status(200).json({ message: "Course deleted successfully!!" });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error!!" });
+  }
+};
 
 module.exports = {
   handleCourses,
   handleGetCourseById,
   handleGetRecentCourse,
+  handleAddCourse,
+  handleDeleteCourse,
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../../component/Loader/Loader";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { handleError, handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import { FaEdit, FaHeart, FaShoppingCart } from "react-icons/fa";
@@ -11,6 +11,7 @@ const ViewCourseDetails = () => {
   const { id } = useParams();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
+  const navigate = useNavigate();
   const [courseDetails, setCourseDetails] = useState([]);
   useEffect(() => {
     const getCourseDetails = async () => {
@@ -46,6 +47,14 @@ const ViewCourseDetails = () => {
       { headers }
     );
     handleSuccess(response.data.message);
+  };
+  const handleDelete = async () => {
+    const response = await axios.delete(
+      "http://localhost:8089/course/delete-course",
+      { headers }
+    );
+    handleSuccess(response);
+    navigate("/courses");
   };
 
   return (
@@ -89,7 +98,10 @@ const ViewCourseDetails = () => {
                       Edit Course
                     </span>
                   </button>
-                  <button className="text-white bg-red-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-8 md:mt-0 flex items-center justify-center">
+                  <button
+                    className="text-white bg-red-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-8 md:mt-0 flex items-center justify-center"
+                    onClick={handleDelete}
+                  >
                     <MdOutlineDelete />
                     <span className="ms-2 lg:hidden block text-normal">
                       Delete Course
