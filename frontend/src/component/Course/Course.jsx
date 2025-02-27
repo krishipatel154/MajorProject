@@ -17,7 +17,7 @@ const Course = ({ course }) => {
               <h3 className="course-name">{course.Name}</h3>
             </div>
             <div className="text-lg font-medium">
-              <p className="faculty-name">{course.Author}</p>
+              <p className="faculty-name">{course.Faculty}</p>
             </div>
             <div className="price-sect">
               <p className="price">${course.Price}</p>
