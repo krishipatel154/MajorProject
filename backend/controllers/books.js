@@ -27,26 +27,90 @@ const handleGetRecentBooks = async (req, res) => {
   }
 };
 
-// admin side
+// const handleAddBook = async (req, res) => {
+//   try {
+//     const { id } = req.headers;
+//     console.log(req.file);
+//     const user = await User.findById(id);
+//     if (user.role !== "admin") {
+//       return res.status(500).json({ message: "Internal server error!!" });
+//     }
+//     const { Name, Author, desc, language, Price, Category, Image } = req.body;
+
+//     // Check if the file is present
+//     if (!req.file) {
+//       return res.status(400).json({ message: "File not uploaded" });
+//     }
+
+//     // req.file contains file details, req.body contains form text fields
+//     const bookData = {
+//       Name,
+//       Author,
+//       desc,
+//       language,
+//       Price,
+//       Category,
+//       Image,
+//       Pdf: req.file.filename, // Store the filename of the uploaded file
+//     };
+
+//     // Save bookData to the database (assuming you have a Book model)
+//     // Book.create(bookData)
+//     //   .then((result) => {
+//     //     res.status(201).json({ message: "Book added successfully", result });
+//     //   })
+//     //   .catch((error) => res.status(500).json({ message: "Error saving book", error }));
+
+//     // For now, return the data
+//     res.status(201).json({
+//       message: "Book added successfully",
+//       bookData,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({ message: "Internal server error!!" });
+//   }
+// };
 const handleAddBook = async (req, res) => {
   try {
     const { id } = req.headers;
+    console.log(req.file); // This will log the uploaded file details
+
+    // Check if the user is an admin
     const user = await User.findById(id);
     if (user.role !== "admin") {
-      return res.status(500).json({ message: "Internal server error!!" });
+      return res.status(403).json({ message: "Unauthorized access!!" });
     }
-    const book = new Book({
-      Name: req.body.name,
-      Author: req.body.author,
-      Catagory: req.body.catagory,
-      Price: req.body.price,
-      Image: req.body.image,
-      desc: req.body.desc,
-      language: req.body.language,
+
+    const { Name, Author, desc, language, Price, Category, Image } = req.body;
+
+    // Check if the file is present
+    if (!req.file) {
+      return res.status(400).json({ message: "File not uploaded" });
+    }
+
+    // req.file contains file details, req.body contains form text fields
+    const bookData = {
+      Name,
+      Author,
+      desc,
+      language,
+      Price,
+      Category,
+      Image,
+      Pdf: req.file.filename, // Store the filename of the uploaded file
+    };
+
+    // Save the book to the database using Mongoose
+    const newBook = await Book.create(bookData);
+
+    // Send a success response
+    res.status(201).json({
+      message: "Book added successfully",
+      book: newBook,
     });
-    await book.save();
-    return res.status(200).json({ message: "Book added successfully!!" });
   } catch (error) {
+    console.error("Error adding book:", error);
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
@@ -54,18 +118,19 @@ const handleAddBook = async (req, res) => {
 const handleUpdateBook = async (req, res) => {
   try {
     const { id, bookid } = req.headers;
+
     const user = await User.findById(id);
     if (user.role !== "admin") {
       return res
         .status(500)
         .json({ message: "You don't have admin priviliges!!" });
     }
-    await Book.findByIdAndUpdate(bookid, {
-      Name: req.body.name,
-      Author: req.body.author,
-      Catagory: req.body.catagory,
-      Price: req.body.price,
-      Image: req.body.image,
+    const query = await Book.findByIdAndUpdate(bookid, {
+      Name: req.body.Name,
+      Author: req.body.Author,
+      Catagory: req.body.Catagory,
+      Price: req.body.Price,
+      Image: req.body.Image,
       desc: req.body.desc,
       language: req.body.language,
     });
@@ -77,7 +142,7 @@ const handleUpdateBook = async (req, res) => {
 
 const handleDeleteBook = async (req, res) => {
   try {
-    const { id } = req.headers;
+    const { id, bookid } = req.headers;
     const user = await User.findById(id);
     if (user.role !== "admin") {
       return res

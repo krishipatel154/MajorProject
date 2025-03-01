@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Book = require("../models/books");
 const Order = require("../models/order");
+const Course = require("../models/courses");
 
 const handlePlaceOrder = async (req, res) => {
   try {
@@ -8,9 +9,7 @@ const handlePlaceOrder = async (req, res) => {
     const { order } = req.body;
     for (const orderData of order) {
       const newOrder = new Order({ user: id, course: orderData._id });
-      console.log(newOrder);
       const orderDataFromDB = await newOrder.save();
-      console.log(orderDataFromDB);
       // saving order data in user model
       await User.findByIdAndUpdate(id, {
         $push: { orders: orderDataFromDB._id },
@@ -26,15 +25,6 @@ const handlePlaceOrder = async (req, res) => {
   }
 };
 
-// const handleGetOrderHistory = async (req, res) => {
-//   try {
-//     const orders = await Order.find({ user: req.user._id }).populate("course");
-//     res.status(200).json({ data: orders });
-//   } catch (error) {
-//     res.status(500).json({ message: "Error fetching order history", error });
-//   }
-// };
-
 const handleGetOrderHistory = async (req, res) => {
   try {
     const { id } = req.headers;
@@ -46,7 +36,6 @@ const handleGetOrderHistory = async (req, res) => {
       },
     });
 
-    console.log("User data", userData.orders);
     const orderData = userData.orders.reverse();
     return res.status(200).json({ data: orderData });
   } catch (error) {
@@ -58,14 +47,16 @@ const handleGetAllOrders = async (req, res) => {
   try {
     const userData = await Order.find()
       .populate({
-        path: "book",
+        path: "course",
       })
       .populate({
         path: "user",
       })
       .sort({ createdAt: -1 });
+    console.log(userData);
     return res.status(200).json({ data: userData });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
@@ -73,15 +64,16 @@ const handleGetAllOrders = async (req, res) => {
 const handleUpdateStatus = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id);
-    if (user.role !== "admin") {
-      return res
-        .status(500)
-        .json({ message: "You don't have admin priviliges!!" });
-    }
+    // const user = await User.findById(id);
+    // if (user.role !== "admin") {
+    //   return res
+    //     .status(500)
+    //     .json({ message: "You don't have admin priviliges!!" });
+    // }
     await Order.findByIdAndUpdate(id, { status: req.body.status });
     return res.status(200).json({ message: "Status Updated Successfully!!" });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };

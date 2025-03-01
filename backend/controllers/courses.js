@@ -6,7 +6,6 @@ const handleCourses = async (req, res) => {
     const courses = await Course.find({});
     res.status(200).json(courses);
   } catch (error) {
-    console.log("Course Error: ", error);
     res.status(500).json({ success: false });
   }
 };
@@ -87,18 +86,23 @@ const handleUpdateCourse = async (req, res) => {
         .status(500)
         .json({ message: "You don't have admin priviliges!!" });
     }
-    
-    const res = await Course.findByIdAndUpdate(courseid, {
-      Name: req.body.Name,
-      Faculty: req.body.Faculty,
-      Catagory: req.body.Catagory,
-      Price: req.body.Price,
-      Image: req.body.Image,
-      desc: req.body.desc,
-      Language: req.body.Language,
-    }, { new: true });
+
+    await Course.findByIdAndUpdate(
+      courseid,
+      {
+        Name: req.body.Name,
+        Faculty: req.body.Faculty,
+        Catagory: req.body.Catagory,
+        Price: req.body.Price,
+        Image: req.body.Image,
+        desc: req.body.desc,
+        Language: req.body.Language,
+      },
+      { new: true }
+    );
     return res.status(200).json({ message: "Course updated successfully!!" });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
@@ -106,9 +110,7 @@ const handleUpdateCourse = async (req, res) => {
 const handleDeleteCourse = async (req, res) => {
   try {
     const { courseid, id } = req.headers;
-    console.log(courseid);
     const user = await User.findById(id);
-    console.log("user", user)
     if (user.role !== "admin") {
       return res
         .status(500)
@@ -122,11 +124,32 @@ const handleDeleteCourse = async (req, res) => {
   }
 };
 
+const handleGetMyCourse = async (req, res) => {
+  try {
+    const { id } = req.headers; // Assuming you have middleware that extracts the userId from the JWT
+    const user = await User.findById(id).select("myCourse"); // Only retrieve the 'myCourse' field
+
+    console.log(id);
+    console.log("my course", user);
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    res.status(200).json({
+      myCourse: user.myCourse,
+    });
+  } catch (error) {
+    console.log("Error fetching courses:", error);
+    res.status(500).json({ message: "Error fetching user's courses." });
+  }
+};
+
 module.exports = {
   handleCourses,
   handleGetCourseById,
   handleGetRecentCourse,
   handleAddCourse,
   handleDeleteCourse,
-  handleUpdateCourse
+  handleUpdateCourse,
+  handleGetMyCourse,
 };

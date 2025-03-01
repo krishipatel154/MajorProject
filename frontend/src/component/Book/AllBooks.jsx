@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Book from "../../component/Book/Book";
 import axios from "axios";
 import Loader from "../../component/Loader/Loader";
+import ReedBook from "../ReedBook/ReedBook";
 
 const AllBooks = () => {
   const [books, setBooks] = useState([]);
@@ -30,8 +31,12 @@ const AllBooks = () => {
           <div className="my-1 grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
             {books &&
               books.map((book, i) => (
-                <div key={i}>
+                <div
+                  className="bg-[#03506F] dark:bg-zinc-800 rounded p-4 flex flex-col h-full w-full"
+                  key={i}
+                >
                   <Book book={book} />
+                  <ReedBook pdf={book.Pdf} />
                 </div>
               ))}
           </div>

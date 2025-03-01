@@ -53,7 +53,7 @@ const Cart = () => {
         { headers }
       );
       handleSuccess(response.data.message);
-      navigate("/profile/orderHistory");
+      navigate("/payment", { state: { cart: cart } });
     } catch (err) {
       handleError(err);
     }

@@ -11,6 +11,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
+// multer
+
 require("./models/db");
 require("dotenv").config();
 
@@ -30,6 +32,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use("/files", express.static("files"));
 
 passportConfig(passport);
 

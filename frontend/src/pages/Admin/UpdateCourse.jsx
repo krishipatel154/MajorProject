@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 const UpdateCourse = () => {
   const navigate = useNavigate();
-  const {id} = useParams()
+  const { id } = useParams();
   const [data, setData] = useState({
     Image: "",
     Name: "",
@@ -17,9 +17,9 @@ const UpdateCourse = () => {
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
-    courseid: id
+    courseid: id,
   };
-  
+
   useEffect(() => {
     const getCourseDetails = async () => {
       try {
@@ -68,7 +68,7 @@ const UpdateCourse = () => {
           Catagory: "",
         });
         handleSuccess(response.data.message);
-        navigate("/courses")
+        navigate("/courses");
       }
     } catch (err) {
       handleError(err);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Book from "../../component/Book/Book";
 import axios from "axios";
 import Loader from "../../component/Loader/Loader";
+import ReedBook from "../ReedBook/ReedBook";
 const RecentBooks = () => {
   const [books, setBooks] = useState([]);
   useEffect(() => {
@@ -10,6 +11,7 @@ const RecentBooks = () => {
         const response = await axios.get(
           "http://localhost:8089/books/recent-books"
         );
+        console.log(response.data);
         setBooks(response.data);
       } catch (error) {
         console.log(error);
@@ -17,6 +19,7 @@ const RecentBooks = () => {
     };
     getBook();
   }, []);
+
   return (
     <>
       <div className="bg-white text-text px-4 h-auto">
@@ -30,8 +33,12 @@ const RecentBooks = () => {
           <div className="grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
             {books &&
               books.map((book, i) => (
-                <div key={i}>
+                <div
+                  key={i}
+                  className="bg-[#03506F] dark:bg-zinc-800 rounded p-4 flex flex-col h-full w-full"
+                >
                   <Book book={book} />
+                  <ReedBook pdf={book.Pdf} />
                 </div>
               ))}
           </div>

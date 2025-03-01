@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { authAction } from "./store/auth";
 import Profile from "./pages/Profile/Profile";
-// import Favourites from "./pages/Profile/Favourites";
 import OrderHistory from "./pages/Profile/OrderHistory";
 import Settings from "./pages/Profile/Settings";
 import ViewBookDetails from "./component/Book/ViewBookDetails";
@@ -29,6 +28,9 @@ import AllOrders from "./pages/Admin/AllOrders";
 import AddBook from "./pages/Admin/AddBook";
 import AddCourse from "./pages/Admin/AddCourse";
 import UpdateCourse from "./pages/Admin/UpdateCourse";
+import UpdateBook from "./pages/Admin/UpdateBook";
+import Payment from "./pages/Cart/Payment";
+import MyCourse from "./pages/MyCourse/MyCourse";
 
 function App() {
   const dispatch = useDispatch();
@@ -81,6 +83,7 @@ function App() {
             )}
           </Route>
           <Route path="/update-course/:id" element={<UpdateCourse />} />
+          <Route path="/update-book/:id" element={<UpdateBook />} />
           <Route exact path="/fav-books" element={<FavouriteBooks />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/forgetPass" element={<RequestForgetPass />} />
@@ -92,6 +95,8 @@ function App() {
           <Route exact path="/language/:langname" element={<Language />} />
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/payment" element={<Payment />} />
+          <Route exact path="/my-course" element={<MyCourse />} />
           <Route exact path="/verify" element={<OtpVarification />} />
           <Route exact path="/funcode" element={<CodeEditor />} />
           <Route

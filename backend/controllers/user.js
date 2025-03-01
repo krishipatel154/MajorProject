@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const userModel = require("../models/user");
+const User = require("../models/user");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
@@ -209,6 +210,33 @@ const resetPassword = async (req, res) => {
   }
 };
 
+const handleMyCourse = async (req, res) => {
+  const { id, cartItems } = req.body;
+
+  console.log(id, cartItems);
+  try {
+    const user = await User.findById(id);
+    console.log(user);
+    // Ensure myCourse is an array
+    if (!user.myCourse) {
+      user.myCourse = [];
+    }
+
+    // Add cartItems to myCourse
+    user.myCourse = [...user.myCourse, ...cartItems];
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: "Payment successful, courses added to your profile!" });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Error processing payment or updating courses." });
+  }
+};
+
 module.exports = {
   handleUserLogin,
   handleUserSignup,
@@ -216,4 +244,5 @@ module.exports = {
   handleGetUserInfo,
   resetPassword,
   requestPasswordReset,
+  handleMyCourse,
 };

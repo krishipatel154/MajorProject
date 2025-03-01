@@ -40,6 +40,7 @@ const userSchema = new mongoose.Schema(
     favouriteBooks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
     cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
+    myCourse: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
   },
   { timestamps: true }
 );

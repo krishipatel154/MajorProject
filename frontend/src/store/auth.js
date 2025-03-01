@@ -7,6 +7,9 @@ const authSlice = createSlice({
     login(state) {
       state.isLoggedIn = true;
     },
+    payment(state) {
+      state.isPaymentDone = true;
+    },
     logout(state) {
       state.isLoggedIn = false;
     },

@@ -81,9 +81,9 @@ const Navbar = () => {
       <nav
         className={`bg-[#03506F] text-text px-8 py-4 flex items-center justify-between ease-in-out transition-shadow duration-300 h-[80px] dark:bg-black ${
           sticky
-      ? "shadow-lg z-50 sticky top-0 left-0 right-0 duration-300 transition-all ease-in-out"
-      : "transition-none"
-  }`}
+            ? "shadow-lg z-50 sticky top-0 left-0 right-0 duration-300 transition-all ease-in-out"
+            : "transition-none"
+        }`}
       >
         <div className="flex items-center">
           <Link to="/" className="md:ml-20 mt-0 pt-0">
@@ -126,12 +126,12 @@ const Navbar = () => {
           <div className="md:flex flex items-center hidden gap-8">
             {links.map((item, i) => (
               <Link
-              to={item.link}
-              key={i}
-              className="hover:text-zinc-300 transition-all duration-300"
-            >
-              {item.title}
-            </Link>
+                to={item.link}
+                key={i}
+                className="hover:text-zinc-300 transition-all duration-300"
+              >
+                {item.title}
+              </Link>
             ))}
           </div>
 

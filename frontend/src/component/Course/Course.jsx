@@ -2,6 +2,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Course = ({ course, favourites, onRemoveCourse }) => {
   const headers = {
@@ -9,6 +10,9 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     courseid: course._id,
   };
+
+  const isPaymentDone = useSelector((state) => state.auth.isPaymentDone);
+  console.log("payment: ", isPaymentDone);
 
   const handleRemoveCourse = async () => {
     const response = await axios.put(
@@ -29,7 +33,7 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           <div className="bg-white rounded flex items-center justify-center h-[200px]">
             <img
               src={course.Image}
-              alt="book"
+              alt="course "
               className="h-full object-contain"
             />
           </div>
@@ -50,6 +54,14 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           Remove From Favourites
         </button>
       )}
+      {/* {isPaymentDone && (
+        <button
+          className="bg-text text-sm font-semibold px-4 py-2 rounded border border-gray text-black"
+          onClick={handleRemoveCourse}
+        >
+          Join Meeting
+        </button>
+      )} */}
       <ToastContainer />
     </div>
   );

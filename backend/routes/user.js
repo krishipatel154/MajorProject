@@ -7,6 +7,7 @@ const {
   handleUpdatePassword,
   requestPasswordReset,
   resetPassword,
+  handleMyCourse,
 } = require("../controllers/user");
 const {
   LoginValidation,
@@ -19,6 +20,7 @@ router.post("/login", LoginValidation, handleUserLogin);
 router.post("/signup", signUpValidation, handleUserSignup);
 router.post("/verify-otp", verifyOTP);
 router.get("/user-info", handleAuthentication, handleGetUserInfo);
+router.post("/my-course", handleMyCourse);
 router.post("/forgot-password", requestPasswordReset);
 router.post("/reset-password/:token", resetPassword);
 

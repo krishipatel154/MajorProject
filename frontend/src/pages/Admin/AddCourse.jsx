@@ -57,17 +57,17 @@ const AddCourse = () => {
   };
   return (
     <div className="h-[100%] p-0 md:p-4">
-      <h1 className="text-3xl md:text-5xl fint-semibold text-zinc-500 mb-8">
+      <h1 className="text-3xl md:text-5xl font-semibold text-text dark:text-zinc-500 mb-8">
         Add Course
       </h1>
-      <div className="p-4 bg-zinc-800 rounded">
+      <div className="p-4 bg-back dark:bg-zinc-800 rounded">
         <div>
-          <label htmlFor="" className="text-zinc-400">
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Image
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Image URL"
             required
             name="image"
@@ -76,12 +76,12 @@ const AddCourse = () => {
           />
         </div>
         <div>
-          <label htmlFor="" className="text-zinc-400">
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Name
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Course Name"
             required
             name="name"
@@ -90,12 +90,12 @@ const AddCourse = () => {
           />
         </div>
         <div className="mt-4">
-          <label htmlFor="" className="text-zinc-400">
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Faculty
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Faculty Name"
             required
             name="faculty"
@@ -104,12 +104,12 @@ const AddCourse = () => {
           />
         </div>
         <div>
-          <label htmlFor="" className="text-zinc-400">
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Price
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Course price"
             required
             name="price"
@@ -118,12 +118,12 @@ const AddCourse = () => {
           />
         </div>
         <div>
-          <label htmlFor="" className="text-zinc-400">
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Language
           </label>
           <input
             type="text"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Course Language"
             required
             name="language"
@@ -132,12 +132,12 @@ const AddCourse = () => {
           />
         </div>
         <div>
-          <label htmlFor="" className="text-zinc-400">
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Catagory
           </label>
           <textarea
             rows="5"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Course catagory"
             required
             name="catagory"
@@ -146,12 +146,12 @@ const AddCourse = () => {
           />
         </div>
         <div>
-          <label htmlFor="" className="text-zinc-400">
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Description
           </label>
           <textarea
             rows="5"
-            className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Course description"
             required
             name="desc"
@@ -160,7 +160,7 @@ const AddCourse = () => {
           />
         </div>
         <button
-          className="mt-4 px-3 bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transaction-all duration-300"
+          className="mt-4 px-3 bg-[#03476F] dark:bg-zinc-900 text-text font-semibold py-2 rounded hover:bg-blue-600 transaction-all duration-300"
           onClick={handleSubmit}
         >
           Add Course

@@ -92,7 +92,10 @@ const ViewCourseDetails = () => {
               )}
               {isLoggedIn === true && role === "admin" && (
                 <div className="flex lg:flex-col flex-col md:flex-row items-center justify-between lg:justify-start lg:mt-0 mt-8 ">
-                  <Link to={`/update-course/${id}`} className="text-white bg-blue-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 flex items-center">
+                  <Link
+                    to={`/update-course/${id}`}
+                    className="text-white bg-blue-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 flex items-center"
+                  >
                     <FaEdit />
                     <span className="ms-2 lg:hidden block text-normal">
                       Edit Course

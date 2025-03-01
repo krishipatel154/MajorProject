@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { FaEdit, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
+import ReedBook from "../ReedBook/ReedBook";
 const ViewBookDetails = () => {
   const { id } = useParams();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -39,6 +40,18 @@ const ViewBookDetails = () => {
     handleSuccess(response.data.message);
   };
 
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        "http://localhost:8089/books/delete-book",
+        { headers }
+      );
+      handleSuccess(response.data);
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
   return (
     <>
       {bookDetails ? (
@@ -61,26 +74,23 @@ const ViewBookDetails = () => {
                       Add to Favourite
                     </span>
                   </button>
-                  {/* <button
-                    className="text-white bg-blue-500 md:mt-0 lg:mt-4 mt-4 rounded lg:rounded-full lg:text-3xl text-normal p-2 flex items-center justify-center"
-                    onClick={handleCart}
-                  >
-                    <FaShoppingCart />
-                    <span className="ms-2 lg:hidden block text-normal">
-                      Add to cart
-                    </span>
-                  </button> */}
                 </div>
               )}
               {isLoggedIn === true && role === "admin" && (
                 <div className="flex lg:flex-col flex-col md:flex-row items-center justify-between lg:justify-start lg:mt-0 mt-8 ">
-                  <button className="text-white bg-blue-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 flex items-center">
+                  <Link
+                    to={`/update-book/${id}`}
+                    className="text-white bg-blue-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 flex items-center"
+                  >
                     <FaEdit />
                     <span className="ms-2 lg:hidden block text-normal">
                       Edit Course
                     </span>
-                  </button>
-                  <button className="text-white bg-red-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-8 md:mt-0 flex items-center justify-center">
+                  </Link>
+                  <button
+                    className="text-white bg-red-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-8 md:mt-0 flex items-center justify-center"
+                    onClick={handleDelete}
+                  >
                     <MdOutlineDelete />
                     <span className="ms-2 lg:hidden block text-normal">
                       Delete Course
@@ -92,18 +102,15 @@ const ViewBookDetails = () => {
           </div>
           <div className="p-4 lg:w-3/6 w-full">
             <h1 className="text-4xl font-semibold">{bookDetails.Name}</h1>
-            <p className="mt-1 font-semibold underline text-2xl">{bookDetails.Author}</p>
+            <p className="mt-1 font-semibold underline text-2xl">
+              {bookDetails.Author}
+            </p>
             <p className="text-xl mt-4">{bookDetails.desc}</p>
             <p className="mt-4 text-3xl font-semibold">
               Price: ${bookDetails.Price}
             </p>
             <div className="my-8">
-            <Link
-                
-                className="px-8 py-4 text-xl font-semibold dark:text-black dark:bg-white bg-text text-back hover:bg-text hover:text-back rounded transaction-all duration-300"
-              >
-                Read Book
-              </Link>
+              <ReedBook pdf={bookDetails.Pdf} />
             </div>
           </div>
           <ToastContainer />

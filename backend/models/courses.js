@@ -21,14 +21,14 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  Language:{
+  Language: {
     type: String,
     required: true,
   },
-  desc:{
+  desc: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const Course = mongoose.model("Course", courseSchema);

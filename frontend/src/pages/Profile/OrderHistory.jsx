@@ -14,7 +14,6 @@ const OrderHistory = () => {
         "http://localhost:8089/order/get-order-history",
         { headers }
       );
-      console.log(response.data);
       setOrderHistory(response.data.data);
     };
     fetch();
@@ -77,10 +76,10 @@ const OrderHistory = () => {
                 </Link>
               </div>
               {/* <div className="w-[45%]">
-                <h1 className="text-center">
-                  {item.book.desc.slice(0, 50)}...
-                </h1>
-              </div> */}
+              <h1 className="text-center">
+                {item.book.desc.slice(0, 50)}...
+              </h1>
+            </div> */}
               <div className="w-[9%]">
                 <h1 className="text-center">${item.course.Price} </h1>
               </div>
