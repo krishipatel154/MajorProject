@@ -126,18 +126,22 @@ const handleDeleteCourse = async (req, res) => {
 
 const handleGetMyCourse = async (req, res) => {
   try {
-    const { id } = req.headers; // Assuming you have middleware that extracts the userId from the JWT
-    const user = await User.findById(id).select("myCourse"); // Only retrieve the 'myCourse' field
+    const { id } = req.headers;
+    const user = await User.findById(id).populate("myCourse");
+    const myCourse = user.myCourse;
+    return res.status(200).json({ myCourse: myCourse });
+    // const { id } = req.headers; // Assuming you have middleware that extracts the userId from the JWT
+    // const user = await User.findById(id).select("myCourse"); // Only retrieve the 'myCourse' field
 
-    console.log(id);
-    console.log("my course", user);
-    if (!user) {
-      return res.status(404).json({ message: "User not found." });
-    }
+    // console.log(id);
+    // console.log("my course", user);
+    // if (!user) {
+    //   return res.status(404).json({ message: "User not found." });
+    // }
 
-    res.status(200).json({
-      myCourse: user.myCourse,
-    });
+    // res.status(200).json({
+    //   myCourse: user.myCourse,
+    // });
   } catch (error) {
     console.log("Error fetching courses:", error);
     res.status(500).json({ message: "Error fetching user's courses." });

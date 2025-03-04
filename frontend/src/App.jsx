@@ -31,6 +31,7 @@ import UpdateCourse from "./pages/Admin/UpdateCourse";
 import UpdateBook from "./pages/Admin/UpdateBook";
 import Payment from "./pages/Cart/Payment";
 import MyCourse from "./pages/MyCourse/MyCourse";
+import AddMaterial from "./pages/Admin/AddMaterial";
 
 function App() {
   const dispatch = useDispatch();
@@ -78,6 +79,7 @@ function App() {
               <>
                 <Route index element={<AllOrders />} />
                 <Route path="/profile/add-book" element={<AddBook />} />
+                <Route path="/profile/add-material" element={<AddMaterial />} />
                 <Route path="/profile/add-course" element={<AddCourse />} />
               </>
             )}

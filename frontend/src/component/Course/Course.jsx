@@ -11,8 +11,6 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
     courseid: course._id,
   };
 
-  const isPaymentDone = useSelector((state) => state.auth.isPaymentDone);
-  console.log("payment: ", isPaymentDone);
 
   const handleRemoveCourse = async () => {
     const response = await axios.put(
@@ -54,14 +52,14 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           Remove From Favourites
         </button>
       )}
-      {/* {isPaymentDone && (
-        <button
-          className="bg-text text-sm font-semibold px-4 py-2 rounded border border-gray text-black"
-          onClick={handleRemoveCourse}
-        >
-          Join Meeting
-        </button>
-      )} */}
+           {/* {isPaymentDone && (
+         <button
+           className="bg-text text-sm font-semibold px-4 py-2 rounded border border-gray text-black"
+           onClick={handleRemoveCourse}
+         >
+           Join Meeting
+         </button>
+       )} */}
       <ToastContainer />
     </div>
   );

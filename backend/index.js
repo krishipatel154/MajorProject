@@ -4,6 +4,7 @@ const passportConfig = require("./config/passportConfig");
 const userRoute = require("./routes/user");
 const courseRoute = require("./routes/courses");
 const bookRoute = require("./routes/books");
+const materialRoute = require("./routes/material")
 const favouriteRoute = require("./routes/favourite");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
@@ -11,7 +12,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
-// multer
 
 require("./models/db");
 require("dotenv").config();
@@ -32,14 +32,13 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/files", express.static("files"));
-
 passportConfig(passport);
 
 // routes
 app.use("/user", userRoute);
 app.use("/course", courseRoute);
 app.use("/books", bookRoute);
+app.use("/material", materialRoute);
 app.use("/favourite", favouriteRoute);
 app.use("/cart", cartRoute);
 app.use("/order", orderRoute);

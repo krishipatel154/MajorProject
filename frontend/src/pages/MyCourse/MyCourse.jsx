@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Course from "../../component/Course/Course"
+import { useSelector } from "react-redux";
 
 const MyCourse = () => {
   const [courses, setCourses] = useState([]);
@@ -42,15 +44,18 @@ const MyCourse = () => {
     return <div>{error}</div>;
   }
 
+  // const isPaymentDone = useSelector((state) => state.auth.isPaymentDone);
+  // console.log("payment: ", isPaymentDone);
   return (
     <div>
       <h1>My Courses</h1>
       {courses.length > 0 ? (
-        <ul>
-          {courses.map((course, index) => (
-            <li key={index}>{course}</li>
-          ))}
-        </ul>
+        <div className="grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
+        {courses.map((course) => (
+          <Course course={course} />
+      
+        ))}
+      </div>
       ) : (
         <p>No courses found.</p>
       )}

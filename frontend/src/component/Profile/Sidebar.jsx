@@ -61,6 +61,12 @@ const Sidebar = ({ data }) => {
           >
             Add Book
           </Link>
+          <Link
+            to="/profile/add-material"
+            className="text-zinc-300 font-semibold w-full text-center hover:bg-[#03476F] rounded transaction-all duration-300  dark:hover:bg-black"
+          >
+            Add Material
+          </Link>
         </>
       )}
       <button

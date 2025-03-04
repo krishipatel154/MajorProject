@@ -1,6 +1,7 @@
 import React from "react";
 
 const ReedBook = ({ pdf }) => {
+  console.log("Reed Book: ",pdf)
   const showPdf = (pdf) => {
     console.log(pdf);
     window.open(`http://localhost:8089/files/${pdf}`, "_blank", "noreferrer");

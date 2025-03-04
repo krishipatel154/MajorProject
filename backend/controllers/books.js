@@ -26,51 +26,6 @@ const handleGetRecentBooks = async (req, res) => {
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
-
-// const handleAddBook = async (req, res) => {
-//   try {
-//     const { id } = req.headers;
-//     console.log(req.file);
-//     const user = await User.findById(id);
-//     if (user.role !== "admin") {
-//       return res.status(500).json({ message: "Internal server error!!" });
-//     }
-//     const { Name, Author, desc, language, Price, Category, Image } = req.body;
-
-//     // Check if the file is present
-//     if (!req.file) {
-//       return res.status(400).json({ message: "File not uploaded" });
-//     }
-
-//     // req.file contains file details, req.body contains form text fields
-//     const bookData = {
-//       Name,
-//       Author,
-//       desc,
-//       language,
-//       Price,
-//       Category,
-//       Image,
-//       Pdf: req.file.filename, // Store the filename of the uploaded file
-//     };
-
-//     // Save bookData to the database (assuming you have a Book model)
-//     // Book.create(bookData)
-//     //   .then((result) => {
-//     //     res.status(201).json({ message: "Book added successfully", result });
-//     //   })
-//     //   .catch((error) => res.status(500).json({ message: "Error saving book", error }));
-
-//     // For now, return the data
-//     res.status(201).json({
-//       message: "Book added successfully",
-//       bookData,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     return res.status(500).json({ message: "Internal server error!!" });
-//   }
-// };
 const handleAddBook = async (req, res) => {
   try {
     const { id } = req.headers;
