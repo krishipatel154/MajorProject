@@ -1,35 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 import axios from "axios";
-import { pdfjs } from "react-pdf";
-import PdfComp from "../PdfComp";
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-
-// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-//   "pdfjs-dist/build/pdf.worker.min.js",
-//   import.meta.url
-// ).toString();
 
 const LanguagesNav = () => {
-  const [allImage, setAllImage] = useState(null);
+  const [file, setFile] = useState(null);
+  const [pdfFile, setPdfFile] = useState(null);
+  const [pdfName, setPdfName] = useState(null);
+
+  const getPdf = async () => {
+    const response = await axios.get(
+      "http://localhost:8089/material/get-material"
+    );
+    console.log(response.data.data);
+    setFile(response.data.data);
+    const defaultPdf = response.data.data.find(
+      (item) => item.Name === "Cloud Computing"
+    );
+
+    if (defaultPdf) {
+      showPdf(defaultPdf.Pdf, defaultPdf.Name);
+    }
+  };
 
   useEffect(() => {
     getPdf();
   }, []);
 
-  const getPdf = async () => {
-    const result = await axios.get(
-      "http://localhost:8089/material/get-material"
-    );
-    console.log(result.data.data);
-    setAllImage(result.data.data);
+  const showPdf = (pdf, name) => {
+    const fullPdfUrl = `http://localhost:8089/files/${pdf}`;
+    console.log("fullPdfUrl", fullPdfUrl);
+    setPdfFile(fullPdfUrl);
+    setPdfName(name);
+    console.log("showPdf", fullPdfUrl);
   };
 
-  const handleShowMaterial = (pdf) => {
-    console.log(pdf);
-    window.open(`http://localhost:8089/files/${pdf}`, "_blank", "noreferrer");
-  };
+  console.log(pdfFile);
+  const docs = pdfFile ? [{ uri: pdfFile }] : [];
 
   const btnpressprev = () => {
     let box = document.getElementById("product-container");
@@ -41,6 +48,7 @@ const LanguagesNav = () => {
     let width = box.clientWidth;
     box.scrollLeft = box.scrollLeft + width;
   };
+
   return (
     <>
       <div className="relative overflow-hidden w-[100%] h-[50px] p-[5px] flex items-center justify-center bg-text dark:bg-black dark:text-text">
@@ -62,24 +70,35 @@ const LanguagesNav = () => {
         </button>
 
         <div
-          className="py-[10px] flex overflow-hidden  w-[95%]"
+          className="py-[10px] flex overflow-hidden w-[95%]"
           id="product-container"
         >
           <ul className="flex justify-center items-center gap-[250px]">
-            {allImage == null
+            {file === null
               ? ""
-              : allImage.map((data, i) => (
-                  <>
-                    <button key={i} onClick={handleShowMaterial(data.Pdf)}>
-                      {data.Name}
-                    </button>
-                    <p>{data.Pdf}</p>
-                  </>
+              : file.map((data, i) => (
+                  <li
+                    key={i}
+                    onClick={() => showPdf(data.Pdf, data.Name)}
+                    className="cursor-pointer"
+                  >
+                    {data.Name}
+                  </li>
                 ))}
           </ul>
         </div>
       </div>
-      <PdfComp />
+      {pdfFile ? (
+        <div className="mt-4">
+          <DocViewer
+            documents={docs}
+            pluginRenderers={DocViewerRenderers}
+            // style={{ width: "75%", margin: "auto" }}
+          />
+        </div>
+      ) : (
+        <p>Select a PDF to view</p>
+      )}
     </>
   );
 };
