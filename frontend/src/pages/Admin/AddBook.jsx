@@ -6,10 +6,10 @@ const AddBook = () => {
     Image: "",
     Name: "",
     Author: "",
-    Price: "",
     desc: "",
     language: "",
-    Catagory: "",
+    Category: "",
+    Logo: "", // New field for logo
   });
   const headers = {
     id: localStorage.getItem("id"),
@@ -28,14 +28,14 @@ const AddBook = () => {
 
     try {
       if (
-        data.Image === "" ||
-        data.Name === "" ||
-        data.Author === "" ||
-        data.desc === "" ||
-        data.Price === "" ||
-        data.language === "" ||
-        data.Category === "" ||
-        !data.Pdf // Ensure a PDF file is selected
+        (data.Image === "" ||
+          data.Name === "" ||
+          data.Author === "" ||
+          data.desc === "" ||
+          data.language === "" ||
+          data.Category === "" ||
+          !data.Pdf, // Ensure a PDF file is selected
+        data.Logo === "") // Ensure logo field is filled
       ) {
         handleError("All fields are required!!");
       } else {
@@ -45,9 +45,10 @@ const AddBook = () => {
         formData.append("Author", data.Author);
         formData.append("desc", data.desc);
         formData.append("language", data.language);
-        formData.append("Price", data.Price);
-        formData.append("Category", data.Category); // Update from "Catagory" to "Category"
+        formData.append("Category", data.Category); // Update from "Category" to "Category"
         formData.append("file", data.Pdf);
+        formData.append("Logo", data.Logo); // Append logo
+
         const response = await axios.post(
           "http://localhost:8089/books/add-book",
           formData,
@@ -64,9 +65,9 @@ const AddBook = () => {
           Author: "",
           desc: "",
           language: "",
-          Price: "",
           Category: "",
           Pdf: null, // Clear the PDF file input
+          Logo: "", // Reset logo field
         });
         handleSuccess(response.data.message);
       }
@@ -138,15 +139,15 @@ const AddBook = () => {
         </div>
         <div>
           <label htmlFor="" className="text-text dark:text-zinc-400">
-            Price
+            Logo URL
           </label>
           <input
             type="text"
             className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
-            placeholder="Course price"
+            placeholder="Logo URL"
             required
-            name="Price"
-            value={data.Price}
+            name="Logo"
+            value={data.Logo}
             onChange={handleChange}
           />
         </div>
@@ -166,12 +167,12 @@ const AddBook = () => {
         </div>
         <div>
           <label htmlFor="" className="text-text dark:text-zinc-400">
-            Catagory
+            Category
           </label>
           <textarea
             rows="5"
             className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
-            placeholder="Course catagory"
+            placeholder="Course Category"
             required
             name="Category"
             value={data.Category}

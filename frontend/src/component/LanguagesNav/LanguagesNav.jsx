@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import { pdfjs } from "react-pdf";
 import PdfComp from "../PdfComp";
 
@@ -14,21 +14,22 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 const LanguagesNav = () => {
   const [allImage, setAllImage] = useState(null);
 
-useEffect(()=>{
-  getPdf()
-},[])
-
+  useEffect(() => {
+    getPdf();
+  }, []);
 
   const getPdf = async () => {
-    const result = await axios.get("http://localhost:8089/material/get-material");
+    const result = await axios.get(
+      "http://localhost:8089/material/get-material"
+    );
     console.log(result.data.data);
     setAllImage(result.data.data);
-  }
+  };
 
-const handleShowMaterial = (pdf) => {
-  console.log(pdf);
+  const handleShowMaterial = (pdf) => {
+    console.log(pdf);
     window.open(`http://localhost:8089/files/${pdf}`, "_blank", "noreferrer");
-}
+  };
 
   const btnpressprev = () => {
     let box = document.getElementById("product-container");
@@ -42,7 +43,7 @@ const handleShowMaterial = (pdf) => {
   };
   return (
     <>
-      <div className="relative overflow-hidden w-[100%] h-[400px] p-[5px] flex items-center justify-center bg-text dark:bg-black dark:text-text">
+      <div className="relative overflow-hidden w-[100%] h-[50px] p-[5px] flex items-center justify-center bg-text dark:bg-black dark:text-text">
         <button
           className="prev-btn w-[40px] h-[40px] absolute top-0 flex items-center justify-center align-center left-0"
           onClick={btnpressprev}
@@ -65,18 +66,20 @@ const handleShowMaterial = (pdf) => {
           id="product-container"
         >
           <ul className="flex justify-center items-center gap-[250px]">
-            {
-              allImage== null ? "" : allImage.map((data, i)=>(
-                <>
-                <button key={i} onClick={handleShowMaterial(data.Pdf)}>{data.Name}</button>
-                <p>{data.Pdf}</p>
-                </>
-              ))
-            }      
+            {allImage == null
+              ? ""
+              : allImage.map((data, i) => (
+                  <>
+                    <button key={i} onClick={handleShowMaterial(data.Pdf)}>
+                      {data.Name}
+                    </button>
+                    <p>{data.Pdf}</p>
+                  </>
+                ))}
           </ul>
         </div>
-        <PdfComp/>
       </div>
+      <PdfComp />
     </>
   );
 };

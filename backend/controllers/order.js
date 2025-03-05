@@ -1,7 +1,5 @@
 const User = require("../models/user");
-const Book = require("../models/books");
 const Order = require("../models/order");
-const Course = require("../models/courses");
 
 const handlePlaceOrder = async (req, res) => {
   try {

@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../../utils";
+import privacyPolicy from "../../assets/PrivacyPolicy.pdf";
+
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(""); // To display password strength
@@ -84,7 +86,7 @@ const SignUp = () => {
     <>
       <div className="bg-white">
         <div className="p-8 lg:w-1/2 mx-auto">
-          <div className="bg-gray-100 dark:bg-zinc-800 rounded-t-lg p-8">
+          {/* <div className="bg-gray-100 dark:bg-zinc-800 rounded-t-lg p-8">
             <p className="text-center text-sm text-gray-400 font-light">
               Sign up with
             </p>
@@ -130,12 +132,15 @@ const SignUp = () => {
                 </button>
               </div>
             </div>
-          </div>
-          <div className="bg-gray-100 dark:bg-zinc-800 rounded-b-lg py-12 px-4 lg:px-24">
-            <p className="text-center text-sm text-gray-500 font-light">
+          </div> */}
+          <div className="bg-gray-100 dark:bg-zinc-800 rounded py-12 px-4 lg:px-24">
+            {/* <p className="text-center text-sm text-gray-500 font-light">
               {" "}
               Or sign up with credentials{" "}
-            </p>
+            </p> */}
+            <div className="flex justify-center items-center m-4">
+              <h1 className="text-3xl">Signup Form</h1>
+            </div>
             <form className="mt-6" onSubmit={handleSignup}>
               <div className="relative">
                 <input
@@ -282,10 +287,15 @@ const SignUp = () => {
                   id="remember"
                   name="remember"
                   className="mr-2"
+                  required
                 />{" "}
                 <label className="text-sm" htmlFor="remember">
                   I agree with the{" "}
-                  <a className="text-indigo-400 hover:text-indigo-500">
+                  <a
+                    href={privacyPolicy}
+                    className="text-indigo-400 hover:text-indigo-500"
+                    target="_blank"
+                  >
                     Privacy Policy
                   </a>
                 </label>
@@ -296,7 +306,7 @@ const SignUp = () => {
                   Create Account
                 </button>
               </div>
-              <div>
+              <div className="flex items-center justify-center mt-8">
                 <span>
                   Already have an account? <Link to="/login">Login</Link>{" "}
                 </span>

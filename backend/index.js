@@ -4,10 +4,11 @@ const passportConfig = require("./config/passportConfig");
 const userRoute = require("./routes/user");
 const courseRoute = require("./routes/courses");
 const bookRoute = require("./routes/books");
-const materialRoute = require("./routes/material")
+const materialRoute = require("./routes/material");
 const favouriteRoute = require("./routes/favourite");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
+const searchRoute = require("./routes/search");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -42,6 +43,7 @@ app.use("/material", materialRoute);
 app.use("/favourite", favouriteRoute);
 app.use("/cart", cartRoute);
 app.use("/order", orderRoute);
+app.use("/search", searchRoute);
 
 app.listen(PORT, () => {
   console.log(`server started at port ${PORT}`);

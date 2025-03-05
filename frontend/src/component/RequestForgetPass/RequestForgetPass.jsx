@@ -38,9 +38,9 @@ const RequestForgetPass = () => {
 
   return (
     <>
-      <div className="p-8 lg:w-1/2 mx-auto">
-        <div className="bg-gray-200 rounded-b-lg py-12 text-center px-4 lg:px-24">
-          <h1 className="text-xl">Forgot Password</h1>
+      <div className="p-8 lg:w-1/2 mx-auto bg-white text-text">
+        <div className="bg-gray-200 dark:bg-black rounded-b-lg py-12 text-center px-4 lg:px-24">
+          <h1 className="text-3xl font-semibold">Forgot Password</h1>
           <form className="mt-6" onSubmit={handleForgetPass}>
             <div className="relative mt-3">
               <input

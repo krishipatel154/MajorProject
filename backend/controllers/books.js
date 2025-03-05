@@ -37,8 +37,8 @@ const handleAddBook = async (req, res) => {
       return res.status(403).json({ message: "Unauthorized access!!" });
     }
 
-    const { Name, Author, desc, language, Price, Category, Image } = req.body;
-
+    const { Name, Author, desc, language, Category, Image, Logo } = req.body;
+    console.log(Category);
     // Check if the file is present
     if (!req.file) {
       return res.status(400).json({ message: "File not uploaded" });
@@ -50,10 +50,10 @@ const handleAddBook = async (req, res) => {
       Author,
       desc,
       language,
-      Price,
       Category,
       Image,
       Pdf: req.file.filename, // Store the filename of the uploaded file
+      Logo,
     };
 
     // Save the book to the database using Mongoose
@@ -83,7 +83,7 @@ const handleUpdateBook = async (req, res) => {
     const query = await Book.findByIdAndUpdate(bookid, {
       Name: req.body.Name,
       Author: req.body.Author,
-      Catagory: req.body.Catagory,
+      Category: req.body.Category,
       Price: req.body.Price,
       Image: req.body.Image,
       desc: req.body.desc,

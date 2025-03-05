@@ -30,7 +30,7 @@ const Profile = () => {
         </div>
       ) : (
         <>
-          <div className="md:w-1/6 w-full mx-4 lg:h-[80%]] h-[80%]">
+          <div className="md:w-1/6 w-full mx-4 lg:h-[80%] h-[80%]">
             <Sidebar data={profile} />
             <MobileNav />
           </div>

@@ -32,6 +32,7 @@ import UpdateBook from "./pages/Admin/UpdateBook";
 import Payment from "./pages/Cart/Payment";
 import MyCourse from "./pages/MyCourse/MyCourse";
 import AddMaterial from "./pages/Admin/AddMaterial";
+import Footer from "./component/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -111,6 +112,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </div>
     </>
   );

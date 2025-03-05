@@ -5,10 +5,28 @@ import { useSelector } from "react-redux";
 import lightLogo from "../../images/logo.png";
 import darkLogo from "../../images/logoDark.png";
 import Avatar from "react-avatar";
+import axios from "axios";
 
 const Navbar = () => {
   const data = localStorage.getItem("uname");
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState({
+    books: [],
+    courses: [],
+  });
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get(
+        `http://localhost:8089/search/search-item?q=${searchQuery}`
+      );
+      setSearchResults(response.data); // Store books and courses in state
+    } catch (error) {
+      console.error("Error during search", error);
+    }
+  };
+
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
@@ -123,16 +141,35 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <div className="md:flex flex items-center hidden gap-8">
-            {links.map((item, i) => (
-              <Link
-                to={item.link}
-                key={i}
-                className="hover:text-zinc-300 transition-all duration-300"
+          <div className="md:flex flex flex-row items-center justify-center gap-4">
+            {/* Search Bar */}
+            {/* <form onSubmit={handleSearch} className="flex items-center">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search for books or courses"
+                className="px-2 py-1 rounded-l-lg border-none outline-none"
+              />
+              <button
+                type="submit"
+                className="px-4 py-1 bg-blue-600 text-white rounded-r-lg"
               >
-                {item.title}
-              </Link>
-            ))}
+                Search
+              </button>
+            </form> */}
+
+            <div className="md:flex flex items-center hidden gap-8">
+              {links.map((item, i) => (
+                <Link
+                  to={item.link}
+                  key={i}
+                  className="hover:text-zinc-300 transition-all duration-300"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
           </div>
 
           <div className="md:flex hidden gap-4">
