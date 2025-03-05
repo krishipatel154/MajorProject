@@ -38,7 +38,7 @@ const Books = () => {
     if (selectedCategory === "All") {
       return books;
     }
-    return books.filter((book) => book.Catagory === selectedCategory); // Updated to filter by language
+    return books.filter((book) => book.Category === selectedCategory); // Updated to filter by language
   };
 
   return (
