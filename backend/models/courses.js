@@ -29,6 +29,16 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isLive: {
+    type: Boolean,
+    default: false,
+  },
+  streamStartTime: {
+    type: Date,
+  },
+  streamEndTime: {
+    type: Date,
+  },
 });
 
 const Course = mongoose.model("Course", courseSchema);

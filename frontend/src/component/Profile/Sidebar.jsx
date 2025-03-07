@@ -8,7 +8,6 @@ const Sidebar = ({ data }) => {
   const navigate = useNavigate();
   const role = useSelector((state) => state.auth.role);
 
-  console.log(role);
   return (
     <div className="bg-back dark:bg-zinc-800 h-[100%] p-4 rounded lg:h-[100%] h-auto flex flex-col items-center justify-between">
       <div className="flex items-center flex-col justify-center">

@@ -33,6 +33,7 @@ import Payment from "./pages/Cart/Payment";
 import MyCourse from "./pages/MyCourse/MyCourse";
 import AddMaterial from "./pages/Admin/AddMaterial";
 import Footer from "./component/Footer/Footer";
+import LiveStream from "./component/LiveStream/LiveStream";
 
 function App() {
   const dispatch = useDispatch();
@@ -108,6 +109,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/live-stream/:courseId"
+            element={
+              <PrivateRoute>
+                <LiveStream />
               </PrivateRoute>
             }
           />

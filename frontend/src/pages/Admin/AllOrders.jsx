@@ -35,10 +35,8 @@ const AllOrders = () => {
       { headers }
     );
     handleSuccess(response.data.message);
-    console.log(response.data);
     const updatedOrders = [...allOrders];
     updatedOrders[i].status = values.status;
-    console.log(updatedOrders);
     setAllOrders(updatedOrders);
     setOptions(-1);
   };

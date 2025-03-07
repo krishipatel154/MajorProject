@@ -51,10 +51,8 @@ const handleGetAllOrders = async (req, res) => {
         path: "user",
       })
       .sort({ createdAt: -1 });
-    console.log(userData);
     return res.status(200).json({ data: userData });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
@@ -71,7 +69,6 @@ const handleUpdateStatus = async (req, res) => {
     await Order.findByIdAndUpdate(id, { status: req.body.status });
     return res.status(200).json({ message: "Status Updated Successfully!!" });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };

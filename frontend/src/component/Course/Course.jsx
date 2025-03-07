@@ -11,7 +11,6 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
     courseid: course._id,
   };
 
-
   const handleRemoveCourse = async () => {
     const response = await axios.put(
       "http://localhost:8089/favourite/delete-course-from-favourites",
@@ -52,7 +51,15 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           Remove From Favourites
         </button>
       )}
-           {/* {isPaymentDone && (
+      {course.isLive && (
+        <Link
+          to={`/live-stream/${course._id}`}
+          className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded mt-2"
+        >
+          Join Live Class
+        </Link>
+      )}
+      {/* {isPaymentDone && (
          <button
            className="bg-text text-sm font-semibold px-4 py-2 rounded border border-gray text-black"
            onClick={handleRemoveCourse}

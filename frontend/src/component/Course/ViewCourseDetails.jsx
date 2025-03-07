@@ -57,6 +57,23 @@ const ViewCourseDetails = () => {
     navigate("/courses");
   };
 
+  const handleToggleLiveStream = async () => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8089/course/toggle-live/${id}`,
+        {},
+        { headers }
+      );
+      handleSuccess(response.data.message);
+      setCourseDetails({
+        ...courseDetails,
+        isLive: !courseDetails.isLive,
+      });
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
   return (
     <>
       {courseDetails ? (
@@ -110,6 +127,24 @@ const ViewCourseDetails = () => {
                       Delete Course
                     </span>
                   </button>
+                  <button
+                    className={`text-white ${
+                      courseDetails.isLive ? "bg-red-500" : "bg-green-500"
+                    } rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-8 md:mt-0 flex items-center justify-center`}
+                    onClick={handleToggleLiveStream}
+                  >
+                    {courseDetails.isLive
+                      ? "End Live Stream"
+                      : "Start Live Stream"}
+                  </button>
+                  {courseDetails.isLive && (
+                    <Link
+                      to={`/live-stream/${id}`}
+                      className="text-white bg-blue-500 rounded lg:rounded-full lg:text-3xl text-normal p-2 lg:mt-4 mt-8 md:mt-0 flex items-center justify-center"
+                    >
+                      Join Stream Room
+                    </Link>
+                  )}
                 </div>
               )}
             </div>
@@ -128,6 +163,14 @@ const ViewCourseDetails = () => {
               Price: ${courseDetails.Price}
             </p>
           </div>
+          {isLoggedIn === true && role === "user" && courseDetails.isLive && (
+            <Link
+              to={`/live-stream/${id}`}
+              className="text-white bg-blue-500 rounded text-normal p-2 mt-4 flex items-center justify-center"
+            >
+              Join Live Class
+            </Link>
+          )}
           <ToastContainer />
         </div>
       ) : (

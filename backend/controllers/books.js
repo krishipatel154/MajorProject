@@ -29,22 +29,16 @@ const handleGetRecentBooks = async (req, res) => {
 const handleAddBook = async (req, res) => {
   try {
     const { id } = req.headers;
-    console.log(req.file); // This will log the uploaded file details
-
-    // Check if the user is an admin
     const user = await User.findById(id);
     if (user.role !== "admin") {
       return res.status(403).json({ message: "Unauthorized access!!" });
     }
 
     const { Name, Author, desc, language, Category, Image, Logo } = req.body;
-    console.log(Category);
-    // Check if the file is present
     if (!req.file) {
       return res.status(400).json({ message: "File not uploaded" });
     }
 
-    // req.file contains file details, req.body contains form text fields
     const bookData = {
       Name,
       Author,
@@ -52,14 +46,12 @@ const handleAddBook = async (req, res) => {
       language,
       Category,
       Image,
-      Pdf: req.file.filename, // Store the filename of the uploaded file
+      Pdf: req.file.filename,
       Logo,
     };
 
-    // Save the book to the database using Mongoose
     const newBook = await Book.create(bookData);
 
-    // Send a success response
     res.status(201).json({
       message: "Book added successfully",
       book: newBook,

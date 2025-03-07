@@ -102,7 +102,6 @@ const handleUpdateCourse = async (req, res) => {
     );
     return res.status(200).json({ message: "Course updated successfully!!" });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
@@ -130,21 +129,36 @@ const handleGetMyCourse = async (req, res) => {
     const user = await User.findById(id).populate("myCourse");
     const myCourse = user.myCourse;
     return res.status(200).json({ myCourse: myCourse });
-    // const { id } = req.headers; // Assuming you have middleware that extracts the userId from the JWT
-    // const user = await User.findById(id).select("myCourse"); // Only retrieve the 'myCourse' field
-
-    // console.log(id);
-    // console.log("my course", user);
-    // if (!user) {
-    //   return res.status(404).json({ message: "User not found." });
-    // }
-
-    // res.status(200).json({
-    //   myCourse: user.myCourse,
-    // });
   } catch (error) {
-    console.log("Error fetching courses:", error);
     res.status(500).json({ message: "Error fetching user's courses." });
+  }
+};
+
+const handleToggleLive = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const course = await Course.findById(id);
+
+    const isLive = !course.isLive;
+    const streamStartTime = isLive ? new Date() : null;
+    const streamEndTime = !isLive ? new Date() : null;
+
+    await Course.findByIdAndUpdate(
+      id,
+      {
+        isLive,
+        streamStartTime,
+        streamEndTime,
+      },
+      { new: true }
+    );
+
+    return res.status(200).json({
+      message: isLive ? "Live stream started!" : "Live stream ended!",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error!" });
   }
 };
 
@@ -156,4 +170,5 @@ module.exports = {
   handleDeleteCourse,
   handleUpdateCourse,
   handleGetMyCourse,
+  handleToggleLive,
 };
