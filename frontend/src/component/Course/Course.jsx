@@ -4,7 +4,7 @@ import { handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
-const Course = ({ course, favourites, onRemoveCourse }) => {
+const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -25,7 +25,13 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
 
   return (
     <div className="bg-[#03506F] dark:bg-zinc-800 rounded p-4 flex flex-col h-full w-full">
-      <Link to={`/view-course-details/${course._id}`}>
+      {/* <Link to={`/view-course-details/${course._id}`}> */}
+      <Link
+        to={{
+          pathname: `/view-course-details/${course._id}`,
+          state: { isMyCourse }, // Pass the flag as state
+        }}
+      >
         <div className="">
           <div className="bg-white rounded flex items-center justify-center h-[200px]">
             <img
@@ -51,7 +57,7 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           Remove From Favourites
         </button>
       )}
-      {course.isLive && (
+      {course.isLive && isMyCourse && (
         <Link
           to={`/live-stream/${course._id}`}
           className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded mt-2"

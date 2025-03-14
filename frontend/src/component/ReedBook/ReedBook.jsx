@@ -6,11 +6,10 @@ const ReedBook = ({ pdf }) => {
   };
   return (
     <button
-      className="p-2 text-xl font-semibold dark:text-black dark:bg-white bg-text text-back hover:bg-text hover:text-back rounded transaction-all duration-300"
+      className="p-2 mt-4 text-xl font-semibold dark:text-black dark:bg-white bg-text text-back hover:bg-text hover:text-back rounded transaction-all duration-300"
       onClick={() => showPdf(pdf)}
     >
       Read Book
-      <p>{pdf}</p>
     </button>
   );
 };

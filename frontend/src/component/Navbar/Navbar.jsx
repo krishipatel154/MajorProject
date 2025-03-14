@@ -77,6 +77,7 @@ const Navbar = () => {
     localStorage.removeItem("role");
     localStorage.removeItem("uname");
     isLoggedIn = false;
+    // const isLoggedIn = useSelector((state) => state.auth.logout);
   };
 
   const [sticky, setSticky] = useState(false);

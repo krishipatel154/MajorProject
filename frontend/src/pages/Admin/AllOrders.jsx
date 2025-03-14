@@ -5,7 +5,7 @@ import { handleSuccess } from "../../utils";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import OrderHistory from "../Profile/OrderHistory";
-import SeeUserData from "../SeeUserData";
+import SeeUserData from "./SeeUserData";
 const AllOrders = () => {
   const [allOrders, setAllOrders] = useState();
   const [options, setOptions] = useState(-1);

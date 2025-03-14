@@ -14,7 +14,7 @@ const LiveStream = () => {
   const role = useSelector((state) => state.auth.role);
   const isTeacher = role === "admin";
 
-  const AGORA_APP_ID = "96566ecc4b16414ba6d02e54a2fd806b"; // Your Agora App ID
+  const AGORA_APP_ID = "96566ecc4b16414ba6d02e54a2fd806b";
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -126,7 +126,7 @@ const LiveStream = () => {
           {!isStreaming ? (
             <button
               onClick={handleJoinStream}
-              className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"
+              className="text-2xl font-semibold bg-back text-text px-6 py-2 rounded hover:bg-[#03476F]"
             >
               {isTeacher ? "Start Stream" : "Join Stream"}
             </button>

@@ -54,7 +54,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="bg-white text-gray-400">
+      <div className="bg-white text-black dark:text-white">
         <div className="p-8 lg:w-1/2 mx-auto">
           <div className="bg-gray-100 dark:bg-zinc-900 rounded py-12 flex-column text-center justify-center align-items-center px-4 lg:px-24">
             <h1 className="text-3xl">Login</h1>
@@ -62,7 +62,7 @@ const Login = () => {
               <div className="relative mt-3">
                 <input
                   onChange={handleChange}
-                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
+                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600 transition rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="email"
                   type="text"
                   placeholder="Email"
@@ -85,7 +85,7 @@ const Login = () => {
               <div className="relative mt-3">
                 <input
                   onChange={handleChange}
-                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600  transition  rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
+                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md focus:placeholder-gray-600 transition rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"

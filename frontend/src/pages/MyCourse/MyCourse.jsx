@@ -50,7 +50,7 @@ const MyCourse = () => {
       {courses.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
           {courses.map((course) => (
-            <Course course={course} />
+            <Course course={course} isMyCourse={true} />
           ))}
         </div>
       ) : (
