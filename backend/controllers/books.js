@@ -35,6 +35,8 @@ const handleAddBook = async (req, res) => {
     }
 
     const { Name, Author, desc, language, Category, Image, Logo } = req.body;
+    console.log(Category);
+    // Check if the file is present
     if (!req.file) {
       return res.status(400).json({ message: "File not uploaded" });
     }
@@ -46,7 +48,7 @@ const handleAddBook = async (req, res) => {
       language,
       Category,
       Image,
-      Pdf: req.file.filename,
+      Pdf: req.file.filename, // Store the filename of the uploaded file
       Logo,
     };
 

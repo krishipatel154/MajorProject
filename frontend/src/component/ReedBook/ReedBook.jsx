@@ -6,7 +6,7 @@ const ReedBook = ({ pdf }) => {
   };
   return (
     <button
-      className="px-8 py-4 text-xl font-semibold dark:text-black dark:bg-white bg-text text-back hover:bg-text hover:text-back rounded transaction-all duration-300"
+      className="p-2 text-xl font-semibold dark:text-black dark:bg-white bg-text text-back hover:bg-text hover:text-back rounded transaction-all duration-300"
       onClick={() => showPdf(pdf)}
     >
       Read Book

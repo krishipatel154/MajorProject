@@ -30,10 +30,6 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    Logo: {
-      type: String, // New field for the logo
-      required: true,
-    },
   },
   { timestamps: true }
 );
