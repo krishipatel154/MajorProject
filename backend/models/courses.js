@@ -13,7 +13,7 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  Catagory: {
+  category: {
     type: String,
     required: true,
   },

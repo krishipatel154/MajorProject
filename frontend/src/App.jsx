@@ -32,6 +32,7 @@ import MyCourse from "./pages/MyCourse/MyCourse";
 import AddMaterial from "./pages/Admin/AddMaterial";
 import Footer from "./component/Footer/Footer";
 import LiveStream from "./component/LiveStream/LiveStream";
+import Material from "./pages/Material/Material";
 
 function App() {
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ function App() {
           />
           <Route exact path="/my-course" element={<MyCourse />} />
           <Route path="/update-course/:id" element={<UpdateCourse />} />
+          <Route exact path="/material" element={<Material />} />
 
           {/* book routes */}
           <Route exact path="/books" element={<Books />} />

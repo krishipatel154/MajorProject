@@ -8,6 +8,7 @@ const {
   handleUpdateCourse,
   handleGetMyCourse,
   handleToggleLive,
+  handleGetPopularCourse,
 } = require("../controllers/courses");
 const { handleAuthentication } = require("../middlewares/auth");
 const { RtcTokenBuilder, RtcRole } = require("agora-access-token");
@@ -15,6 +16,7 @@ const router = express.Router();
 
 router.get("/", handleCourses);
 router.get("/recent-course", handleGetRecentCourse);
+router.get("/popular-course", handleGetPopularCourse);
 router.get("/get-course/:id", handleGetCourseById);
 router.post("/add-course", handleAuthentication, handleAddCourse);
 router.delete("/delete-course", handleAuthentication, handleDeleteCourse);

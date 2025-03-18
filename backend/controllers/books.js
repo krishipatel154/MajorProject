@@ -34,7 +34,8 @@ const handleAddBook = async (req, res) => {
       return res.status(403).json({ message: "Unauthorized access!!" });
     }
 
-    const { Name, Author, desc, language, Category, Image, Logo } = req.body;
+    const { Name, Author, desc, language, category, subCategory, Image, Logo } =
+      req.body;
     console.log(Category);
     // Check if the file is present
     if (!req.file) {
@@ -46,7 +47,8 @@ const handleAddBook = async (req, res) => {
       Author,
       desc,
       language,
-      Category,
+      category,
+      subCategory,
       Image,
       Pdf: req.file.filename, // Store the filename of the uploaded file
       Logo,

@@ -1,12 +1,13 @@
-import { useState } from "react";
-import LanguagesNav from "../../component/LanguagesNav/LanguagesNav";
+import PopularBooks from "../../component/Book/PopularBooks";
+import PopularCourse from "../../component/Course/PopularCourse";
+import Hero from "../../component/Hero/Hero";
+
 const Home = () => {
-
-
   return (
     <>
-      <LanguagesNav />
-      
+      <Hero />
+      <PopularCourse />
+      <PopularBooks />
     </>
   );
 };

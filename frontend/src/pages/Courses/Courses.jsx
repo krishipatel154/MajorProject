@@ -38,7 +38,7 @@ const Courses = () => {
     if (selectedLanguage === "All") {
       return courses;
     }
-    return courses.filter((course) => course.Catagory === selectedLanguage);
+    return courses.filter((course) => course.category === selectedLanguage);
   };
 
   return (

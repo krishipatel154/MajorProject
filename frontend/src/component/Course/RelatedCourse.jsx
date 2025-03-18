@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../Title";
 import Course from "./Course";
-import axios, { all } from "axios";
+import axios from "axios";
 
 const RelatedCourse = ({ category }) => {
   const [related, setRelated] = useState([]);
@@ -11,21 +11,25 @@ const RelatedCourse = ({ category }) => {
     const getCourse = async () => {
       try {
         const allResponse = await axios.get("http://localhost:8089/course");
-        setAllCourse(allResponse.data.data);
-      } catch (error) {}
+        setAllCourse(allResponse.data);
+      } catch (error) {
+        console.error("Failed to fetch courses:", error);
+      }
     };
     getCourse();
   }, []);
 
-  if (allCourse.length > 0) {
-    let productsCopy = allCourse.slice();
-    console.log(productsCopy);
-    productsCopy = productsCopy.filter((item) => category == item.category);
-    // productsCopy = productsCopy.filter(
-    //   (item) => subCategory == item.subCategory
-    // );
-    setRelated(productsCopy.slice(0, 5));
-  }
+  useEffect(() => {
+    if (allCourse.length > 0) {
+      let productsCopy = allCourse.slice();
+      console.log("Products copy:", productsCopy);
+      productsCopy = productsCopy.filter((item) => {
+        return category === item.category;
+      });
+      console.log(productsCopy);
+      setRelated(productsCopy.slice(0, 5));
+    }
+  }, [category, allCourse]); // This effect will run when `category` or `allCourse` changes
 
   return (
     <div className="my-24">

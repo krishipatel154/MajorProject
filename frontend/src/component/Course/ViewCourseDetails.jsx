@@ -85,6 +85,7 @@ const ViewCourseDetails = () => {
       handleError(error);
     }
   };
+  console.log("course: ", courseDetails);
 
   return (
     <>
@@ -227,6 +228,7 @@ const ViewCourseDetails = () => {
             </div>
           </div>
           <RelatedCourse category={courseDetails.category} />
+          <p>{courseDetails.category}</p>
         </>
       ) : (
         <div className="h-screen bg-zinc-900 flex items-center justify-center">

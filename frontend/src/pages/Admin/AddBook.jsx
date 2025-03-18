@@ -8,7 +8,8 @@ const AddBook = () => {
     Author: "",
     desc: "",
     language: "",
-    Category: "",
+    category: "",
+    subCategory: "",
     Logo: "", // New field for logo
   });
   const headers = {
@@ -25,7 +26,6 @@ const AddBook = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       if (
         (data.Image === "" ||
@@ -33,7 +33,8 @@ const AddBook = () => {
           data.Author === "" ||
           data.desc === "" ||
           data.language === "" ||
-          data.Category === "" ||
+          data.category === "" ||
+          data.subCategory === "" ||
           !data.Pdf, // Ensure a PDF file is selected
         data.Logo === "") // Ensure logo field is filled
       ) {
@@ -45,7 +46,8 @@ const AddBook = () => {
         formData.append("Author", data.Author);
         formData.append("desc", data.desc);
         formData.append("language", data.language);
-        formData.append("Category", data.Category); // Update from "Category" to "Category"
+        formData.append("category", data.category); // Update from "Category" to "Category"
+        formData.append("subCategory", data.subCategory); // Update from "Category" to "Category"
         formData.append("file", data.Pdf);
         formData.append("Logo", data.Logo); // Append logo
 
@@ -65,7 +67,8 @@ const AddBook = () => {
           Author: "",
           desc: "",
           language: "",
-          Category: "",
+          category: "",
+          subCategory: "",
           Pdf: null, // Clear the PDF file input
           Logo: "", // Reset logo field
         });
@@ -174,8 +177,22 @@ const AddBook = () => {
             className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
             placeholder="Course Category"
             required
-            name="Category"
-            value={data.Category}
+            name="category"
+            value={data.category}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="" className="text-text dark:text-zinc-400">
+            Sub Category
+          </label>
+          <textarea
+            rows="5"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
+            placeholder="Course Sub Category"
+            required
+            name="subCategory"
+            value={data.subCategory}
             onChange={handleChange}
           />
         </div>
