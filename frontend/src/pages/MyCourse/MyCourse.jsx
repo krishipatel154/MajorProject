@@ -48,14 +48,13 @@ const MyCourse = () => {
   // console.log("payment: ", isPaymentDone);
   return (
     <div>
-      <h1>My Courses</h1>
+      <h1 className="font-semibold text-3xl text-black dark:text-text m-8">My Courses</h1>
       {courses.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
-        {courses.map((course) => (
-          <Course course={course} />
-      
-        ))}
-      </div>
+        <div className="grid grid-cols-1 sm:grid-clos-3 m-8 md:grid-cols-4 gap-4">
+          {courses.map((course) => (
+            <Course key={course._id} course={course} />
+          ))}
+        </div>
       ) : (
         <p>No courses found.</p>
       )}

@@ -63,7 +63,7 @@ const Favourites = () => {
             ))}
         </div>
       </div>
-      <div>
+      <div className="">
         <h1>Favourite Book</h1>
           
       {
@@ -76,7 +76,7 @@ const Favourites = () => {
         <div className="grid grid-cols-3 gap-4 ">
           {favouriteBook &&
             favouriteBook.map((item, i) => (
-              <div key={i}>
+              <div key={i} className="">
                 <Book
                   book={item}
                   favourites={true}

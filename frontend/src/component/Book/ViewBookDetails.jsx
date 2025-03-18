@@ -106,9 +106,6 @@ const ViewBookDetails = () => {
               {bookDetails.Author}
             </p>
             <p className="text-xl mt-4">{bookDetails.desc}</p>
-            <p className="mt-4 text-3xl font-semibold">
-              Price: ${bookDetails.Price}
-            </p>
             <div className="my-8">
               <ReedBook pdf={bookDetails.Pdf} />
             </div>

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { handleSuccess } from "../../utils";
+import { handleSuccess, handleError } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const Course = ({ course, favourites, onRemoveCourse }) => {
   const headers = {
@@ -11,6 +12,9 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
     courseid: course._id,
   };
 
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
+  const [isLiveClassActive, setIsLiveClassActive] = useState(false);
 
   const handleRemoveCourse = async () => {
     const response = await axios.put(
@@ -22,6 +26,27 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
     setTimeout(() => {
       onRemoveCourse(course._id);
     }, 3000);
+  };
+
+  const startLiveClass = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8089/course/start-live-class",
+        { courseId: course._id },
+        { headers }
+      );
+      setIsLiveClassActive(true);
+      handleSuccess("Live class started successfully!");
+      // Redirect to live class room
+      window.location.href = `/live-class/${course._id}`;
+    } catch (error) {
+      console.error("Error starting live class:", error);
+      handleError(error.response?.data?.message || "Failed to start live class");
+    }
+  };
+
+  const joinLiveClass = () => {
+    window.location.href = `/live-class/${course._id}`;
   };
 
   return (
@@ -52,14 +77,22 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           Remove From Favourites
         </button>
       )}
-           {/* {isPaymentDone && (
-         <button
-           className="bg-text text-sm font-semibold px-4 py-2 rounded border border-gray text-black"
-           onClick={handleRemoveCourse}
-         >
-           Join Meeting
-         </button>
-       )} */}
+      {isLoggedIn && role === 'admin' && (
+        <button
+          className="bg-green-500 text-white text-sm font-semibold px-4 py-2 rounded mt-2 hover:bg-green-600 transition-colors"
+          onClick={startLiveClass}
+        >
+          Start Live Class
+        </button>
+      )}
+      {isLoggedIn && role === 'user' && isLiveClassActive && (
+        <button
+          className="bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded mt-2 hover:bg-blue-600 transition-colors"
+          onClick={joinLiveClass}
+        >
+          Join Live Class
+        </button>
+      )}
       <ToastContainer />
     </div>
   );

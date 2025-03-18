@@ -56,11 +56,11 @@ const AllOrders = () => {
         </div>
       )}
       {allOrders && allOrders.length > 0 && (
-        <div className="h-[100%] p-0 md:p-4 text-zinc-100">
+        <div className="h-[100%] dark:bg-zinc-800 bg-back p-0 md:p-4 text-zinc-100">
           <h1 className="text-3xl md:text-5xl mb-8 font-semibold text-zinc-500">
             All Orders
           </h1>
-          <div className="mt-4 bg-zinc-800 w-full rounded py-2 px-4 flex gap-2">
+          <div className="mt-4  w-full rounded py-2 px-4 flex gap-2">
             <div className="w-[3%]">
               <h1 className="text-center">Sr No.</h1>
             </div>
@@ -81,7 +81,7 @@ const AllOrders = () => {
             </div>
           </div>
           {allOrders.map((items, i) => (
-            <div className="bg-zinc-800 w-full px-4 py-2 rounded flex gap-2 hover:bg-zinc-900 hover:cursor-pointer transition-all duration-300">
+            <div className="dark:bg-zinc-800 bg-back w-full px-4 py-2 rounded flex gap-2 hover:bg-[#03476F] dark:hover:bg-zinc-900 hover:cursor-pointer transition-all duration-300">
               <div className="w-[3%]">
                 <h1 className="text-center">{i + 1}</h1>
               </div>
@@ -118,7 +118,7 @@ const AllOrders = () => {
                       name="status"
                       onChange={handleChange}
                       id=""
-                      className="bg-grey-800"
+                      className="bg-grey-800 text-black"
                       value={values.status}
                     >
                       {[

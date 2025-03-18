@@ -12,7 +12,6 @@ const ReedBook = ({ pdf }) => {
       onClick={() => showPdf(pdf)}
     >
       Read Book
-      <p>{pdf}</p>
     </button>
   );
 };

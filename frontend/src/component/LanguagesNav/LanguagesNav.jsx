@@ -15,7 +15,7 @@ const LanguagesNav = () => {
     console.log(response.data.data);
     setFile(response.data.data);
     const defaultPdf = response.data.data.find(
-      (item) => item.Name === "Cloud Computing"
+      (item) => item.Name === "HTML"
     );
 
     if (defaultPdf) {
@@ -51,53 +51,70 @@ const LanguagesNav = () => {
 
   return (
     <>
-      <div className="relative overflow-hidden w-[100%] h-[50px] p-[5px] flex items-center justify-center bg-text dark:bg-black dark:text-text">
+      <div className="relative overflow-hidden w-full h-[60px] p-[5px] flex items-center justify-center bg-gradient-to-r from-[#03506F] to-[#0A7EA4] dark:from-black dark:to-gray-900 shadow-lg">
         <button
-          className="prev-btn w-[40px] h-[40px] absolute top-0 flex items-center justify-center align-center left-0"
+          className="prev-btn w-[40px] h-[40px] absolute top-1/2 -translate-y-1/2 left-4 flex items-center justify-center align-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300"
           onClick={btnpressprev}
         >
-          <p className="bg-gray-400 text-black rounded-full w-[25px] h-[25px] opacity-1 flex justify-center items-center m-auto">
+          <p className="text-white text-xl font-bold">
             &lt;
           </p>
         </button>
         <button
-          className="next-btn w-[40px] h-[40px] absolute top-0 flex items-center justify-center align-center right-0"
+          className="next-btn w-[40px] h-[40px] absolute top-1/2 -translate-y-1/2 right-4 flex items-center justify-center align-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300"
           onClick={btnpressnext}
         >
-          <p className="bg-gray-400 text-black rounded-full w-[25px] h-[25px] opacity-1 flex justify-center items-center m-auto">
+          <p className="text-white text-xl font-bold">
             &gt;
           </p>
         </button>
 
         <div
-          className="py-[10px] flex overflow-hidden w-[95%]"
+          className="py-[10px] flex overflow-hidden w-[90%] scroll-smooth"
           id="product-container"
         >
-          <ul className="flex justify-center items-center gap-[250px]">
+          <ul className="flex justify-center items-center gap-[200px]">
             {file === null
               ? ""
               : file.map((data, i) => (
                   <li
                     key={i}
                     onClick={() => showPdf(data.Pdf, data.Name)}
-                    className="cursor-pointer"
+                    className="cursor-pointer text-white hover:text-zinc-200 transition-colors duration-300 text-lg font-medium relative group"
                   >
                     {data.Name}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
                   </li>
                 ))}
           </ul>
         </div>
       </div>
       {pdfFile ? (
-        <div className="mt-4">
-          <DocViewer
-            documents={docs}
-            pluginRenderers={DocViewerRenderers}
-            // style={{ width: "75%", margin: "auto" }}
-          />
+        <div className="mt-8 mx-auto max-w-6xl px-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-white">{pdfName}</h2>
+            </div>
+            <div className="p-4">
+              <DocViewer
+                documents={docs}
+                pluginRenderers={DocViewerRenderers}
+                style={{ height: "70vh" }}
+              />
+            </div>
+          </div>
         </div>
       ) : (
-        <p>Select a PDF to view</p>
+        <div className="flex items-center justify-center min-h-[70vh]">
+          <div className="text-center">
+            <p className="text-xl text-gray-600 dark:text-gray-400">Select a language to view its documentation</p>
+            <div className="mt-4 animate-bounce">
+              <svg className="w-8 h-8 mx-auto text-[#03506F] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

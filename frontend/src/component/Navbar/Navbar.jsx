@@ -52,6 +52,10 @@ const Navbar = () => {
       link: "/courses",
     },
     {
+      title:"My Course",
+      link:"/my-course"
+    },
+    {
       title: "Books",
       link: "/books",
     },

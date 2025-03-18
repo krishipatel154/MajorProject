@@ -21,7 +21,7 @@ const Book = ({ book, favourites, onRemoveBook }) => {
     }, 3000);
   };
   return (
-    <div className="h-[90%]">
+    <div className="h-[90%] bg-[#03506F]">
       <Link to={`/view-book-details/${book._id}`}>
         <div className="bg-[#03506F] dark:bg-zinc-800 rounded flex flex-col h-full w-full">
           <div className="bg-white rounded flex items-center justify-center h-[200px]">

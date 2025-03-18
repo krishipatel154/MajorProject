@@ -9,7 +9,7 @@ import {
 const Footer = () => {
   return (
     <>
-      <div className="main-footer bg-[#03506F] text-text dark:bg-black w-full dark:bg-black">
+      <div className="main-footer m-4 bg-[#03506F] text-text dark:bg-black w-full dark:bg-black">
         <div className="footer flex justify-around items-center text-white h-full">
           <div className="foot w-1/5 mt-10 h-[400px]">
             <h3 className="text-brown text-lg px-6 py-4">Useful Links</h3>
