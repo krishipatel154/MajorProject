@@ -5,7 +5,7 @@
     "price": "$1.36",
     "image": null,
     "rating": 4,
-    "catagory": "Lotstring"
+    "category": "Lotstring"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "price": "$0.29",
     "image": null,
     "rating": 1,
-    "catagory": "Stronghold"
+    "category": "Stronghold"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "price": "$5.23",
     "image": null,
     "rating": 3,
-    "catagory": "Bamity"
+    "category": "Bamity"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "price": "$3.01",
     "image": null,
     "rating": 3,
-    "catagory": "Keylex"
+    "category": "Keylex"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "price": "$8.54",
     "image": null,
     "rating": 5,
-    "catagory": "Alphazap"
+    "category": "Alphazap"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "price": "$7.34",
     "image": null,
     "rating": 4,
-    "catagory": "Duobam"
+    "category": "Duobam"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "price": "$1.06",
     "image": null,
     "rating": 3,
-    "catagory": "Popular"
+    "category": "Popular"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "price": "$9.83",
     "image": null,
     "rating": 3,
-    "catagory": "Popular"
+    "category": "Popular"
   },
   {
     "id": 9,
@@ -69,7 +69,7 @@
     "price": "$0.74",
     "image": null,
     "rating": 0,
-    "catagory": "Sonsing"
+    "category": "Sonsing"
   },
   {
     "id": 10,
@@ -77,7 +77,7 @@
     "price": "$6.29",
     "image": null,
     "rating": 5,
-    "catagory": "Vagram"
+    "category": "Vagram"
   },
   {
     "id": 11,
@@ -85,7 +85,7 @@
     "price": "$4.61",
     "image": null,
     "rating": 4,
-    "catagory": "Domainer"
+    "category": "Domainer"
   },
   {
     "id": 12,
@@ -93,7 +93,7 @@
     "price": "$2.77",
     "image": null,
     "rating": 5,
-    "catagory": "Flexidy"
+    "category": "Flexidy"
   },
   {
     "id": 13,
@@ -101,7 +101,7 @@
     "price": "$0.49",
     "image": null,
     "rating": 5,
-    "catagory": "Konklux"
+    "category": "Konklux"
   },
   {
     "id": 14,
@@ -109,7 +109,7 @@
     "price": "$1.31",
     "image": null,
     "rating": 1,
-    "catagory": "Aerified"
+    "category": "Aerified"
   },
   {
     "id": 15,
@@ -117,7 +117,7 @@
     "price": "$1.25",
     "image": null,
     "rating": 0,
-    "catagory": "Solarbreeze"
+    "category": "Solarbreeze"
   },
   {
     "id": 16,
@@ -125,7 +125,7 @@
     "price": "$3.15",
     "image": null,
     "rating": 0,
-    "catagory": "Popular"
+    "category": "Popular"
   },
   {
     "id": 17,
@@ -133,7 +133,7 @@
     "price": "$7.02",
     "image": null,
     "rating": 1,
-    "catagory": "Bamity"
+    "category": "Bamity"
   },
   {
     "id": 18,
@@ -141,7 +141,7 @@
     "price": "$4.28",
     "image": null,
     "rating": 4,
-    "catagory": "Tres-Zap"
+    "category": "Tres-Zap"
   },
   {
     "id": 19,
@@ -149,7 +149,7 @@
     "price": "$2.15",
     "image": null,
     "rating": 0,
-    "catagory": "Cardify"
+    "category": "Cardify"
   },
   {
     "id": 20,
@@ -157,6 +157,6 @@
     "price": "$9.46",
     "image": null,
     "rating": 4,
-    "catagory": "Popular"
+    "category": "Popular"
   }
 ]

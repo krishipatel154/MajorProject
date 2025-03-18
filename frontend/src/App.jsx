@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
-import Language from "./component/Language/Language";
 import Courses from "./pages/Courses/Courses";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
@@ -22,8 +21,7 @@ import Profile from "./pages/Profile/Profile";
 import OrderHistory from "./pages/Profile/OrderHistory";
 import Settings from "./pages/Profile/Settings";
 import ViewBookDetails from "./component/Book/ViewBookDetails";
-import Favourites from "./pages/Profile/Favoutites/Favourites";
-import FavouriteBooks from "./pages/Profile/Favoutites/FavouriteBooks";
+import Favourites from "./pages/Profile/Favourites";
 import AllOrders from "./pages/Admin/AllOrders";
 import AddBook from "./pages/Admin/AddBook";
 import AddCourse from "./pages/Admin/AddCourse";
@@ -33,6 +31,8 @@ import Payment from "./pages/Cart/Payment";
 import MyCourse from "./pages/MyCourse/MyCourse";
 import AddMaterial from "./pages/Admin/AddMaterial";
 import Footer from "./component/Footer/Footer";
+import LiveStream from "./component/LiveStream/LiveStream";
+import Material from "./pages/Material/Material";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,20 +52,46 @@ function App() {
       <div className="app dark:bg-black dark:text-white">
         <Navbar />
         <Routes>
+          {/* user routes */}
+          <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/forgetPass" element={<RequestForgetPass />} />
+          <Route
+            exact
+            path="/reset-password/:token"
+            element={<ForgetPassword />}
+          />
+          <Route exact path="/verify" element={<OtpVarification />} />
           <Route exact path="/" element={<Home />} />
+
+          {/* other routes */}
+          <Route exact path="/contact" element={<Contact />} />
+          <Route exact path="/payment" element={<Payment />} />
+          <Route exact path="/funcode" element={<CodeEditor />} />
+          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/about" element={<About />} />
+
+          {/* course route */}
           <Route exact path="/courses" element={<Courses />} />
-          <Route exact path="/books" element={<Books />} />
           <Route
             exact
             path="/view-course-details/:id"
             element={<ViewCourseDetails />}
           />
+          <Route exact path="/my-course" element={<MyCourse />} />
+          <Route path="/update-course/:id" element={<UpdateCourse />} />
+          <Route exact path="/material" element={<Material />} />
+
+          {/* book routes */}
+          <Route exact path="/books" element={<Books />} />
           <Route
             exact
             path="/view-book-details/:id"
             element={<ViewBookDetails />}
           />
-          <Route exact path="/about" element={<About />} />
+          <Route path="/update-book/:id" element={<UpdateBook />} />
+
+          {/* profile routes */}
           <Route exact path="/profile" element={<Profile />}>
             {role === "user" ? (
               <>
@@ -85,29 +111,13 @@ function App() {
               </>
             )}
           </Route>
-          <Route path="/update-course/:id" element={<UpdateCourse />} />
-          <Route path="/update-book/:id" element={<UpdateBook />} />
-          <Route exact path="/fav-books" element={<FavouriteBooks />} />
-          <Route exact path="/contact" element={<Contact />} />
-          <Route exact path="/forgetPass" element={<RequestForgetPass />} />
+
+          {/* live class routes */}
           <Route
-            exact
-            path="/reset-password/:token"
-            element={<ForgetPassword />}
-          />
-          <Route exact path="/language/:langname" element={<Language />} />
-          <Route exact path="/signup" element={<SignUp />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/payment" element={<Payment />} />
-          <Route exact path="/my-course" element={<MyCourse />} />
-          <Route exact path="/verify" element={<OtpVarification />} />
-          <Route exact path="/funcode" element={<CodeEditor />} />
-          <Route
-            exact
-            path="/cart"
+            path="/live-stream/:courseId"
             element={
               <PrivateRoute>
-                <Cart />
+                <LiveStream />
               </PrivateRoute>
             }
           />

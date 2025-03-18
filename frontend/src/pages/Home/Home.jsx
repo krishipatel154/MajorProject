@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import LanguagesNav from "../../component/LanguagesNav/LanguagesNav";
 import { Link } from "react-router-dom";
@@ -132,6 +133,19 @@ const Home = () => {
         </div>
       </div>
     </div>
+=======
+import PopularBooks from "../../component/Book/PopularBooks";
+import PopularCourse from "../../component/Course/PopularCourse";
+import Hero from "../../component/Hero/Hero";
+
+const Home = () => {
+  return (
+    <>
+      <Hero />
+      <PopularCourse />
+      <PopularBooks />
+    </>
+>>>>>>> 873f969f2c38e5247f2bc56b07ba931db1e6f452
   );
 };
 

@@ -5,6 +5,7 @@ import axios from "axios";
 import Book from "../../component/Book/Book";
 import BookNav from "./BookNav"; // Correct import
 import ReedBook from "../../component/ReedBook/ReedBook";
+import Loader from "../../component/Loader/Loader";
 
 const Books = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -45,7 +46,9 @@ const Books = () => {
     <>
       <BookNav onCategorySelect={handleCategorySelect} /> {/* Correct prop */}
       {loading ? (
-        <div>Loading...</div>
+        <div className="h-screen bg-zinc-900 flex items-center justify-center">
+          <Loader />
+        </div>
       ) : (
         <>
           {selectedCategory === "All" ? (

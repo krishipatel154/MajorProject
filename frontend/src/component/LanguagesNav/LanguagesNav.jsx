@@ -12,7 +12,6 @@ const LanguagesNav = () => {
     const response = await axios.get(
       "http://localhost:8089/material/get-material"
     );
-    console.log(response.data.data);
     setFile(response.data.data);
     const defaultPdf = response.data.data.find(
       (item) => item.Name === "HTML"
@@ -29,13 +28,10 @@ const LanguagesNav = () => {
 
   const showPdf = (pdf, name) => {
     const fullPdfUrl = `http://localhost:8089/files/${pdf}`;
-    console.log("fullPdfUrl", fullPdfUrl);
     setPdfFile(fullPdfUrl);
     setPdfName(name);
-    console.log("showPdf", fullPdfUrl);
   };
 
-  console.log(pdfFile);
   const docs = pdfFile ? [{ uri: pdfFile }] : [];
 
   const btnpressprev = () => {

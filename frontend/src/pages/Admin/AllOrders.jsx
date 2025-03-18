@@ -5,7 +5,7 @@ import { handleSuccess } from "../../utils";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import OrderHistory from "../Profile/OrderHistory";
-import SeeUserData from "../SeeUserData";
+import SeeUserData from "./SeeUserData";
 const AllOrders = () => {
   const [allOrders, setAllOrders] = useState();
   const [options, setOptions] = useState(-1);
@@ -35,10 +35,8 @@ const AllOrders = () => {
       { headers }
     );
     handleSuccess(response.data.message);
-    console.log(response.data);
     const updatedOrders = [...allOrders];
     updatedOrders[i].status = values.status;
-    console.log(updatedOrders);
     setAllOrders(updatedOrders);
     setOptions(-1);
   };

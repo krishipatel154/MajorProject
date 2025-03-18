@@ -12,7 +12,7 @@ const UpdateCourse = () => {
     Price: "",
     desc: "",
     Language: "",
-    Catagory: "",
+    category: "",
   });
   const headers = {
     id: localStorage.getItem("id"),
@@ -47,7 +47,7 @@ const UpdateCourse = () => {
         data.desc === "" ||
         data.Price === "" ||
         data.Language === "" ||
-        data.Catagory === ""
+        data.category === ""
       ) {
         handleError("All fields are required!!");
       } else {
@@ -65,7 +65,7 @@ const UpdateCourse = () => {
           desc: "",
           Language: "",
           Price: "",
-          Catagory: "",
+          category: "",
         });
         handleSuccess(response.data.message);
         navigate("/courses");
@@ -152,15 +152,15 @@ const UpdateCourse = () => {
         </div>
         <div>
           <label htmlFor="" className="text-zinc-400">
-            Catagory
+            category
           </label>
           <textarea
             rows="5"
             className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 outline-none"
-            placeholder="Course catagory"
+            placeholder="Course category"
             required
-            name="Catagory"
-            value={data.Catagory}
+            name="category"
+            value={data.category}
             onChange={handleChange}
           />
         </div>

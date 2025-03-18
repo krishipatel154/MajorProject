@@ -5,17 +5,20 @@ import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-const Course = ({ course, favourites, onRemoveCourse }) => {
+const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
   const headers = {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
     courseid: course._id,
   };
 
+<<<<<<< HEAD
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
   const [isLiveClassActive, setIsLiveClassActive] = useState(false);
 
+=======
+>>>>>>> 873f969f2c38e5247f2bc56b07ba931db1e6f452
   const handleRemoveCourse = async () => {
     const response = await axios.put(
       "http://localhost:8089/favourite/delete-course-from-favourites",
@@ -51,7 +54,13 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
 
   return (
     <div className="bg-[#03506F] dark:bg-zinc-800 rounded p-4 flex flex-col h-full w-full">
-      <Link to={`/view-course-details/${course._id}`}>
+      {/* <Link to={`/view-course-details/${course._id}`}> */}
+      <Link
+        to={{
+          pathname: `/view-course-details/${course._id}`,
+          state: { isMyCourse }, // Pass the flag as state
+        }}
+      >
         <div className="">
           <div className="bg-white rounded flex items-center justify-center h-[200px]">
             <img
@@ -77,6 +86,7 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           Remove From Favourites
         </button>
       )}
+<<<<<<< HEAD
       {isLoggedIn && role === 'admin' && (
         <button
           className="bg-green-500 text-white text-sm font-semibold px-4 py-2 rounded mt-2 hover:bg-green-600 transition-colors"
@@ -93,6 +103,24 @@ const Course = ({ course, favourites, onRemoveCourse }) => {
           Join Live Class
         </button>
       )}
+=======
+      {course.isLive && isMyCourse && (
+        <Link
+          to={`/live-stream/${course._id}`}
+          className="bg-red-500 text-white text-sm font-semibold px-4 py-2 rounded mt-2"
+        >
+          Join Live Class
+        </Link>
+      )}
+      {/* {isPaymentDone && (
+         <button
+           className="bg-text text-sm font-semibold px-4 py-2 rounded border border-gray text-black"
+           onClick={handleRemoveCourse}
+         >
+           Join Meeting
+         </button>
+       )} */}
+>>>>>>> 873f969f2c38e5247f2bc56b07ba931db1e6f452
       <ToastContainer />
     </div>
   );

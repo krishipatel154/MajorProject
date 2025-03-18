@@ -20,7 +20,6 @@ const Payment = () => {
       };
       const id = localStorage.getItem("id");
       const cartItems = location.state.cart;
-      console.log("Done");
       const response = await axios.post(
         "http://localhost:8089/user/my-course",
         {
@@ -28,7 +27,6 @@ const Payment = () => {
           id,
         }
       );
-      console.log(response);
       handleSuccess(
         "Payment Done Successfully!! Courses have been added to your profile."
       );

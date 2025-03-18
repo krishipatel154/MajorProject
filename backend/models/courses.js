@@ -13,7 +13,7 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  Catagory: {
+  category: {
     type: String,
     required: true,
   },
@@ -28,6 +28,16 @@ const courseSchema = new mongoose.Schema({
   desc: {
     type: String,
     required: true,
+  },
+  isLive: {
+    type: Boolean,
+    default: false,
+  },
+  streamStartTime: {
+    type: Date,
+  },
+  streamEndTime: {
+    type: Date,
   },
 });
 

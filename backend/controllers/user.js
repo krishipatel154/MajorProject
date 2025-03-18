@@ -49,7 +49,6 @@ const handleUserLogin = async (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        console.log(error);
         return res
           .status(500)
           .json({ message: "Failed to send OTP!!", success: false });
@@ -213,16 +212,12 @@ const resetPassword = async (req, res) => {
 const handleMyCourse = async (req, res) => {
   const { id, cartItems } = req.body;
 
-  console.log(id, cartItems);
   try {
     const user = await User.findById(id);
-    console.log(user);
-    // Ensure myCourse is an array
     if (!user.myCourse) {
       user.myCourse = [];
     }
 
-    // Add cartItems to myCourse
     user.myCourse = [...user.myCourse, ...cartItems];
     await user.save();
 
@@ -230,7 +225,6 @@ const handleMyCourse = async (req, res) => {
       .status(200)
       .json({ message: "Payment successful, courses added to your profile!" });
   } catch (error) {
-    console.log(error);
     res
       .status(500)
       .json({ message: "Error processing payment or updating courses." });
