@@ -9,7 +9,6 @@ const handleCourses = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
-
 const handleGetCourseById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -19,10 +18,9 @@ const handleGetCourseById = async (req, res) => {
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
-
 const handleGetRecentCourse = async (req, res) => {
   try {
-    const course = await Course.find({}).sort({ crestedAt: -1 }).limit(4);
+    const course = await Course.find({}).sort({ createdAt: -1 }).limit(4);
     return res.status(200).json(course);
   } catch (error) {
     return res.status(500).json({ message: "Internal server error!!" });
@@ -53,7 +51,16 @@ const handleAddCourse = async (req, res) => {
       return res.status(403).json({ message: "Unauthorized access!" });
     }
 
-    const { name, faculty, category, price, image, desc, language } = req.body;
+    const {
+      name,
+      faculty,
+      category,
+      price,
+      image,
+      desc,
+      language,
+      subCategory,
+    } = req.body;
 
     if (
       !name ||
@@ -62,7 +69,8 @@ const handleAddCourse = async (req, res) => {
       !price ||
       !image ||
       !desc ||
-      !language
+      !language ||
+      !subCategory
     ) {
       return res.status(400).json({ message: "All fields are required!" });
     }
@@ -70,11 +78,12 @@ const handleAddCourse = async (req, res) => {
     const course = new Course({
       Name: name, // Ensure that this matches your schema
       Faculty: faculty, // Update this field to match schema (Faculty with uppercase F)
-      Category: category, // Update this field to match schema (Category with correct spelling)
+      category: category, // Update this field to match schema (Category with correct spelling)
       Price: price,
       Image: image,
       desc: desc,
-      language: language,
+      Language: language,
+      subCategory: subCategory,
     });
 
     await course.save();
@@ -84,7 +93,6 @@ const handleAddCourse = async (req, res) => {
     return res.status(500).json({ message: "Internal server error!" });
   }
 };
-
 const handleUpdateCourse = async (req, res) => {
   try {
     const { id, courseid } = req.headers;
@@ -113,7 +121,6 @@ const handleUpdateCourse = async (req, res) => {
     return res.status(500).json({ message: "Internal server error!!" });
   }
 };
-
 const handleDeleteCourse = async (req, res) => {
   try {
     const { courseid, id } = req.headers;

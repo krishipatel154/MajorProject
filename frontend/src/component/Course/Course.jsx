@@ -43,7 +43,7 @@ const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
   };
 
   return (
-    <div className="text-black rounded-lg shadow-lg bg-back flex flex-col h-full w-full p-6 transition-transform hover:scale-105">
+    <div className="text-black rounded shadow-lg bg-back flex flex-col h-full w-full p-4 transition-transform hover:scale-105">
       <Link
         to={{
           pathname: `/view-course-details/${course._id}`,
@@ -62,7 +62,7 @@ const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
             <h2 className="mt-2 text-xl font-bold text-gray-800">
               {course.Name}
             </h2>
-            <p className="text-sm font-medium text-gray-600 mt-1">
+            <p className="text-sm font-medium text-black mt-1">
               By: {course.Faculty}
             </p>
             <p className="mt-4 text-xl font-semibold text-red-500">

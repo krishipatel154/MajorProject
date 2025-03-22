@@ -10,6 +10,7 @@ const AddCourse = () => {
     desc: "",
     language: "",
     category: "",
+    subCategory: "",
   });
   const headers = {
     id: localStorage.getItem("id"),
@@ -29,7 +30,8 @@ const AddCourse = () => {
         data.desc === "" ||
         data.price === "" ||
         data.language === "" ||
-        data.category === ""
+        data.category === "" ||
+        data.subCategory === ""
       ) {
         handleError("All fields are required!!");
       } else {
@@ -48,6 +50,7 @@ const AddCourse = () => {
           language: "",
           price: "",
           category: "",
+          subCategory: "",
         });
         handleSuccess(response.data.message);
       }
@@ -57,7 +60,7 @@ const AddCourse = () => {
   };
   return (
     <div className="h-[100%] p-0 md:p-4">
-      <h1 className="text-3xl md:text-5xl font-semibold text-text dark:text-zinc-500 mb-8">
+      <h1 className="text-3xl md:text-5xl font-semibold text-black dark:text-zinc-500 mb-8">
         Add Course
       </h1>
       <div className="p-4 bg-back dark:bg-zinc-800 rounded">
@@ -147,6 +150,20 @@ const AddCourse = () => {
         </div>
         <div>
           <label htmlFor="" className="text-text dark:text-zinc-400">
+            subCategory
+          </label>
+          <textarea
+            rows="5"
+            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
+            placeholder="Course category"
+            required
+            name="subCategory"
+            value={data.subCategory}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="" className="text-text dark:text-zinc-400">
             Description
           </label>
           <textarea
@@ -160,7 +177,7 @@ const AddCourse = () => {
           />
         </div>
         <button
-          className="mt-4 px-3 bg-[#03476F] dark:bg-zinc-900 text-text font-semibold py-2 rounded hover:bg-blue-600 transaction-all duration-300"
+          className="mt-4 px-3 bg-[#03476F] dark:bg-zinc-900 text-text font-semibold py-2 rounded hover:bg-back transaction-all duration-300"
           onClick={handleSubmit}
         >
           Add Course

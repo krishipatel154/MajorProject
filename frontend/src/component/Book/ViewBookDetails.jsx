@@ -68,7 +68,7 @@ const ViewBookDetails = () => {
               <div className="flex lg:flex-row flex-col gap-8">
                 <img
                   src={bookDetails.Image}
-                  className="lg:h-[70vh] w-full lg:w-1/2 h-[50vh] rounded"
+                  className="lg:h-[70vh] w-full lg:w-1/3 h-[50vh] rounded"
                   alt="book"
                 />
                 <div className="flex flex-col justify-between w-full lg:w-1/2">
@@ -162,7 +162,6 @@ const ViewBookDetails = () => {
               )}
             </div>
           </div>
-
           <ToastContainer />
         </div>
       ) : (

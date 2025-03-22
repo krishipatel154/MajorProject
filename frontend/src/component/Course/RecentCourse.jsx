@@ -2,15 +2,14 @@ import React from "react";
 import Loader from "../../component/Loader/Loader";
 import Course from "./Course";
 import { ToastContainer } from "react-toastify";
+import Title from "../Title";
 
 const RecentCourse = ({ courses }) => {
   return (
     <>
-      <div className="bg-white text-text h-auto px-4">
+      <div className="bg-white h-auto">
         <div>
-          <h4 className="text-3xl text-zinc-800 py-4">
-            Recently Added Courses
-          </h4>
+          <Title text1={"Recent Courses"} />
           {!courses.length ? (
             <div className="flex items-center justify-center my-8">
               <Loader />

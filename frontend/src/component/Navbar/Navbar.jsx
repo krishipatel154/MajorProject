@@ -53,8 +53,8 @@ const Navbar = () => {
       link: "/courses",
     },
     {
-      title:"My Course",
-      link:"/my-course"
+      title: "My Course",
+      link: "/my-course",
     },
     {
       title: "Books",
@@ -111,8 +111,8 @@ const Navbar = () => {
     <div
       className={`${
         location.pathname === "/"
-          ? "relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"
-          : "bg-back text-text"
+          ? "relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat text-white"
+          : "bg-back text-white"
       }`}
     >
       <div>
@@ -168,23 +168,6 @@ const Navbar = () => {
               </label>
             </div>
             <div className="md:flex flex flex-row items-center justify-center gap-4">
-              {/* Search Bar */}
-              {/* <form onSubmit={handleSearch} className="flex items-center">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for books or courses"
-                className="px-2 py-1 rounded-l-lg border-none outline-none"
-              />
-              <button
-                type="submit"
-                className="px-4 py-1 bg-blue-600 text-white rounded-r-lg"
-              >
-                Search
-              </button>
-            </form> */}
-
               <div className="md:flex items-center hidden gap-8">
                 {links.map((item, i) => (
                   <Link

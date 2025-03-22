@@ -5,6 +5,7 @@ import { handleSuccess, handleError } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import Loader from "../../component/Loader/Loader";
 import { AiFillDelete } from "react-icons/ai";
+import Title from "../../component/Title";
 const Cart = () => {
   const [cart, setCart] = useState();
   const [total, setTotal] = useState();
@@ -69,7 +70,7 @@ const Cart = () => {
       {cart && cart.length === 0 && (
         <div className="h-screen">
           <div className="h-[100%] flex items-center flex-col justify-center">
-            <h1 className="text-2xl lg:text-3xl font-semibold text-zinc-400">
+            <h1 className="text-2xl lg:text-3xl font-semibold text-black">
               No items available in cart
             </h1>
           </div>
@@ -77,9 +78,7 @@ const Cart = () => {
       )}
       {cart && cart.length > 0 && (
         <>
-          <h1 className="text-5xl font-semibold text-zinc-500 mb-8">
-            Your Cart
-          </h1>
+          <Title text1={"Your Cart"} />
           {cart.map((item, i) => (
             <div
               className="w-full my-4 rounded flex flex-col md:flex-row p-4 bg-back dark:bg-zinc-800 justify-between items-center "

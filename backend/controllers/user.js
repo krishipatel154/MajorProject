@@ -252,9 +252,14 @@ const resetPassword = async (req, res) => {
 
 const handleMyCourse = async (req, res) => {
   const { id, cartItems } = req.body;
-
   try {
     const user = await User.findById(id);
+    const isCourseExist = user.myCourse.includes(cartItems);
+    if (isCourseExist) {
+      return res
+        .status(200)
+        .json({ message: "Course is already exist in favourites!!" });
+    }
     if (!user.myCourse) {
       user.myCourse = [];
     }

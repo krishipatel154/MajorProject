@@ -25,10 +25,17 @@ const LiveStream = () => {
       const agoraClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
       setClient(agoraClient);
 
+      agoraClient.enableDualStream();
+
       if (isTeacher) {
         try {
           const [audioTrack, videoTrack] =
-            await AgoraRTC.createMicrophoneAndCameraTracks();
+            await AgoraRTC.createMicrophoneAndCameraTracks(
+              {},
+              {
+                encoderConfig: "1080p_30fps", // This is where you set the video profile
+              }
+            );
           setLocalTracks([audioTrack, videoTrack]);
         } catch (error) {
           handleError("Failed to access camera and microphone");
@@ -93,9 +100,9 @@ const LiveStream = () => {
   return (
     <div className="live-stream-container p-4 min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="max-w-6xl mx-auto">
-        <div className="video-container bg-black rounded-lg min-h-[500px] relative mb-4">
+        <div className="video-containe object-cover bg-black rounded-lg min-h-[500px] relative">
           {isTeacher && localTracks && (
-            <div className="local-video absolute top-4 right-4 w-[200px] h-[150px] bg-gray-800 rounded">
+            <div className="local-video absolute w-full h-full bg-gray-800 rounded">
               <video
                 ref={(ref) => {
                   if (ref && localTracks[1]) {
@@ -108,7 +115,10 @@ const LiveStream = () => {
           )}
 
           {users.map((user) => (
-            <div key={user.uid} className="remote-video w-full h-full">
+            <div
+              key={user.uid}
+              className="remote-video w-full h-full object-cover"
+            >
               <video
                 ref={(ref) => {
                   if (ref && user.videoTrack) {
@@ -122,7 +132,7 @@ const LiveStream = () => {
           ))}
         </div>
 
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center mt-8 gap-4">
           {!isStreaming ? (
             <button
               onClick={handleJoinStream}
