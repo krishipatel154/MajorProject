@@ -22,17 +22,6 @@ const Book = ({ book, favourites, onRemoveBook }) => {
     }, 3000);
   };
   return (
-<<<<<<< HEAD
-    <div className="h-[90%] bg-[#03506F]">
-      <Link to={`/view-book-details/${book._id}`}>
-        <div className="bg-[#03506F] dark:bg-zinc-800 rounded flex flex-col h-full w-full">
-          <div className="bg-white rounded flex items-center justify-center h-[200px]">
-            <img
-              src={book.Image}
-              alt="book"
-              className="h-full object-contain"
-            />
-=======
     <div className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-card hover:shadow-hover transition-all duration-300">
       <div className="h-[400px]">
         <Link to={`/view-book-details/${book._id}`}>
@@ -52,7 +41,6 @@ const Book = ({ book, favourites, onRemoveBook }) => {
                 by {book.Author}
               </p>
             </div>
->>>>>>> 873f969f2c38e5247f2bc56b07ba931db1e6f452
           </div>
 
           {favourites && (

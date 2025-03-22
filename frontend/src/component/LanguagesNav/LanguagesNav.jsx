@@ -13,9 +13,7 @@ const LanguagesNav = () => {
       "http://localhost:8089/material/get-material"
     );
     setFile(response.data.data);
-    const defaultPdf = response.data.data.find(
-      (item) => item.Name === "HTML"
-    );
+    const defaultPdf = response.data.data.find((item) => item.Name === "HTML");
 
     if (defaultPdf) {
       showPdf(defaultPdf.Pdf, defaultPdf.Name);
@@ -47,22 +45,18 @@ const LanguagesNav = () => {
 
   return (
     <>
-      <div className="relative overflow-hidden w-full h-[60px] p-[5px] flex items-center justify-center bg-gradient-to-r from-[#03506F] to-[#0A7EA4] dark:from-black dark:to-gray-900 shadow-lg">
+      <div className="relative overflow-hidden w-full h-[60px] p-[5px] flex items-center justify-center bg-gradient-to-r from-[#03506F] to-[#075670] dark:from-black dark:to-gray-900 shadow-lg">
         <button
           className="prev-btn w-[40px] h-[40px] absolute top-1/2 -translate-y-1/2 left-4 flex items-center justify-center align-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300"
           onClick={btnpressprev}
         >
-          <p className="text-white text-xl font-bold">
-            &lt;
-          </p>
+          <p className="text-white text-xl font-bold">&lt;</p>
         </button>
         <button
           className="next-btn w-[40px] h-[40px] absolute top-1/2 -translate-y-1/2 right-4 flex items-center justify-center align-center bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300"
           onClick={btnpressnext}
         >
-          <p className="text-white text-xl font-bold">
-            &gt;
-          </p>
+          <p className="text-white text-xl font-bold">&gt;</p>
         </button>
 
         <div
@@ -87,15 +81,15 @@ const LanguagesNav = () => {
       </div>
       {pdfFile ? (
         <div className="mt-8 mx-auto max-w-6xl px-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
-            <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-              <h2 className="text-xl font-semibold text-gray-800 dark:text-white">{pdfName}</h2>
+          <div className="bg-back dark:bg-black rounded-lg shadow-xl overflow-hidden">
+            <div className="p-4 border-b">
+              <h2 className="text-xl font-semibold text-white">{pdfName}</h2>
             </div>
             <div className="p-4">
               <DocViewer
                 documents={docs}
                 pluginRenderers={DocViewerRenderers}
-                style={{ height: "70vh" }}
+                className="bg-back dark:bg-black"
               />
             </div>
           </div>
@@ -103,10 +97,22 @@ const LanguagesNav = () => {
       ) : (
         <div className="flex items-center justify-center min-h-[70vh]">
           <div className="text-center">
-            <p className="text-xl text-gray-600 dark:text-gray-400">Select a language to view its documentation</p>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Select a language to view its documentation
+            </p>
             <div className="mt-4 animate-bounce">
-              <svg className="w-8 h-8 mx-auto text-[#03506F] dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              <svg
+                className="w-8 h-8 mx-auto text-[#03506F] dark:text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                ></path>
               </svg>
             </div>
           </div>

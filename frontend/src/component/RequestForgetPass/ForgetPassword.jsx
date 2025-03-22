@@ -87,152 +87,168 @@ const ForgetPassword = () => {
 
   return (
     <>
-      <div className="p-8 lg:w-1/2 mx-auto">
-        <div className="bg-gray-200 rounded-b-lg py-12 text-center px-4 lg:px-24">
-          <h1 className="text-xl">Reset Password</h1>
+      <section class="min-h-screen flex text-white bg-gray-500 bg-no-repeat bg-cover relative items-center bg-[url(https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80)]">
+        <div class="lg:flex w-1/2 hidden ">
+          <div class="absolute bg-back dark:bg-black opacity-60 inset-0 z-0"></div>
+          <div class="w-full px-24 z-10">
+            <h1 class="text-5xl font-bold text-left tracking-wide">
+              Keep it special
+            </h1>
+            <p class="text-3xl my-4">
+              Capture your personal memory in unique way, anywhere.
+            </p>
+          </div>
+          <div class="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4"></div>
+        </div>
+        <div class="lg:w-1/2 w-full flex items-center bg-transparent justify-center text-center md:px-16 px-0 z-0">
+          <div className="p-8 lg:w-full mx-auto">
+            <div className="bg-back dark:bg-black  rounded py-12 text-center px-4 lg:px-24">
+              <h1 className="text-2xl mb-8 font-semibold">Reset Password</h1>
 
-          <div className="relative mt-3">
-            <input
-              onChange={handleChange}
-              className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md transition rounded-md w-full py-3 text-gray-600"
-              id="newPassword"
-              type={showPassword ? "text" : "password"} // Use showPassword here
-              placeholder="New Password"
-              name="newPassword"
-              value={signUpInfo.newPassword}
-              required
-            />
-            <div className="absolute left-0 inset-y-0 flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7 ml-3 text-gray-400 p-1"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
-              </svg>
-            </div>
-            <div
-              className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-              onClick={togglePasswordVisibility} // Add toggle functionality
-            >
-              {showPassword ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-500"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              <div className="relative mt-3">
+                <input
+                  onChange={handleChange}
+                  className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md transition rounded-md w-full py-3 text-gray-600"
+                  id="newPassword"
+                  type={showPassword ? "text" : "password"} // Use showPassword here
+                  placeholder="New Password"
+                  name="newPassword"
+                  value={signUpInfo.newPassword}
+                  required
+                />
+                <div className="absolute left-0 inset-y-0 flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-7 w-7 ml-3 text-gray-400 p-1"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+                  </svg>
+                </div>
+                <div
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                  onClick={togglePasswordVisibility} // Add toggle functionality
                 >
-                  <path d="M1 12S4 4 12 4s11 8 11 8-3 8-11 8-11-8-11-8z"></path>
-                  <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-500"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M17.94 17.94A10 10 0 011.05 12M22.95 12a10 10 0 00-3.87-7.94M9.17 9.17a3 3 0 014.66 4.66M1 1l22 22"></path>
-                </svg>
+                  {showPassword ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M1 12S4 4 12 4s11 8 11 8-3 8-11 8-11-8-11-8z"></path>
+                      <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M17.94 17.94A10 10 0 011.05 12M22.95 12a10 10 0 00-3.87-7.94M9.17 9.17a3 3 0 014.66 4.66M1 1l22 22"></path>
+                    </svg>
+                  )}
+                </div>
+              </div>
+
+              {passwordError && (
+                <p className="text-red-500 text-sm mt-1">{passwordError}</p>
               )}
+
+              {signUpInfo.newPassword && (
+                <p
+                  className={`text-sm mt-1 ${
+                    passwordStrength === "Strong"
+                      ? "text-green-500"
+                      : passwordStrength === "Weak"
+                      ? "text-red-500"
+                      : "text-yellow-500"
+                  }`}
+                >
+                  Password Strength: {passwordStrength}
+                </p>
+              )}
+
+              <form className="mt-6" onSubmit={handleSubmit}>
+                <div className="relative mt-3">
+                  <input
+                    onChange={handleChange}
+                    className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md transition rounded-md w-full py-3 text-gray-600"
+                    id="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"} // Use showConfirmPassword here
+                    placeholder="Confirm Password"
+                    name="confirmPassword"
+                    value={signUpInfo.confirmPassword}
+                    required
+                  />
+
+                  <div className="absolute left-0 inset-y-0 flex items-center">
+                    {" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-7 w-7 ml-3 text-gray-400 p-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+                    </svg>
+                  </div>
+                  <div
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                    onClick={toggleConfirmPasswordVisibility}
+                  >
+                    {showConfirmPassword ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-gray-500"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M1 12S4 4 12 4s11 8 11 8-3 8-11 8-11-8-11-8z"></path>
+                        <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-gray-500"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M17.94 17.94A10 10 0 011.05 12M22.95 12a10 10 0 00-3.87-7.94M9.17 9.17a3 3 0 014.66 4.66M1 1l22 22"></path>
+                      </svg>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center mt-8">
+                  <button className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow font-medium transition transform hover:-translate-y-0.5">
+                    Reset Password
+                  </button>
+                </div>
+              </form>
+              <ToastContainer />
             </div>
           </div>
-
-          {passwordError && (
-            <p className="text-red-500 text-sm mt-1">{passwordError}</p>
-          )}
-
-          {signUpInfo.newPassword && (
-            <p
-              className={`text-sm mt-1 ${
-                passwordStrength === "Strong"
-                  ? "text-green-500"
-                  : passwordStrength === "Weak"
-                  ? "text-red-500"
-                  : "text-yellow-500"
-              }`}
-            >
-              Password Strength: {passwordStrength}
-            </p>
-          )}
-
-          <form className="mt-6" onSubmit={handleSubmit}>
-            <div className="relative mt-3">
-              <input
-                onChange={handleChange}
-                className="appearance-none border pl-12 border-gray-100 shadow-sm focus:shadow-md transition rounded-md w-full py-3 text-gray-600"
-                id="confirmPassword"
-                type={showConfirmPassword ? "text" : "password"} // Use showConfirmPassword here
-                placeholder="Confirm Password"
-                name="confirmPassword"
-                value={signUpInfo.confirmPassword}
-                required
-              />
-
-              <div className="absolute left-0 inset-y-0 flex items-center">
-                {" "}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-7 w-7 ml-3 text-gray-400 p-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
-                </svg>
-              </div>
-              <div
-                className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-                onClick={toggleConfirmPasswordVisibility}
-              >
-                {showConfirmPassword ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-gray-500"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M1 12S4 4 12 4s11 8 11 8-3 8-11 8-11-8-11-8z"></path>
-                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-gray-500"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M17.94 17.94A10 10 0 011.05 12M22.95 12a10 10 0 00-3.87-7.94M9.17 9.17a3 3 0 014.66 4.66M1 1l22 22"></path>
-                  </svg>
-                )}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center mt-8">
-              <button className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow font-medium transition transform hover:-translate-y-0.5">
-                Reset Password
-              </button>
-            </div>
-          </form>
-          <ToastContainer />
         </div>
-      </div>
+      </section>
     </>
   );
 };

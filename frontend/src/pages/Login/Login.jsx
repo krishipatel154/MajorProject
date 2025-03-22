@@ -37,7 +37,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/verify", { state: { Email } });
+          navigate("/verify", { state: { Email, Password } });
         }, 1000);
       } else if (error) {
         const message = error?.details[0].message;
@@ -55,7 +55,7 @@ const Login = () => {
       <body>
         <section class="min-h-screen flex text-white bg-gray-500 bg-no-repeat bg-cover relative items-center bg-[url(https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80)]">
           <div class="lg:flex w-1/2 hidden ">
-            <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+            <div class="absolute bg-back dark:bg-black opacity-60 inset-0 z-0"></div>
             <div class="w-full px-24 z-10">
               <h1 class="text-5xl font-bold text-left tracking-wide">
                 Keep it special
@@ -71,10 +71,10 @@ const Login = () => {
             <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
           </div> */}
             <div className="">
-              <div className="p-8 mx-auto bg-zinc-900">
+              <div className="p-8 mx-auto bg-back dark:bg-zinc-900">
                 <div className=" dark:bg-zinc-800 rounded py-12 px-4 lg:px-24">
                   <div className="flex justify-center items-center m-4">
-                    <h1 className="text-3xl">Signup Form</h1>
+                    <h1 className="text-3xl">Login Form</h1>
                   </div>
                   <form onSubmit={handleLogin}>
                     <div className="relative mb-6">

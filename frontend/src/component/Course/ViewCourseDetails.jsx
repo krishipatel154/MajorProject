@@ -20,6 +20,7 @@ const ViewCourseDetails = () => {
   const [courseDetails, setCourseDetails] = useState({});
   const [selectedImage, setSelectedImage] = useState("");
   const [reviews] = useState(122); // Sample reviews count
+  const [activeTab, setActiveTab] = useState("description");
 
   useEffect(() => {
     const getCourseDetails = async () => {
@@ -205,30 +206,47 @@ const ViewCourseDetails = () => {
               )}
             </div>
           </div>
+          <RelatedCourse category={courseDetails.category} />
 
-          {/* descripton and review */}
-          <div className="mt-20">
-            <div className="flex">
-              <p className="font-bold border px-5 py-3 text-sm">Description</p>
-              <p className="border px-5 py-3 text-sm">Reviews(122)</p>
+          {/* Tabs for Description and Reviews */}
+          <div className="mt-12">
+            <div className="flex border-b">
+              <button
+                className={`p-4 ${
+                  activeTab === "description"
+                    ? "border-b-2 border-indigo-500 text-indigo-600"
+                    : "text-gray-500"
+                }`}
+                onClick={() => setActiveTab("description")}
+              >
+                Description
+              </button>
+              <button
+                className={`p-4 ${
+                  activeTab === "reviews"
+                    ? "border-b-2 border-indigo-500 text-indigo-600"
+                    : "text-gray-500"
+                }`}
+                onClick={() => setActiveTab("reviews")}
+              >
+                Reviews (122)
+              </button>
             </div>
-            <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
-              <p className="">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                similique, amet laboriosam perferendis, nesciunt tempore sit
-                voluptate impedit animi asperiores quos officia placeat. Odit
-                obcaecati quia labore veniam vel et?
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Laudantium totam illum aut consequatur, dolor minus deleniti
-                consectetur suscipit aspernatur, eius voluptas quaerat facilis
-                saepe omnis consequuntur tempore, ad perferendis similique?
-              </p>
+            <div className="p-6 bg-white rounded-lg shadow-md">
+              {activeTab === "description" ? (
+                <p className="text-gray-700">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse varius, neque a viverra consectetur, turpis nulla
+                  gravida nunc, non tempus velit orci vel quam.
+                </p>
+              ) : (
+                <p className="text-gray-700">
+                  Reviews section will be here. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit.
+                </p>
+              )}
             </div>
           </div>
-          <RelatedCourse category={courseDetails.category} />
-          <p>{courseDetails.category}</p>
         </>
       ) : (
         <div className="h-screen bg-zinc-900 flex items-center justify-center">
