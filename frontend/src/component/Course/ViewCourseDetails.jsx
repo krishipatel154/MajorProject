@@ -12,6 +12,9 @@ import RelatedCourse from "./RelatedCourse";
 const ViewCourseDetails = () => {
   const location = useLocation();
   const { isMyCourse } = location.state || {};
+  const [isMyCourseState, setIsMyCourseState] = useState(isMyCourse || false);
+  // console.log("Location State:", location.state);
+  console.log(isMyCourseState);
 
   const { id } = useParams();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -186,14 +189,25 @@ const ViewCourseDetails = () => {
               )}
 
               {/* User - Join Live Class */}
-              {isLoggedIn && role === "user" && courseDetails.isLive && (
+              {isLoggedIn &&
+                role === "user" &&
+                isMyCourseState &&
+                courseDetails.isLive && (
+                  <Link
+                    to={`/live-stream/${id}`}
+                    className="text-white bg-blue-500 rounded text-normal p-2 mt-4 flex items-center justify-center"
+                  >
+                    Join Live Class
+                  </Link>
+                )}
+              {/* {isLoggedIn && role === "user" && courseDetails.isLive && (
                 <Link
                   to={`/live-stream/${id}`}
                   className="text-white bg-blue-500 rounded text-normal p-2 mt-4 flex items-center justify-center"
                 >
                   Join Live Class
                 </Link>
-              )}
+              )} */}
             </div>
           </div>
           <RelatedCourse category={courseDetails.category} />

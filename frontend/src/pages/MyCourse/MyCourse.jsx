@@ -46,9 +46,9 @@ const MyCourse = () => {
     <div className="m-4">
       <Title text1={"My "} text2={"Course"} />
       {courses.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-clos-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {courses.map((course) => (
-            <Course course={course} isMyCourse={true} />
+            <Course key={course._id} course={course} isMyCourse={true} />
           ))}
         </div>
       ) : (
