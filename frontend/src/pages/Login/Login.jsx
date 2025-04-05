@@ -74,7 +74,7 @@ const Login = () => {
               <div className="p-8 mx-auto bg-zinc-900">
                 <div className=" dark:bg-zinc-800 rounded py-12 px-4 lg:px-24">
                   <div className="flex justify-center items-center m-4">
-                    <h1 className="text-3xl">Signup Form</h1>
+                    <h1 className="text-3xl">Login Form</h1>
                   </div>
                   <form onSubmit={handleLogin}>
                     <div className="relative mb-6">
