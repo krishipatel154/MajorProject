@@ -30,7 +30,7 @@ const PopularBooks = () => {
   }, []);
 
   return (
-    <div className="bg-white mb-8 px-4 h-auto">
+    <div className="bg-white mb-8 h-auto">
       <Title text1={"Popular Books"} />
       {!popularBooks.length ? (
         <div className="flex items-center justify-center my-8">

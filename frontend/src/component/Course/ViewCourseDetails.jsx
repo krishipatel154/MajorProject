@@ -10,6 +10,7 @@ import { FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 import RelatedCourse from "./RelatedCourse";
+import { FaShoppingCart } from "react-icons/fa";
 
 const ViewCourseDetails = () => {
   const location = useLocation();
@@ -96,7 +97,7 @@ const ViewCourseDetails = () => {
     <>
       {courseDetails ? (
         <>
-          <div className="gap-8 px-12 py-8 bg-white text-black dark:bg-zinc-900 dark:text-text flex lg:flex-row flex-col">
+          <div className="gap-8 px-12 py-8 bg-white text-black dark:bg-white dark:text-text flex lg:flex-row flex-col">
             {/* Course Image */}
             <div className="lg:w-1/3 w-full">
               <img
@@ -108,16 +109,16 @@ const ViewCourseDetails = () => {
             {/* Course Info */}
             <div className="p-4 lg:w-3/6 w-full">
               <div>
-                <h1 className="text-4xl text-black dark:text-zinc-300 font-semibold">
+                <h1 className="text-4xl text-black dark:text-black font-semibold">
                   {courseDetails.Name}
                 </h1>
-                <p className="text-black font-semibold text-2xl underline dark:text-zinc-300 mt-1">
+                <p className="text-black font-semibold text-2xl underline dark:text-black mt-1">
                   {courseDetails.Faculty}
                 </p>
-                <p className="text-black dark:text-zinc-300 text-xl mt-4">
+                <p className="text-black dark:text-black text-xl mt-4">
                   {courseDetails.desc}
                 </p>
-                <p className="mt-4 text-black dark:text-zinc-300 text-3xl font-semibold">
+                <p className="mt-4 text-black dark:text-black text-3xl font-semibold">
                   Price: ${courseDetails.Price}
                 </p>
                 <div className="flex items-center gap-1 mt-2">
@@ -142,7 +143,7 @@ const ViewCourseDetails = () => {
                     className="bg-blue-500 text-white rounded-full p-3 flex items-center justify-center w-full"
                     onClick={handleCart}
                   >
-                    <FaHeart className="mr-2" />
+                    <FaShoppingCart className="mr-2" />
                     Add to Cart
                   </button>
                 </div>
@@ -206,7 +207,7 @@ const ViewCourseDetails = () => {
           <RelatedCourse category={courseDetails.category} />
 
           {/* Tabs for Description and Reviews */}
-          <div className="mt-12">
+          <div className="p-8 bg-white">
             <div className="flex border-b">
               <button
                 className={`p-4 ${

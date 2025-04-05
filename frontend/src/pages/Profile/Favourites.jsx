@@ -52,7 +52,7 @@ const Favourites = () => {
             </div>
           </>
         )}
-        <div className="grid grid-cols-3 gap-4 ">
+        <div className="grid grid-cols-1 w-[98%] m-auto sm:grid-cols-3 md:grid-cols-4 gap-4">
           {favouriteCourse &&
             favouriteCourse.map((item, i) => (
               <div key={i}>
@@ -74,7 +74,7 @@ const Favourites = () => {
             </div>
           </>
         )}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 w-[98%] m-auto sm:grid-cols-3 md:grid-cols-4 gap-4">
           {favouriteBook &&
             favouriteBook.map((book, i) => (
               <div

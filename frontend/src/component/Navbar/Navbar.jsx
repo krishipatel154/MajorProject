@@ -5,11 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import lightLogo from "../../images/logo.png";
 import darkLogo from "../../images/logoDark.png";
 import Avatar from "react-avatar";
-// import { logout } from "../../store";
-import { FaSearch, FaRegUser, FaOpencart } from "react-icons/fa";
-import { IoSearchSharp } from "react-icons/io5";
-import { RxCross2 } from "react-icons/rx";
-import axios from "axios";
 
 const Navbar = () => {
   const data = localStorage.getItem("uname");
@@ -20,17 +15,20 @@ const Navbar = () => {
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
   const [logo, setLogo] = useState(lightLogo);
+  const [heroImage, setHeroImage] = useState("https://t4.ftcdn.net/jpg/04/19/26/97/360_F_419269782_9LsP3TQndMVnZ2j3ZhTPhMjaqQpFAth9.jpg");
   const element = document.documentElement;
   useEffect(() => {
     if (theme === "dark") {
       element.classList.add("dark");
       localStorage.setItem("theme", "dark");
       document.body.classList.add("dark");
+      setHeroImage("https://img.freepik.com/free-photo/laptop-with-glowing-screen-table-dark-top-view-copy-space_169016-51607.jpg")
       setLogo(darkLogo);
     } else {
       element.classList.remove("dark");
       localStorage.setItem("theme", "light");
       document.body.classList.remove("dark");
+      setHeroImage("https://img.freepik.com/free-vector/geometric-science-education-background-vector-gradient-blue-digital-remix_53876-125993.jpg")
       setLogo(lightLogo);
     }
   }, [theme]);
@@ -102,9 +100,11 @@ const Navbar = () => {
       <div
         className={`${
           location.pathname === "/"
-            ? "relative bg-[url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCd5zNSfuI189Eghdfq-1NTfQ1GDQd7WFacg&s)] bg-cover bg-center bg-no-repeat text-white overflow-visible"
+            ? `relative bg-cover bg-center bg-no-repeat text-white overflow-visible`
             : "bg-back overflow-visible text-white"
         } `}
+        style={{ backgroundImage: `url(${heroImage})` }} // Set the background image here
+
       >
         <div
           className={`${
@@ -303,8 +303,8 @@ const Navbar = () => {
         {location.pathname === "/" ? (
           <div className="">
             <div className=" inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
-            <div className="relative m-auto py-32 flex justify-center items-center">
-              <div className="text-center">
+            <div className="relative py-32 m-8">
+              <div className="">
                 <h1 className="text-3xl font-extrabold sm:text-5xl">
                   Improve your knowladge
                   <strong className="block font-extrabold text-rose-700">
@@ -318,16 +318,16 @@ const Navbar = () => {
                   Nesciunt illo tenetur fuga ducimus numquam ea!
                 </p>
 
-                <div className="mt-8 mb-4 flex flex-wrap items-center justify-center gap-4 text-center">
+                <div className="mt-8 mb-4 flex flex-wrap gap-4">
                   <Link
                     to="/courses"
-                    className="px-4 py-1 bg-text text-back dark:text-black dark:bg-white hover:bg-text hover:text-back transaction-all duration-300"
+                    className="p-3 bg-text h-[50px] bg-text text-back dark:text-black dark:bg-white hover:bg-text hover:text-back transaction-all duration-300"
                   >
                     Get Course
                   </Link>
                   <Link
                     to="/books"
-                    className="px-4 py-1 bg-text text-back dark:text-black dark:bg-white hover:bg-text hover:text-back transaction-all duration-300"
+                    className=" p-3 bg-text h-[50px]  text-back dark:text-black dark:bg-white hover:bg-text hover:text-back transaction-all duration-300"
                   >
                     Read Books
                   </Link>

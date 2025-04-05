@@ -32,7 +32,7 @@ const RelatedCourse = ({ category }) => {
   }, [category, allCourse]); // This effect will run when `category` or `allCourse` changes
 
   return (
-    <div className="my-24">
+    <div className="bg-white">
       <div className="text-center text-3xl py-2">
         <Title text1={"Related Courses"} />
       </div>

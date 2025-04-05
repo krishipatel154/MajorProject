@@ -15,7 +15,7 @@ const AllCourse = ({ courses }) => {
               <Loader />
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 w-[98%] m-auto sm:grid-cols-3 md:grid-cols-4 gap-4">
               {courses.map((course, i) => (
                 <div key={i}>
                   <Course course={course} />

@@ -45,12 +45,12 @@ const Book = ({ book, favourites, onRemoveBook }) => {
 
           {favourites && (
             <button
-              onClick={handleRemoveBook}
-              className="p-4 w-[90%] m-4 rounded inline-flex justify-center items-center gap-2 text-white bg-red-500"
-            >
-              <FaHeart />
-              Remove from Favorites
-            </button>
+            className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-all"
+            onClick={handleRemoveBook}
+          >
+            Remove From Favourites
+          </button>
+            
           )}
         </Link>
       </div>

@@ -22,40 +22,9 @@ const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
     }, 3000);
   };
 
-<<<<<<< HEAD
-  const startLiveClass = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8089/course/start-live-class",
-        { courseId: course._id },
-        { headers }
-      );
-      handleSuccess("Live class started successfully!");
-      window.location.href = `/live-class/${course._id}`;
-    } catch (error) {
-      handleError(
-        error.response?.data?.message || "Failed to start live class"
-      );
-    }
-  };
-
-  const joinLiveClass = () => {
-    window.location.href = `/live-class/${course._id}`;
-  };
-
   return (
-    <div className="text-white rounded shadow-lg bg-back dark:text-white dark:bg-black flex flex-col h-full w-full p-4 transition-transform hover:scale-105">
-      <Link
-        to={{
-          pathname: `/view-course-details/${course._id}`,
-          state: { isMyCourse },
-        }}
-      >
-=======
-  return (
-    <div className="text-black rounded shadow-lg bg-back flex flex-col h-full w-full p-4 transition-transform hover:scale-105">
+    <div className="text-black rounded shadow-lg dark:bg-black bg-back flex flex-col h-full w-full p-4 transition-transform hover:scale-105">
       <Link to={`/view-course-details/${course._id}`} state={{ isMyCourse }}>
->>>>>>> 50a9319941a32758614e47ad17a6579ae5d1293a
         <div className="relative">
           <div className="bg-gray-100 rounded-t-lg overflow-hidden h-[200px] flex items-center justify-center">
             <img
@@ -65,17 +34,10 @@ const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
             />
           </div>
           <div className="p-4">
-<<<<<<< HEAD
             <h2 className="mt-2 text-xl font-bold text-white">
               {course.Name}
             </h2>
             <p className="text-sm font-medium text-white mt-1">
-=======
-            <h2 className="mt-2 text-xl font-bold text-gray-800">
-              {course.Name}
-            </h2>
-            <p className="text-sm font-medium text-black mt-1">
->>>>>>> 50a9319941a32758614e47ad17a6579ae5d1293a
               By: {course.Faculty}
             </p>
             <p className="mt-4 text-xl font-semibold text-red-500">
@@ -93,19 +55,6 @@ const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
           Remove From Favourites
         </button>
       )}
-<<<<<<< HEAD
-
-      {course.isLive && isMyCourse && (
-        <Link
-          to={`/live-stream/${course._id}`}
-          className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition-all"
-        >
-          Join Live Class
-        </Link>
-      )}
-
-=======
->>>>>>> 50a9319941a32758614e47ad17a6579ae5d1293a
       <ToastContainer />
     </div>
   );

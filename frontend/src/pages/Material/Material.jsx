@@ -3,7 +3,7 @@ import LanguagesNav from "../../component/LanguagesNav/LanguagesNav";
 
 const Material = () => {
   return (
-    <div>
+    <div className="dark:bg-white">
       <LanguagesNav />
     </div>
   );
