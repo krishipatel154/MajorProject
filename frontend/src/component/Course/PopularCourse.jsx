@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Title from "../Title";
+import Title from "../Title/Title";
 import Course from "./Course";
 import Loader from "../Loader/Loader";
 import { ToastContainer } from "react-toastify";

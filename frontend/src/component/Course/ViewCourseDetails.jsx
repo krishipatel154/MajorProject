@@ -4,7 +4,9 @@ import Loader from "../../component/Loader/Loader";
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import { handleError, handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
-import { FaEdit, FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
+import { FaEdit, FaHeart } from "react-icons/fa";
+import { GoStarFill } from "react-icons/go";
+import { FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 import RelatedCourse from "./RelatedCourse";
@@ -13,7 +15,6 @@ const ViewCourseDetails = () => {
   const location = useLocation();
   const { isMyCourse } = location.state || {};
   const [isMyCourseState, setIsMyCourseState] = useState(isMyCourse || false);
-  // console.log("Location State:", location.state);
   console.log(isMyCourseState);
 
   const { id } = useParams();
@@ -120,11 +121,11 @@ const ViewCourseDetails = () => {
                   Price: ${courseDetails.Price}
                 </p>
                 <div className="flex items-center gap-1 mt-2">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+                  <GoStarFill className="text-yellow-400 border-black" />
+                  <GoStarFill className="text-yellow-400" />
+                  <GoStarFill className="text-yellow-400" />
+                  <GoStarFill className="text-yellow-400" />
+                  <FaStarHalfAlt className="text-yellow-400" />
                   <p className="pl-2">({reviews})</p>
                 </div>
               </div>
@@ -200,14 +201,6 @@ const ViewCourseDetails = () => {
                     Join Live Class
                   </Link>
                 )}
-              {/* {isLoggedIn && role === "user" && courseDetails.isLive && (
-                <Link
-                  to={`/live-stream/${id}`}
-                  className="text-white bg-blue-500 rounded text-normal p-2 mt-4 flex items-center justify-center"
-                >
-                  Join Live Class
-                </Link>
-              )} */}
             </div>
           </div>
           <RelatedCourse category={courseDetails.category} />

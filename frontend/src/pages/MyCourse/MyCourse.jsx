@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Course from "../../component/Course/Course";
-import Title from "../../component/Title";
+import Title from "../../component/Title/Title";
 
 const MyCourse = () => {
   const [courses, setCourses] = useState([]);

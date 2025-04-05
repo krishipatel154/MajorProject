@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import lightLogo from "../../images/logo.png";
 import darkLogo from "../../images/logoDark.png";
 import Avatar from "react-avatar";
+// import { logout } from "../../store";
 import { FaSearch, FaRegUser, FaOpencart } from "react-icons/fa";
 import { IoSearchSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
@@ -61,8 +62,13 @@ const Navbar = () => {
     },
   ];
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const logout = useSelector((state) => state.auth.logout);
   const role = useSelector((state) => state.auth.role);
   if (isLoggedIn === false) {
+    links.splice(3, 1);
+  }
+  if (role === "admin") {
+    links.splice(1, 1);
     links.splice(3, 1);
   }
   const [mobileNav, setMobileNav] = useState("hidden");
@@ -73,7 +79,6 @@ const Navbar = () => {
     localStorage.removeItem("role");
     localStorage.removeItem("uname");
     dispatch(logout());
-    // const isLoggedIn = useSelector((state) => state.auth.logout);
   };
 
   const [sticky, setSticky] = useState(false);
@@ -92,24 +97,24 @@ const Navbar = () => {
   }, []);
 
   const location = useLocation();
-  console.log(location.pathname);
-
   return (
     <>
       <div
         className={`${
           location.pathname === "/"
-            ? "relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat text-white"
-            : "bg-back text-white"
-        }`}
+            ? "relative bg-[url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCd5zNSfuI189Eghdfq-1NTfQ1GDQd7WFacg&s)] bg-cover bg-center bg-no-repeat text-white overflow-visible"
+            : "bg-back overflow-visible text-white"
+        } `}
       >
-        <div>
+        <div
+          className={`${
+            sticky
+              ? "shadow-lg z-50 bg-back bg-[url()] text-white sticky top-0 left-0 right-0 duration-300 transition-all ease-in-out"
+              : "transition-none"
+          }`}
+        >
           <nav
-            className={`relative px-8 py-4 flex items-center justify-between ease-in-out transition-shadow duration-300 h-[80px] dark:bg-black ${
-              sticky
-                ? "shadow-lg z-50 bg-black bg-[url()] text-white sticky top-0 left-0 right-0 duration-300 transition-all ease-in-out"
-                : "transition-none"
-            }`}
+            className={`relative px-8 py-4 flex items-center justify-between ease-in-out transition-shadow duration-300 h-[80px] dark:bg-black `}
           >
             <div className="flex items-center">
               <Link to="/" className="md:ml-20 mt-0 pt-0">
@@ -136,7 +141,7 @@ const Navbar = () => {
                   <svg
                     className={`${
                       theme === "dark" ? "block" : "hidden"
-                    } h-7 w-7 md:w-7 md:h-7 sm:w-3 sm:h-3 fill-current`}
+                    } h-7 w-7 md:w-7 md:h-7 fill-current`}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                   >
@@ -199,7 +204,7 @@ const Navbar = () => {
                 {isLoggedIn === true && role === "user" && (
                   <>
                     <Link to="/profile">
-                      <Avatar name={data ? data : "AA"} size="40" round="50%" />
+                      <Avatar name={data ? data : "UU"} size="40" round="50%" />
                     </Link>
                   </>
                 )}
@@ -224,7 +229,7 @@ const Navbar = () => {
             </div>
           </nav>
           <div
-            className={` ${mobileNav} bg-back dark:bg-black mt-10 h-screen absolute top-0 left-0 w-full z-40 flex flex-col items-center justify-center`}
+            className={` ${mobileNav} bg-back dark:bg-black mt-16 h-screen absolute top-0 left-0 w-full z-40 flex flex-col items-center justify-center`}
           >
             {links.map((item, i) => (
               <Link
@@ -279,19 +284,32 @@ const Navbar = () => {
                 </Link>
               </>
             )}
+            {isLoggedIn === true && role === "user" && (
+              <>
+                <Link to="/profile">
+                  <Avatar name={data ? data : "AA"} size="40" round="50%" />
+                </Link>
+              </>
+            )}
+            {isLoggedIn === true && role === "admin" && (
+              <>
+                <Link to="/profile">
+                  <Avatar name={data ? data : "AA"} size="40" round="50%" />
+                </Link>
+              </>
+            )}
           </div>
         </div>
         {location.pathname === "/" ? (
           <div className="">
             <div className=" inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
-
-            <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-              <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+            <div className="relative m-auto py-32 flex justify-center items-center">
+              <div className="text-center">
                 <h1 className="text-3xl font-extrabold sm:text-5xl">
-                  Let us find your
+                  Improve your knowladge
                   <strong className="block font-extrabold text-rose-700">
                     {" "}
-                    Forever Home.{" "}
+                    with us.{" "}
                   </strong>
                 </h1>
 
@@ -300,20 +318,19 @@ const Navbar = () => {
                   Nesciunt illo tenetur fuga ducimus numquam ea!
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-4 text-center">
-                  <a
-                    href="#"
-                    className="block w-full rounded-sm bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:ring-3 focus:outline-hidden sm:w-auto"
+                <div className="mt-8 mb-4 flex flex-wrap items-center justify-center gap-4 text-center">
+                  <Link
+                    to="/courses"
+                    className="px-4 py-1 bg-text text-back dark:text-black dark:bg-white hover:bg-text hover:text-back transaction-all duration-300"
                   >
-                    Get Started
-                  </a>
-
-                  <a
-                    href="#"
-                    className="block w-full rounded-sm bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow-sm hover:text-rose-700 focus:ring-3 focus:outline-hidden sm:w-auto"
+                    Get Course
+                  </Link>
+                  <Link
+                    to="/books"
+                    className="px-4 py-1 bg-text text-back dark:text-black dark:bg-white hover:bg-text hover:text-back transaction-all duration-300"
                   >
-                    Learn More
-                  </a>
+                    Read Books
+                  </Link>
                 </div>
               </div>
             </div>

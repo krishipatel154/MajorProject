@@ -55,16 +55,6 @@ const Course = ({ course, favourites, onRemoveCourse, isMyCourse }) => {
           Remove From Favourites
         </button>
       )}
-
-      {/* {isMyCourse && (
-        <Link
-          to={`/live-stream/${course._id}`}
-          className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition-all"
-        >
-          Join Live Class
-        </Link>
-      )} */}
-
       <ToastContainer />
     </div>
   );

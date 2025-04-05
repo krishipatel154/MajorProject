@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Course from "../../component/Course/Course";
 import Book from "../../component/Book/Book";
-import Title from "../../component/Title";
+import Title from "../../component/Title/Title";
 import ReedBook from "../../component/ReedBook/ReedBook";
 const Favourites = () => {
   const headers = {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Title from "../Title";
+import Title from "../Title/Title";
 import Loader from "../Loader/Loader";
 import { ToastContainer } from "react-toastify";
 import Book from "./Book";
@@ -27,10 +27,10 @@ const PopularBooks = () => {
       }
     };
     handleGetPopularBooks();
-  }, []); // Empty dependency array to run this effect once on mount
+  }, []);
 
   return (
-    <div className="bg-white px-4 h-auto">
+    <div className="bg-white mb-8 px-4 h-auto">
       <Title text1={"Popular Books"} />
       {!popularBooks.length ? (
         <div className="flex items-center justify-center my-8">

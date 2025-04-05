@@ -5,7 +5,7 @@ import { handleSuccess, handleError } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import Loader from "../../component/Loader/Loader";
 import { AiFillDelete } from "react-icons/ai";
-import Title from "../../component/Title";
+import Title from "../../component/Title/Title";
 const Cart = () => {
   const [cart, setCart] = useState();
   const [total, setTotal] = useState();
@@ -62,12 +62,12 @@ const Cart = () => {
 
   return (
     <div className="bg-white dark:bg-zinc-900 px-12 h-screen py-8 ">
-      {!cart && (
+      {cart && cart.length === 0 && (
         <div className="w-full h-screen flex items-center justify-center">
           <Loader />
         </div>
       )}
-      {cart && cart.length === 0 && (
+      {!cart && (
         <div className="h-screen">
           <div className="h-[100%] flex items-center flex-col justify-center">
             <h1 className="text-2xl lg:text-3xl font-semibold text-black">

@@ -26,7 +26,7 @@ const Book = ({ book, favourites, onRemoveBook }) => {
       <div className="h-auto">
         <Link to={`/view-book-details/${book._id}`}>
           <div>
-            <div className="h-[280px] overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-t-xl">
+            <div className="h-[300px] overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-t-xl">
               <img
                 src={book.Image}
                 alt={book.Name}

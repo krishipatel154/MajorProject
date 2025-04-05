@@ -9,6 +9,7 @@ export default {
         current: "currentColor",
         white: "#ffffff",
         back: "#03506F",
+        // back: "#03356f",
         text: "#fff",
         midnight: "#121063",
         metal: "#565584",

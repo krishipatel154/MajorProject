@@ -2,7 +2,7 @@ import React from "react";
 import Book from "../../component/Book/Book";
 import Loader from "../../component/Loader/Loader";
 import ReedBook from "../ReedBook/ReedBook";
-import Title from "../Title";
+import Title from "../Title/Title";
 
 const RecentBooks = ({ books }) => {
   return (

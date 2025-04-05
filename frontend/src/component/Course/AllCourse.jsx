@@ -2,7 +2,7 @@ import React from "react";
 import Loader from "../../component/Loader/Loader";
 import Course from "./Course";
 import { ToastContainer } from "react-toastify";
-import Title from "../Title";
+import Title from "../Title/Title";
 
 const AllCourse = ({ courses }) => {
   return (
