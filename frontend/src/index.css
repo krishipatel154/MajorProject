@@ -13,6 +13,7 @@
 
 body{
   font-family: "Poppins", serif;
+  color: #03356f;
 }
 #header-bar{
   display: none !important;

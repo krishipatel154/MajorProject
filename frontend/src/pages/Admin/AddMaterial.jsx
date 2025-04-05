@@ -4,7 +4,7 @@ import axios from "axios";
 const AddMaterial = () => {
   const [data, setData] = useState({
     Name: "",
-    Pdf: ""
+    Pdf: "",
   });
   const headers = {
     id: localStorage.getItem("id"),
@@ -22,10 +22,7 @@ const AddMaterial = () => {
     e.preventDefault();
 
     try {
-      if (
-        data.Name === "" ||
-        !data.Pdf
-      ) {
+      if (data.Name === "" || !data.Pdf) {
         handleError("All fields are required!!");
       } else {
         const formData = new FormData();
@@ -53,11 +50,10 @@ const AddMaterial = () => {
   };
   return (
     <div className="h-[100%] p-0 md:p-4">
-      <h1 className="text-3xl md:text-5xl font-semibold text-text dark:text-zinc-500 mb-8">
+      <h1 className="text-3xl md:text-5xl font-semibold text-black dark:text-zinc-500 mb-8">
         Add Material
       </h1>
       <div className="p-4 bg-back dark:bg-zinc-800 rounded">
-        
         <div>
           <label htmlFor="" className="text-text dark:text-zinc-400">
             Name

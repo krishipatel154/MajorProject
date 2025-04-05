@@ -2,11 +2,12 @@ import React from "react";
 import Book from "../../component/Book/Book";
 import Loader from "../../component/Loader/Loader";
 import ReedBook from "../ReedBook/ReedBook";
+import Title from "../Title/Title";
 
 const RecentBooks = ({ books }) => {
   return (
-    <div className="bg-white text-text px-4 h-auto">
-      <h4 className="text-3xl text-zinc-800 py-4">Recently Added Books</h4>
+    <div className="bg-white px-4 h-auto">
+      <Title text1={"Recent Books"} />
       {!books.length ? (
         <div className="flex items-center justify-center my-8">
           <Loader />

@@ -24,6 +24,7 @@ const ViewBookDetails = () => {
           `http://localhost:8089/books/get-book/${id}`
         );
         setbookDetails(response.data);
+        console.log(bookDetails);
       } catch (error) {
         handleError(error);
       }
@@ -82,6 +83,10 @@ const ViewBookDetails = () => {
                   <p className="text-3xl font-semibold mb-4">
                     Price: ${bookDetails.Price}
                   </p>
+<<<<<<< HEAD
+=======
+                  <ReedBook pdf={bookDetails.Pdf} />
+>>>>>>> 50a9319941a32758614e47ad17a6579ae5d1293a
                   <div className="mt-auto">
                     {isLoggedIn && role === "user" && (
                       <button

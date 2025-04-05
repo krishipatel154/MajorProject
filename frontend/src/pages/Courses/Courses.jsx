@@ -58,7 +58,7 @@ const Courses = () => {
           {selectedLanguage !== "All" && (
             <>
               {/* Only show the courses filtered by selected language without headings */}
-              <div className="bg-white text-text h-auto px-4">
+              <div className="bg-white text-text h-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
                   {filterCoursesByLanguage(allCourses).map((course, i) => (
                     <div key={i}>

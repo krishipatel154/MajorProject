@@ -6,6 +6,7 @@ import Book from "../../component/Book/Book";
 import BookNav from "./BookNav"; // Correct import
 import ReedBook from "../../component/ReedBook/ReedBook";
 import Loader from "../../component/Loader/Loader";
+import { useLocation } from "react-router-dom";
 
 const Books = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -44,7 +45,7 @@ const Books = () => {
 
   return (
     <>
-      <BookNav onCategorySelect={handleCategorySelect} /> {/* Correct prop */}
+      <BookNav onCategorySelect={handleCategorySelect} />
       {loading ? (
         <div className="h-screen bg-zinc-900 flex items-center justify-center">
           <Loader />

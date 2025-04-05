@@ -23,10 +23,10 @@ const Book = ({ book, favourites, onRemoveBook }) => {
   };
   return (
     <div className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-card hover:shadow-hover transition-all duration-300">
-      <div className="h-[400px]">
+      <div className="h-auto">
         <Link to={`/view-book-details/${book._id}`}>
           <div>
-            <div className="h-[280px] overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-t-xl">
+            <div className="h-[300px] overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-t-xl">
               <img
                 src={book.Image}
                 alt={book.Name}
@@ -46,7 +46,7 @@ const Book = ({ book, favourites, onRemoveBook }) => {
           {favourites && (
             <button
               onClick={handleRemoveBook}
-              className="mt-4 inline-flex items-center gap-2 text-red-500 hover:text-red-600"
+              className="p-4 w-[90%] m-4 rounded inline-flex justify-center items-center gap-2 text-white bg-red-500"
             >
               <FaHeart />
               Remove from Favorites

@@ -2,11 +2,12 @@ import React from "react";
 import Book from "../../component/Book/Book";
 import Loader from "../../component/Loader/Loader";
 import ReedBook from "../ReedBook/ReedBook";
+import Title from "../Title/Title";
 
 const AllBooks = ({ books }) => {
   return (
-    <div className="bg-white text-text px-4 h-auto px-12 py-8">
-      <h4 className="text-3xl text-zinc-800 py-4">All Books</h4>
+    <div className="bg-white h-auto px-12 py-8">
+      <Title text1={"All Books"} />
       {!books.length ? (
         <div className="flex items-center justify-center my-8">
           <Loader />

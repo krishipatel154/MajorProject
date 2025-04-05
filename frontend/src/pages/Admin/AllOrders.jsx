@@ -55,7 +55,7 @@ const AllOrders = () => {
       )}
       {allOrders && allOrders.length > 0 && (
         <div className="h-[100%] dark:bg-zinc-800 bg-back p-0 md:p-4 text-zinc-100">
-          <h1 className="text-3xl md:text-5xl mb-8 font-semibold text-zinc-500">
+          <h1 className="text-3xl md:text-5xl mb-8 font-semibold text-white">
             All Orders
           </h1>
           <div className="mt-4  w-full rounded py-2 px-4 flex gap-2">
@@ -103,7 +103,7 @@ const AllOrders = () => {
                     className="hover:scale-105 transition-all duration-300"
                     onClick={() => setOptions(i)}
                   >
-                    {items.status === "Order Placed" ? (
+                    {items.status === "Pending" ? (
                       <div className="text-yellow-500">{items.status}</div>
                     ) : items.status === "Canceled" ? (
                       <div className="text-red-500">{items.status}</div>
@@ -119,12 +119,7 @@ const AllOrders = () => {
                       className="bg-grey-800 text-black"
                       value={values.status}
                     >
-                      {[
-                        "Order Placed",
-                        "Out for delivery",
-                        "Delivered",
-                        "Canceled",
-                      ].map((items, i) => (
+                      {["Pending", "Canceled", "Done"].map((items, i) => (
                         <option value={items} key={i}>
                           {items}
                         </option>

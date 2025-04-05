@@ -10,7 +10,6 @@ const AddBook = () => {
     language: "",
     category: "",
     subCategory: "",
-    Logo: "", // New field for logo
   });
   const headers = {
     id: localStorage.getItem("id"),
@@ -28,15 +27,14 @@ const AddBook = () => {
     e.preventDefault();
     try {
       if (
-        (data.Image === "" ||
-          data.Name === "" ||
-          data.Author === "" ||
-          data.desc === "" ||
-          data.language === "" ||
-          data.category === "" ||
-          data.subCategory === "" ||
-          !data.Pdf, // Ensure a PDF file is selected
-        data.Logo === "") // Ensure logo field is filled
+        data.Image === "" ||
+        data.Name === "" ||
+        data.Author === "" ||
+        data.desc === "" ||
+        data.language === "" ||
+        data.category === "" ||
+        data.subCategory === "" ||
+        !data.Pdf
       ) {
         handleError("All fields are required!!");
       } else {
@@ -49,7 +47,6 @@ const AddBook = () => {
         formData.append("category", data.category); // Update from "Category" to "Category"
         formData.append("subCategory", data.subCategory); // Update from "Category" to "Category"
         formData.append("file", data.Pdf);
-        formData.append("Logo", data.Logo); // Append logo
 
         const response = await axios.post(
           "http://localhost:8089/books/add-book",
@@ -70,7 +67,6 @@ const AddBook = () => {
           category: "",
           subCategory: "",
           Pdf: null, // Clear the PDF file input
-          Logo: "", // Reset logo field
         });
         handleSuccess(response.data.message);
       }
@@ -80,7 +76,7 @@ const AddBook = () => {
   };
   return (
     <div className="h-[100%] p-0 md:p-4">
-      <h1 className="text-3xl md:text-5xl font-semibold text-text dark:text-zinc-500 mb-8">
+      <h1 className="text-3xl md:text-5xl font-semibold text-black dark:text-zinc-500 mb-8">
         Add Book
       </h1>
       <div className="p-4 bg-back dark:bg-zinc-800 rounded">
@@ -140,20 +136,7 @@ const AddBook = () => {
             onChange={handleFileChange}
           />
         </div>
-        <div>
-          <label htmlFor="" className="text-text dark:text-zinc-400">
-            Logo URL
-          </label>
-          <input
-            type="text"
-            className="w-full mt-2 bg-[#03476F] dark:bg-zinc-900 text-text p-2 outline-none"
-            placeholder="Logo URL"
-            required
-            name="Logo"
-            value={data.Logo}
-            onChange={handleChange}
-          />
-        </div>
+
         <div>
           <label htmlFor="" className="text-text dark:text-zinc-400">
             Language

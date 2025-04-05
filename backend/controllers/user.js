@@ -98,6 +98,47 @@ const verifyOTP = async (req, res) => {
   }
 };
 
+const resendOTP = async (req, res) => {
+  try {
+    const { Email } = req.body;
+
+    const user = await userModel.findOne({ Email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "User not found!", success: false });
+    }
+
+    const otp = generateOTP();
+    user.otp = otp;
+    await user.save();
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: user.Email,
+      subject: "Your Resend OTP Code",
+      text: `Your new OTP code is ${otp}. It will expire in 10 minutes.`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).json({
+          message: "Failed to send OTP!!",
+          success: false,
+        });
+      }
+      res
+        .status(200)
+        .json({ message: "OTP resent to your email!", success: true, Email });
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal Server Error!!",
+      success: false,
+    });
+  }
+};
+
 const handleUserSignup = async (req, res) => {
   try {
     const { FirstName, LastName, Email, Password } = req.body;
@@ -211,9 +252,14 @@ const resetPassword = async (req, res) => {
 
 const handleMyCourse = async (req, res) => {
   const { id, cartItems } = req.body;
-
   try {
     const user = await User.findById(id);
+    const isCourseExist = user.myCourse.includes(cartItems);
+    if (isCourseExist) {
+      return res
+        .status(200)
+        .json({ message: "Course is already exist in favourites!!" });
+    }
     if (!user.myCourse) {
       user.myCourse = [];
     }
@@ -239,4 +285,5 @@ module.exports = {
   resetPassword,
   requestPasswordReset,
   handleMyCourse,
+  resendOTP,
 };

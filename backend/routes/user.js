@@ -8,6 +8,7 @@ const {
   requestPasswordReset,
   resetPassword,
   handleMyCourse,
+  resendOTP,
 } = require("../controllers/user");
 const {
   LoginValidation,
@@ -19,6 +20,7 @@ const router = express.Router();
 router.post("/login", LoginValidation, handleUserLogin);
 router.post("/signup", signUpValidation, handleUserSignup);
 router.post("/verify-otp", verifyOTP);
+router.post("/resend-otp", resendOTP);
 router.get("/user-info", handleAuthentication, handleGetUserInfo);
 router.post("/my-course", handleMyCourse);
 router.post("/forgot-password", requestPasswordReset);

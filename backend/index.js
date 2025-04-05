@@ -14,10 +14,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-
 require("./models/db");
 require("dotenv").config();
-
 const PORT = process.env.PORT || 8089;
 
 // middlewares

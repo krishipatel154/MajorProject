@@ -17,6 +17,10 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subCategory: {
+    type: String,
+    required: true,
+  },
   Image: {
     type: String,
     required: true,

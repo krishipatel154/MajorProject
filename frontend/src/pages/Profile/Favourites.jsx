@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Course from "../../component/Course/Course";
 import Book from "../../component/Book/Book";
+import Title from "../../component/Title/Title";
+import ReedBook from "../../component/ReedBook/ReedBook";
 const Favourites = () => {
   const headers = {
     id: localStorage.getItem("id"),
@@ -42,7 +44,7 @@ const Favourites = () => {
   return (
     <>
       <div>
-        <h1>Favourite Course</h1>
+        <Title text1={"Favourite Course"} />
         {favouriteCourse.length === 0 && (
           <>
             <div className="text-3xl h-[100%] w-full flex items-center justify-center font-semibold text-black dark:text-white">
@@ -64,8 +66,7 @@ const Favourites = () => {
         </div>
       </div>
       <div className="">
-        <h1>Favourite Book</h1>
-
+        <Title text1={"Favourite Books"} />
         {favouriteBook.length === 0 && (
           <>
             <div className="text-3xl h-[100%] w-full flex items-center justify-center font-semibold text-black dark:text-white">
@@ -73,15 +74,19 @@ const Favourites = () => {
             </div>
           </>
         )}
-        <div className="grid grid-cols-3 gap-4 ">
+        <div className="grid grid-cols-3 gap-4">
           {favouriteBook &&
-            favouriteBook.map((item, i) => (
-              <div key={i} className="">
+            favouriteBook.map((book, i) => (
+              <div
+                key={i}
+                className="bg-[#03506F] dark:bg-zinc-800 rounded p-4 flex flex-col h-full w-full"
+              >
                 <Book
-                  book={item}
+                  book={book}
                   favourites={true}
                   onRemoveBook={handleBookRemoval}
                 />
+                <ReedBook pdf={book.Pdf} />
               </div>
             ))}
         </div>

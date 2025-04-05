@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Title from "../Title";
+import Title from "../Title/Title";
 import Course from "./Course";
 import Loader from "../Loader/Loader";
 import { ToastContainer } from "react-toastify";
@@ -12,28 +12,28 @@ const PopularCourse = () => {
   };
 
   const [popularCourse, setPopularCourse] = useState([]);
-  const [courseData, setCourseData] = useState([]);
 
   useEffect(() => {
     const handleGetPopularCourse = async () => {
-      const response = await axios.get(
-        "http://localhost:8089/course",
-        {},
-        { headers }
-      );
-      setCourseData(response.data);
-      const getPopularCourse = courseData.filter((course) => course.isPopular);
-      console.log(getPopularCourse);
-
-      setPopularCourse(getPopularCourse);
+      try {
+        const response = await axios.get("http://localhost:8089/course", {
+          headers,
+        });
+        const getPopularCourse = response.data.filter(
+          (course) => course.isPopular
+        );
+        setPopularCourse(getPopularCourse);
+      } catch (error) {
+        console.error("Error fetching popular courses:", error);
+      }
     };
     handleGetPopularCourse();
   }, []);
 
   return (
-    <div>
+    <div className="m-4">
       <div>
-        <Title text1={"Popular "} text2={"Courses"} />
+        <Title text1={"Popular Courses"} />
       </div>
       <div>
         {!popularCourse.length ? (

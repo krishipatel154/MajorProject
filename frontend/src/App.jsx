@@ -49,7 +49,7 @@ function App() {
   }, []);
   return (
     <>
-      <div className="app dark:bg-black dark:text-white">
+      <div className="app dark:bg-black dark:text-white overflow-visible">
         <Navbar />
         <Routes>
           {/* user routes */}
