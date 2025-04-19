@@ -33,7 +33,7 @@ const LiveStream = () => {
             await AgoraRTC.createMicrophoneAndCameraTracks(
               {},
               {
-                encoderConfig: "1080p_30fps", // This is where you set the video profile
+                encoderConfig: "1080p_30fps",
               }
             );
           setLocalTracks([audioTrack, videoTrack]);
