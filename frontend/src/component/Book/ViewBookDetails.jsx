@@ -62,7 +62,7 @@ const ViewBookDetails = () => {
   return (
     <>
       {bookDetails ? (
-        <div className="container mx-auto px-4 py-8">
+        <div className=" w-full px-4 py-8 dark:bg-white">
           <div className="flex lg:flex-row flex-col gap-8">
             {/* Book Details Section */}
             <div className="lg:w-full w-full bg-white rounded-lg shadow-md p-6">
@@ -73,14 +73,14 @@ const ViewBookDetails = () => {
                   alt="book"
                 />
                 <div className="flex flex-col justify-between w-full lg:w-1/2">
-                  <h1 className="text-4xl font-semibold mb-2">
+                  <h1 className="text-4xl dark:text-black font-semibold mb-2">
                     {bookDetails.Name}
                   </h1>
-                  <p className="font-semibold text-xl mb-4">
+                  <p className="font-semibold text-xl mb-4 dark:text-black">
                     by {bookDetails.Author}
                   </p>
-                  <p className="text-lg mb-4">{bookDetails.desc}</p>
-                  <p className="text-3xl font-semibold mb-4">
+                  <p className="text-lg mb-4 dark:text-black">{bookDetails.desc}</p>
+                  <p className="text-3xl font-semibold mb-4 dark:text-black">
                     Price: ${bookDetails.Price}
                   </p>
                   <ReedBook pdf={bookDetails.Pdf} />

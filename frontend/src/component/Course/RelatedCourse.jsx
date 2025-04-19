@@ -32,11 +32,11 @@ const RelatedCourse = ({ category }) => {
   }, [category, allCourse]); // This effect will run when `category` or `allCourse` changes
 
   return (
-    <div className="my-24">
+    <div className="bg-white">
       <div className="text-center text-3xl py-2">
         <Title text1={"Related Courses"} />
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-col-4 lg:grid-cols-5 gap-4 gap-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-col-4 lg:grid-cols-5 gap-4 gap-y-6">
         {related.map((course, i) => (
           <Course key={i} course={course} />
         ))}

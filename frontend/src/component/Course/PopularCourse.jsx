@@ -31,13 +31,13 @@ const PopularCourse = () => {
   }, []);
 
   return (
-    <div className="m-4">
+    <div className="dark:bg-white">
       <div>
         <Title text1={"Popular Courses"} />
       </div>
       <div>
         {!popularCourse.length ? (
-          <div className="flex items-center justify-center my-8">
+          <div className="flex items-center justify-center">
             <Loader />
           </div>
         ) : (

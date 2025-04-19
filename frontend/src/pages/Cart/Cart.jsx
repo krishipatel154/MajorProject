@@ -61,7 +61,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-zinc-900 px-12 h-screen py-8 ">
+    <div className="bg-white dark:bg-white px-12 h-screen py-8 ">
       {cart && cart.length === 0 && (
         <div className="w-full h-screen flex items-center justify-center">
           <Loader />

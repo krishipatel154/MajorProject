@@ -43,10 +43,10 @@ const MyCourse = () => {
   }
 
   return (
-    <div className="m-4">
-      <Title text1={"My "} text2={"Course"} />
+    <div className="bg-white dark:bg-white mt-4 mb-4">
+      <Title text1={"My Course "}  />
       {courses.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 w-[98%] m-auto sm:grid-cols-3 md:grid-cols-4 gap-4">
           {courses.map((course) => (
             <Course key={course._id} course={course} isMyCourse={true} />
           ))}

@@ -42,7 +42,7 @@ const Courses = () => {
   };
 
   return (
-    <>
+    <div className="w-90%">
       <Navbar onLanguageSelect={handleLanguageSelect} />
       {loading ? (
         <div>Loading...</div>
@@ -71,7 +71,7 @@ const Courses = () => {
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 

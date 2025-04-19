@@ -15,9 +15,9 @@ const LanguagesNav = () => {
     setFile(response.data.data);
     const defaultPdf = response.data.data.find((item) => item.Name === "HTML");
 
-    if (defaultPdf) {
-      showPdf(defaultPdf.Pdf, defaultPdf.Name);
-    }
+    // if (defaultPdf) {
+    //   showPdf(defaultPdf.Pdf, defaultPdf.Name);
+    // }
   };
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const LanguagesNav = () => {
         </div>
       </div>
       {pdfFile ? (
-        <div className="mt-8 mx-auto max-w-6xl px-4">
+        <div className="mt-8 mb-8 max-w-6xl px-4 m-auto">
           <div className="bg-back dark:bg-black rounded-lg shadow-xl overflow-hidden">
             <div className="p-4 border-b">
               <h2 className="text-xl font-semibold text-white">{pdfName}</h2>
@@ -97,12 +97,12 @@ const LanguagesNav = () => {
       ) : (
         <div className="flex items-center justify-center min-h-[70vh]">
           <div className="text-center">
-            <p className="text-xl text-gray-600 dark:text-gray-400">
+            <p className="text-xl text-gray-600 dark:text-black">
               Select a language to view its documentation
             </p>
             <div className="mt-4 animate-bounce">
               <svg
-                className="w-8 h-8 mx-auto text-[#03506F] dark:text-white"
+                className="w-8 h-8 mx-auto text-[#03506F] dark:text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
