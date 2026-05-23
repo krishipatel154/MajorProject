@@ -1,0 +1,76 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+build/
+.cache/
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.vs/
+.vscode-test
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+desktop.ini
+
+# Testing
+coverage/
+.nyc_output/
+junit.xml
+
+# Miscellaneous
+*.log
+logs/
+*.pid
+*.seed
+.npm
+.eslintcache
+.sass-cache
+*.tsbuildinfo
+
+# Vite specific
+.vite/
+
+# DaisyUI & Tailwind
+.tailwindcss/
+
+# Package manager files (lock files - optional, uncomment if needed)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Local development
+.env.development
+.vscode/settings.json
+
+
