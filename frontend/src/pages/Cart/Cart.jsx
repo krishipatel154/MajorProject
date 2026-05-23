@@ -5,7 +5,9 @@ import { handleSuccess, handleError } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import Loader from "../../component/Loader/Loader";
 import { AiFillDelete } from "react-icons/ai";
+import { FaShoppingCart, FaArrowRight } from "react-icons/fa";
 import Title from "../../component/Title/Title";
+
 const Cart = () => {
   const [cart, setCart] = useState();
   const [total, setTotal] = useState();
@@ -14,6 +16,7 @@ const Cart = () => {
     id: localStorage.getItem("id"),
     authorization: `Bearer ${localStorage.getItem("token")}`,
   };
+
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
@@ -61,76 +64,133 @@ const Cart = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-white px-12 h-screen py-8 ">
-      {cart && cart.length === 0 && (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 py-8 px-4 md:px-12">
+      {cart === undefined && (
         <div className="w-full h-screen flex items-center justify-center">
           <Loader />
         </div>
       )}
-      {!cart && (
-        <div className="h-screen">
-          <div className="h-[100%] flex items-center flex-col justify-center">
-            <h1 className="text-2xl lg:text-3xl font-semibold text-black">
-              No items available in cart
+
+      {cart && cart.length === 0 && (
+        <div className="max-w-7xl mx-auto">
+          <Title text1={"Your Cart"} />
+          <div className="h-[60vh] flex items-center flex-col justify-center">
+            <FaShoppingCart size={80} className="text-gray-300 dark:text-gray-600 mb-6" />
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white text-center">
+              Your cart is empty
             </h1>
+            <p className="text-gray-600 dark:text-gray-400 text-lg mt-3 text-center">
+              Start adding courses to get started!
+            </p>
+            <button
+              onClick={() => navigate("/courses")}
+              className="btn-primary mt-8"
+            >
+              Browse Courses
+            </button>
           </div>
         </div>
       )}
+
       {cart && cart.length > 0 && (
-        <>
+        <div className="max-w-7xl mx-auto">
           <Title text1={"Your Cart"} />
-          {cart.map((item, i) => (
-            <div
-              className="w-full my-4 rounded flex flex-col md:flex-row p-4 bg-back dark:bg-zinc-800 justify-between items-center "
-              key={i}
-            >
-              <img
-                src={item.Image}
-                className="w-[90px] h-[90px] border"
-                alt="image"
-              />
-              <div className="w-full md:w-auto">
-                <h2 className="text-2xl font-semibold text-text text-start mt-2 md:mt-0">
-                  {item.Name}
-                </h2>
-                <p className="text-normal text-text mt-2 hidden md:block lg:hidden">
-                  {item.desc}
-                </p>
-              </div>
-              <div className="flex mt-4 w-full md:w-auto items-center justify-between">
-                <h3 className="text-text text-2xl font-semibold flex">
-                  ${item.Price}
-                </h3>
-                <button
-                  className="bg-text text-[#03476F] dark:text-zinc-900 border border-back rounded p-2 ms-12"
-                  onClick={() => deleteItem(item._id)}
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Cart Items */}
+            <div className="lg:col-span-2 space-y-4">
+              {cart.map((item, i) => (
+                <div
+                  key={i}
+                  className="card-base bg-white dark:bg-gray-800 p-6 flex gap-6 items-start hover:shadow-lg transition-all"
                 >
-                  <AiFillDelete />
+                  {/* Course Image */}
+                  <div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700">
+                    <img
+                      src={item.Image}
+                      className="w-full h-full object-cover"
+                      alt={item.Name}
+                    />
+                  </div>
+
+                  {/* Course Details */}
+                  <div className="flex-1 min-w-0">
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-2">
+                      {item.Name}
+                    </h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                      By: {item.Faculty || "Unknown"}
+                    </p>
+                    <div className="flex items-center gap-4">
+                      <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                        ${item.Price}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Delete Button */}
+                  <button
+                    onClick={() => deleteItem(item._id)}
+                    className="flex-shrink-0 p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg transition-all"
+                    title="Remove from cart"
+                  >
+                    <AiFillDelete size={20} />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Order Summary */}
+            <div className="lg:col-span-1">
+              <div className="card-base bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-900 dark:to-gray-800 p-6 sticky top-20">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                  Order Summary
+                </h2>
+
+                <div className="space-y-4 pb-6 border-b border-gray-200 dark:border-gray-700">
+                  <div className="flex justify-between text-gray-700 dark:text-gray-300">
+                    <span>Subtotal</span>
+                    <span>${total}</span>
+                  </div>
+                  <div className="flex justify-between text-gray-700 dark:text-gray-300">
+                    <span>Courses</span>
+                    <span className="bg-indigo-100 dark:bg-indigo-800 text-indigo-700 dark:text-indigo-200 px-3 py-1 rounded-full text-sm font-semibold">
+                      {cart.length}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-6 mb-6">
+                  <div className="flex justify-between items-center">
+                    <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                      Total
+                    </span>
+                    <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                      ${total}
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handlePlaceOrder}
+                  className="btn-primary w-full flex items-center justify-center gap-2"
+                >
+                  Place Order
+                  <FaArrowRight size={16} />
+                </button>
+
+                <button
+                  onClick={() => navigate("/courses")}
+                  className="btn-secondary w-full mt-3"
+                >
+                  Continue Shopping
                 </button>
               </div>
             </div>
-          ))}
-        </>
-      )}
-      {cart && cart.length > 0 && (
-        <div className="mt-4 w-full flex items-center justify-end">
-          <div className="p-4 bg-back dark:bg-zinc-800 rounded">
-            <h1 className="text-3xl text-text font-semibold">Total Amount</h1>
-            <div className="mt-3 flex items-center justify-between text-xl text-text">
-              <h2>{cart.length} courses</h2>
-              <h2>$ {total}</h2>
-            </div>
-            <div className="mt-3 w-[100%]">
-              <button
-                className="bg-text rounded dark:text-black px-4 py-2 flex justify-center w-full font-semibold"
-                onClick={handlePlaceOrder}
-              >
-                Place Your Order
-              </button>
-            </div>
           </div>
         </div>
       )}
+
       <ToastContainer />
     </div>
   );

@@ -30,28 +30,43 @@ const PopularBooks = () => {
   }, []);
 
   return (
-    <div className="bg-white mb-8 h-auto">
-      <Title text1={"Popular Books"} />
-      {!popularBooks.length ? (
-        <div className="flex items-center justify-center my-8">
-          <Loader />
+    <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-12 px-4 mb-8">
+      <div className="max-w-7xl mx-auto">
+        <Title text1={"Popular Books"} />
+        
+        <div className="mb-8">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
+            Explore our curated collection of bestselling books to enhance your learning journey.
+          </p>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {popularBooks.map((book, i) => (
-            <div
-              key={i}
-              className="bg-[#03506F] dark:bg-zinc-800 rounded p-4 flex flex-col h-full w-full"
-            >
-              <Book book={book} />
-              <ReedBook pdf={book.Pdf} />
-            </div>
-          ))}
-        </div>
-      )}
+
+        {!popularBooks.length ? (
+          <div className="flex items-center justify-center py-16">
+            <Loader />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fadeInUp">
+            {popularBooks.map((book, i) => (
+              <div
+                key={i}
+                className="animate-fadeInUp"
+                style={{ animationDelay: `${i * 0.1}s` }}
+              >
+                <div className="flex flex-col h-full">
+                  <Book book={book} />
+                  <div className="mt-3">
+                    <ReedBook pdf={book.Pdf} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
       <ToastContainer />
     </div>
   );
 };
 
 export default PopularBooks;
+

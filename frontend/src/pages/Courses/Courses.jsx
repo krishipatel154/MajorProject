@@ -5,6 +5,7 @@ import Navbar from "./CourseNav";
 import axios from "axios";
 import { handleError } from "../../utils";
 import Course from "../../component/Course/Course";
+import Loader from "../../component/Loader/Loader";
 
 const Courses = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("All");
@@ -42,12 +43,14 @@ const Courses = () => {
   };
 
   return (
-    <div className="w-90%">
+    <div className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 min-h-screen">
       <Navbar onLanguageSelect={handleLanguageSelect} />
       {loading ? (
-        <div>Loading...</div>
+        <div className="h-screen flex items-center justify-center">
+          <Loader />
+        </div>
       ) : (
-        <>
+        <div className="py-8">
           {selectedLanguage === "All" && (
             <>
               {/* Show Recent Courses and All Courses headings if no language is selected */}
@@ -58,10 +61,18 @@ const Courses = () => {
           {selectedLanguage !== "All" && (
             <>
               {/* Only show the courses filtered by selected language without headings */}
-              <div className="bg-white text-text h-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="max-w-7xl mx-auto px-4">
+                <h2 className="section-title mb-2">{selectedLanguage} Courses</h2>
+                <p className="section-subtitle">
+                  Explore {selectedLanguage} courses curated just for you
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fadeInUp">
                   {filterCoursesByLanguage(allCourses).map((course, i) => (
-                    <div key={i}>
+                    <div
+                      key={i}
+                      className="animate-fadeInUp"
+                      style={{ animationDelay: `${i * 0.1}s` }}
+                    >
                       <Course course={course} />
                     </div>
                   ))}
@@ -69,7 +80,7 @@ const Courses = () => {
               </div>
             </>
           )}
-        </>
+        </div>
       )}
     </div>
   );

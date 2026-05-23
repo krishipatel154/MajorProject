@@ -2,6 +2,7 @@ import { useState } from "react";
 import { handleError, handleSuccess } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash, FaEnvelope, FaLock } from "react-icons/fa";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,8 @@ const Login = () => {
     Email: "",
     Password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginInfo((prevState) => ({ ...prevState, [name]: value }));
@@ -24,6 +27,7 @@ const Login = () => {
       return handleError("All fields are required!!");
     }
     try {
+      setIsLoading(true);
       const url = "http://localhost:8089/user/login";
       const response = await fetch(url, {
         method: "POST",
@@ -47,131 +51,152 @@ const Login = () => {
       }
     } catch (error) {
       handleError(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <>
       <section className="min-h-screen flex text-white bg-gray-500 bg-no-repeat bg-cover relative items-center bg-[url(https://images.unsplash.com/photo-1577495508048-b635879837f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80)]">
-        <div className="lg:flex w-1/2 hidden ">
-          <div className="absolute bg-back dark:bg-black opacity-60 inset-0 z-0"></div>
-          <div className="w-full px-24 z-10">
-            <h1 className="text-5xl font-bold text-left tracking-wide">
-              Keep it special
+        {/* Left Section - Welcome Message */}
+        <div className="lg:flex w-1/2 hidden">
+          <div className="absolute bg-gradient-to-r from-back dark:from-black via-black to-transparent opacity-70 inset-0 z-0"></div>
+          <div className="w-full px-24 z-10 flex flex-col justify-center">
+            <h1 className="text-6xl font-bold text-left tracking-wide mb-4">
+              Welcome Back
             </h1>
-            <p className="text-3xl my-4">
-              Capture your personal memory in unique way, anywhere.
+            <p className="text-2xl text-gray-200">
+              Learn anything, anytime, from anywhere. Continue your learning journey with us.
             </p>
-          </div>
-          <div className="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4"></div>
-        </div>
-        <div className="lg:w-1/2 w-full flex items-center bg-transparent justify-center text-center md:px-16 px-0 z-0">
-          <div className="">
-            <div className="p-8 mx-auto bg-back dark:bg-black">
-              <div className=" dark:bg-black rounded py-12 px-4 lg:px-24">
-                <div className="flex justify-center items-center m-4">
-                  <h1 className="text-3xl">Login Form</h1>
-                </div>
-                <form onSubmit={handleLogin}>
-                  <div className="relative mb-6">
-                    <input
-                      onChange={handleChange}
-                      className="appearance-none border pl-12 border-gray-200 shadow-sm focus:shadow-md focus:placeholder-gray-600 transition rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
-                      id="email"
-                      type="text"
-                      placeholder="Email"
-                      name="Email"
-                      value={loginInfo.Email}
-                    />
-                    <div className="absolute left-0 inset-y-0 flex items-center pl-3">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-7 w-7 text-gray-400"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="relative mb-6">
-                    <input
-                      onChange={handleChange}
-                      className="appearance-none border pl-12 border-gray-200 shadow-sm focus:shadow-md focus:placeholder-gray-600 transition rounded-md w-full py-3 text-gray-600 leading-tight focus:outline-none focus:ring-gray-600 focus:shadow-outline"
-                      id="password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      name="Password"
-                      value={loginInfo.Password}
-                    />
-                    <div className="absolute left-0 inset-y-0 flex items-center pl-3">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-7 w-7 text-gray-400"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
-                      </svg>
-                    </div>
-                    <div
-                      className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
-                      onClick={togglePasswordVisibility}
-                    >
-                      {showPassword ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 text-gray-500"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M1 12S4 4 12 4s11 8 11 8-3 8-11 8-11-8-11-8z"></path>
-                          <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
-                        </svg>
-                      ) : (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4 text-gray-500"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M17.94 17.94A10 10 0 011.05 12M22.95 12a10 10 0 00-3.87-7.94M9.17 9.17a3 3 0 014.66 4.66M1 1l22 22"></path>
-                        </svg>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center">
-                    <button className="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                      Login
-                    </button>
-                  </div>
-                  <div className="mt-5 text-center">
-                    <Link className="text-blue-500" to="/forgetPass">
-                      Forget password?
-                    </Link>
-                  </div>
-                  <div className="mt-5 text-center">
-                    Don't have an account?{" "}
-                    <Link className="text-blue-500" to="/signup">
-                      Signup
-                    </Link>
-                  </div>
-                </form>
-                <ToastContainer />
+            <div className="mt-8 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-indigo-400 rounded-full"></div>
+                <span>Exclusive courses from expert instructors</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-indigo-400 rounded-full"></div>
+                <span>Learn at your own pace</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-indigo-400 rounded-full"></div>
+                <span>Access lifetime resources</span>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Right Section - Login Form */}
+        <div className="lg:w-1/2 w-full flex items-center justify-center md:px-16 px-4 py-8">
+          <div className="w-full max-w-md">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                  Login
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Sign in to access your learning platform
+                </p>
+              </div>
+
+              {/* Form */}
+              <form onSubmit={handleLogin} className="space-y-6">
+                {/* Email Field */}
+                <div>
+                  <label className="label-base">Email Address</label>
+                  <div className="relative">
+                    <FaEnvelope className="absolute left-4 top-3.5 text-gray-400 dark:text-gray-500" />
+                    <input
+                      onChange={handleChange}
+                      className="input-base pl-12"
+                      id="email"
+                      type="email"
+                      placeholder="Enter your email"
+                      name="Email"
+                      value={loginInfo.Email}
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Password Field */}
+                <div>
+                  <label className="label-base">Password</label>
+                  <div className="relative">
+                    <FaLock className="absolute left-4 top-3.5 text-gray-400 dark:text-gray-500" />
+                    <input
+                      onChange={handleChange}
+                      className="input-base pl-12 pr-12"
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      name="Password"
+                      value={loginInfo.Password}
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={togglePasswordVisibility}
+                      className="absolute right-4 top-3.5 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 transition"
+                    >
+                      {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Forgot Password Link */}
+                <div className="text-right">
+                  <Link
+                    to="/forgetPass"
+                    className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium transition"
+                  >
+                    Forgot Password?
+                  </Link>
+                </div>
+
+                {/* Login Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? "Logging in..." : "Login"}
+                </button>
+              </form>
+
+              {/* Divider */}
+              <div className="relative my-8">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400">
+                    New to our platform?
+                  </span>
+                </div>
+              </div>
+
+              {/* Sign Up Link */}
+              <p className="text-center text-gray-700 dark:text-gray-300">
+                Don't have an account?{" "}
+                <Link
+                  to="/signup"
+                  className="text-indigo-600 dark:text-indigo-400 font-bold hover:text-indigo-700 dark:hover:text-indigo-300 transition"
+                >
+                  Sign up here
+                </Link>
+              </p>
+            </div>
+
+            {/* Additional Info */}
+            <div className="mt-6 text-center text-white text-sm">
+              <p>Secure login with encrypted connection</p>
+            </div>
+          </div>
+        </div>
       </section>
+      <ToastContainer />
     </>
   );
 };
